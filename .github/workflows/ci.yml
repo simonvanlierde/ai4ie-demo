@@ -5,7 +5,7 @@ name: CI & Deploy
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -14,8 +14,8 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -25,7 +25,7 @@ jobs:
       - name: Test (with coverage)
         run: npm run test:coverage
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           files: coverage/lcov.info
           # Public repos can upload tokenless; add CODECOV_TOKEN as a repo secret if it rate-limits.
@@ -36,9 +36,9 @@ jobs:
     needs: check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # Builds the Astro site (also validates internal links) and uploads the Pages artifact.
-      - uses: withastro/action@v3
+      - uses: withastro/action@v6
         with:
           # withastro/action has no node-version-file input, so this is pinned
           # separately from .nvmrc; keep the two in sync when bumping Node.
@@ -61,4 +61,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
