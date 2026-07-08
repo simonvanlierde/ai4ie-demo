@@ -1,0 +1,136 @@
+/* ============================================================================
+   AI4IE design system : "copper and its patina"
+   ----------------------------------------------------------------------------
+   The two brand colours are the SAME metal at two stages of its life: fresh
+   copper and the verdigris patina it oxidises into. That is the palette's whole
+   reason to exist; a material-flow story (stocks, flows, lifecycle) rendered in
+   two hex values, which is about as industrial-ecology as a colour scheme gets.
+
+   Type is a "scientific field-manual" system, all self-hosted (no CDN):
+     · Bricolage Grotesque : display / UI / headings (industrial grotesque)
+     · Literata            : prose body (a research-journal screen serif)
+     · Martian Mono        : labels, table headers, code (the technical voice)
+   ============================================================================ */
+
+:root {
+  /* Material palette: the fixed points every accent derives from */
+  --copper: #b5541e; /* fresh metal: the anchor (a real MFA case-study element) */
+  --copper-bright: #e0895a; /* AA-safe copper for text/links on dark surfaces */
+  --patina: #2a7d74; /* verdigris: what the copper becomes */
+  --patina-bright: #5bb3a8; /* AA-safe patina for dark surfaces */
+
+  /* Type roles */
+  --sl-font: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-prose: "Literata Variable", Georgia, "Times New Roman", serif;
+  --sl-font-mono: "Martian Mono Variable", ui-monospace, "SF Mono", monospace;
+
+  --flow-rule: linear-gradient(90deg, var(--copper), var(--patina));
+}
+
+/* ── Dark theme (Starlight's default root) ───────────────────────────────── */
+:root {
+  --sl-color-accent-low: #173f3b; /* deep patina */
+  --sl-color-accent: #b5541e; /* copper: buttons, active nav */
+  --sl-color-accent-high: #e0895a; /* bright copper: link text (was #e9c9b4) */
+  --sl-color-text-accent: var(--copper-bright); /* fixes ~3.66:1 links → ~6.8:1 */
+  --sl-color-bg: #1a1817; /* warm near-black, sits with copper */
+  --sl-color-hairline-shade: #2c2724;
+}
+
+/* ── Light theme ─────────────────────────────────────────────────────────── */
+:root[data-theme="light"] {
+  --sl-color-accent-low: #f0e3d8; /* pale copper wash */
+  --sl-color-accent: #b5541e;
+  --sl-color-accent-high: #6e3212; /* deep copper */
+  --sl-color-text-accent: var(--copper); /* 4.95:1 on white: AA */
+  --sl-color-bg: #fbfaf7; /* warm white */
+  --sl-color-hairline-shade: #ece5dc;
+}
+
+/* ── Typography ──────────────────────────────────────────────────────────── */
+/* Headings: display grotesque, tightened tracking for a printed-cover feel */
+.sl-markdown-content :is(h1, h2, h3, h4),
+.hero h1 {
+  font-family: var(--sl-font);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* Prose body: the research-journal serif. Scoped to content so nav/UI stay in
+   the grotesque. */
+.sl-markdown-content p,
+.sl-markdown-content li,
+.sl-markdown-content td,
+.sl-markdown-content blockquote {
+  font-family: var(--font-prose);
+  line-height: 1.7;
+}
+
+/* Table headers & code: the technical mono voice. Martian runs wide, so trim. */
+.sl-markdown-content th {
+  font-family: var(--sl-font-mono);
+  font-weight: 600;
+  font-size: 0.72em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.sl-markdown-content :is(code, kbd),
+.sl-markdown-content pre {
+  font-size: 0.86em;
+}
+
+/* Mono eyebrow: a labelling utility for authors: <p class="eyebrow">…</p> */
+.eyebrow {
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sl-color-text-accent);
+}
+
+/* ── Signature: the copper→patina flow rule under the splash headline ─────── */
+.hero h1::after {
+  content: "";
+  display: block;
+  width: min(240px, 55%);
+  height: 3px;
+  margin-top: 1.1rem;
+  border-radius: 2px;
+  background: var(--flow-rule);
+}
+.hero .tagline {
+  font-family: var(--font-prose);
+}
+
+/* ── Accessibility floor ─────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+
+/* ── Example demo island: retheme to the material tokens ─────────────────── */
+.demo-island {
+  border: 1px solid var(--sl-color-gray-5);
+  border-left: 3px solid var(--patina);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: var(--sl-color-gray-6);
+}
+.demo-island textarea {
+  width: 100%;
+  min-height: 5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.35rem;
+  border: 1px solid var(--sl-color-gray-5);
+  background: var(--sl-color-black);
+  color: var(--sl-color-white);
+  font: inherit;
+}
+.demo-island output {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--sl-color-gray-2);
+}
