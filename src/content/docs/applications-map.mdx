@@ -1,0 +1,140 @@
+---
+title: Map of AI applications in IE
+description: A draft map of computer-vision applications for product-scale data collection in industrial ecology.
+---
+
+import DemoIsland from '../../components/DemoIsland.tsx';
+
+A map of where AI is being applied across industrial ecology. This first slice is a
+**draft working taxonomy** of computer-vision tasks for product-scale data collection: a
+small corner of the field, not the whole of AI in IE. It carries a rough maturity verdict
+and a demo slot per branch. Other modalities and scales (NLP on reports and EPDs, LLM
+extraction, region- or economy-scale work) are wide open for the group to add.
+
+:::caution[Draft / prototype]
+Everything here is early and provisional: a personal working taxonomy, rough maturity
+calls, and placeholder demos. Treat it as a starting point to argue with, not settled work.
+:::
+
+## How this map works
+
+For each taxonomy category:
+
+- **What it covers:** one or two lines, in plain terms.
+- **Examples:** real applications, tools, or papers (link them; don't fabricate).
+- **Demo:** an optional embedded web-app demonstrating the category (see below).
+
+### Two ways to add a demo
+
+- **External app (most common):** anything that *calls a model* needs a backend, so host
+  it separately (Hugging Face Space, an institute server, a small FastAPI app) and embed it
+  with an `<iframe>`. Keep a text link too, for when the embed can't load.
+
+  ```html
+  <iframe src="https://example.org/your-demo/" width="100%" height="480"
+          style="border:1px solid #ccc;border-radius:6px"
+          loading="lazy" title="Demo: category name"></iframe>
+  ```
+
+- **In-page island:** a purely client-side widget ships as an Astro island, no backend.
+  Copy [`src/components/DemoIsland.tsx`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/components/DemoIsland.tsx),
+  then drop `<YourDemo client:load />` into the category. The live example below is one.
+
+---
+
+## Taxonomy at a glance
+
+Two axes: **physical scale** (product, component, material) and **information type**
+(identity, quantity, structure, condition). Each populated cell is a CV task carrying a
+maturity verdict. Read against its own rubric the map is largely negative: no cell reaches
+*strong* under end-of-life capture, and the useful signal sits in the gradations below it.
+
+| Scale ↓ / Info type → | Identity | Quantity | Structure (BoC) | Condition |
+| --- | --- | --- | --- | --- |
+| **Product** | Label OCR + retrieval (**P**) | Depth / multi-view geometry (**P**) | — | Wear / damage grading (**U**) |
+| **Component** | Marking OCR + open-vocab naming (**P**) | Per-part geometry, occluded (**P**) | Detection (**P**) / attachment relations (**E**) | Connector-state grading (**U**) |
+| **Material** | Surface BoM classification (**P**); full BoM an open gap | Derived (geometry × density) | — | Corrosion / contamination (**U**) |
+
+**Maturity:** **P** partial · **E** emerging-but-narrow · **U** plausible-but-unvalidated ·
+— not directly sensed (empty or derived). No cell is *strong* under decentralized EoL
+capture.
+
+_A personal working taxonomy, still in draft, scoped to CV for product-scale data
+collection. Verdicts and coverage will shift as it develops._
+
+## Product-level tasks
+
+**What it covers:** data recoverable from an image of the whole product.
+
+**Examples:**
+
+- **Identity (partial).** OCR metadata extraction from labels (text detection, recognition,
+  then fuzzy match to a reference database), with retrieval-based classification and VLM
+  scene-text reading as complements. Deployed precedent: a washing-machine label pipeline
+  run by non-experts on commodity phones read model numbers from 95.7% of label-visible
+  images in professional repair but only 39.7% at a recycler (Sterkens et al., 2023).
+  Failure mode: label degradation at EoL, plus a database-coverage limit downstream.
+- **Quantity (partial, approximate).** Monocular metric depth (Metric3D v2, Depth Pro,
+  Depth Anything v2), feed-forward multi-view geometry (VGGT, MapAnything), and
+  photogrammetry / NeRF / 3D Gaussian splatting recover error-bounded geometry; single-image
+  mass estimation exists but is coarse. Visible surfaces only; reflective, transparent, and
+  thin parts bind.
+- **Condition (plausible but unvalidated).** Wear, damage, and corrosion recognition feeding
+  repair / reuse / recycle triage. Nearest method is zero-shot anomaly detection (WinCLIP,
+  AnomalyCLIP), which flags an anomaly's presence, not a graded per-unit condition, and is
+  unvalidated on worn consumer products.
+
+**Demo (example island, replace with a real one):**
+
+<DemoIsland client:load />
+
+## Component-level tasks
+
+**What it covers:** data about the individual components inside an opened product.
+
+**Examples:**
+
+- **Structure / BoC (partial detection, emerging-but-narrow relations).** The most populated
+  cell. Detecting, segmenting, and counting components is well-validated where task-tuned
+  (~98.8% mAP50 on a laptop-teardown benchmark); foundation segmenters (SAM, SAM 2, SAM 3,
+  GroundingDINO, Grounded-SAM) need an added class-assignment layer. Inferring
+  component-to-component *attachment relations* is the weakest cell: single-image methods
+  (SINGAPO, URDFormer) exist only for a few articulated household categories, collapse out
+  of distribution (~82% → ~39%), and recover kinematic joints rather than the fastener
+  relations (screwed, glued, clipped) a disassembly BoC needs.
+- **Identity (partial).** OCR on component markings plus one-shot / retrieval recognition and
+  open-vocabulary naming from a text prompt; fine-grained brand- or part-specific identity is
+  not reliably recovered.
+- **Quantity (partial, approximate).** Inherits the product-level geometry methods,
+  aggravated by occlusion within the assembled product.
+- **Condition (plausible but unvalidated).** Connector-state recognition (screws, clips,
+  solder joints) for disassembly planning; published work shows fastener *detection*, not
+  per-unit condition *grading*.
+
+**Demo:** _none yet; embed an external app or an island (see above)._
+
+## Material-level tasks
+
+**What it covers:** the material composition (bill of materials) of the product and its
+parts.
+
+**Examples:**
+
+- **Identity / BoM (partial on visible surfaces, open gap for full BoM).** Surface material
+  classification and segmentation of *visible* regions (MINC's 23-class in-the-wild baseline;
+  one/few-shot similarity given a region mask; CLIP-based recognition, fragile under domain
+  shift and multi-material compositeness). One deployed setting delivers image-based
+  composition: an industrial sensor sorter on shredded WEEE (YOLO, mAP50 ≈ 0.99). But it
+  characterizes an aggregate flow at a central plant, not the per-component composition of an
+  intact product. Occluded interior composition is an open gap.
+- **Quantity (derived, not sensed).** Per-material mass or volume would come from component
+  geometry × material class × a density prior; no dedicated method, and it compounds both
+  inputs' uncertainty. Forward-looking.
+- **Condition (plausible but unvalidated).** Corrosion, degradation, and contamination;
+  surface segmentation can isolate regions, but per-region grading on arbitrary products is
+  not validated.
+
+**Demo:** _none yet._
+
+{/* Add other AI modalities (NLP on reports/EPDs, LLM extraction, forecasting) and scales
+    as sibling maps; this first map is a draft CV-for-data-collection taxonomy only. */}

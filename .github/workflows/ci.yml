@@ -1,0 +1,64 @@
+name: CI & Deploy
+
+# PRs run lint + build only. Pushes to main run lint + build, then deploy;
+# deploy is gated on both passing via `needs:`, so a red build never ships.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Lint & format check
+        run: npm run lint
+      - name: Test (with coverage)
+        run: npm run test:coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: coverage/lcov.info
+          # Public repos can upload tokenless; add CODECOV_TOKEN as a repo secret if it rate-limits.
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+
+  build:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Builds the Astro site (also validates internal links) and uploads the Pages artifact.
+      - uses: withastro/action@v3
+        with:
+          # withastro/action has no node-version-file input, so this is pinned
+          # separately from .nvmrc; keep the two in sync when bumping Node.
+          node-version: 26
+
+  deploy:
+    needs: build
+    # Only deploy on a push to main, not on PRs.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    # Allow one concurrent deployment; don't cancel an in-progress one.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
