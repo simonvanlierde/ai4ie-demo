@@ -1,10 +1,10 @@
 ---
 title: AI for coding & research
-description: Generic get-started guides for using AI in coding and research work.
+description: Get-started guides for using AI in coding and research.
 ---
 
-Generic, get-started guides: the things you wish someone had told you before you
-started using AI in your work.
+Get-started guides: what you wish someone had told you before you started using AI
+in your work.
 
 :::caution[Scaffold]
 Short, practical guides only. Link out rather than duplicating good external material.

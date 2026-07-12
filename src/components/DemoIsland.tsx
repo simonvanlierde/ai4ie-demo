@@ -14,7 +14,7 @@ export default function DemoIsland() {
   return (
     <div className="demo-island not-content">
       <label>
-        Placeholder demo, type something:
+        Placeholder demo: type something
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}

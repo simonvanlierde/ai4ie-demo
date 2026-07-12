@@ -1,7 +1,7 @@
 # Contributing
 
 This is a **working-group resource**. It's only as good as what members add. If you've
-found hardware that works, a tool worth the time, a prompt that saves you, or a place
+found hardware that works, a tool worth the time, a prompt that saves you an hour, or a place
 AI is being used in IE, add it.
 
 ## The short version

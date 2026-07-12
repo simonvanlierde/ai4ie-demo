@@ -7,8 +7,8 @@ import DemoIsland from '../../components/DemoIsland.tsx';
 
 A map of where AI is being applied across industrial ecology. This first slice is a
 **draft working taxonomy** of computer-vision tasks for product-scale data collection: a
-small corner of the field, not the whole of AI in IE. It carries a rough maturity verdict
-and a demo slot per branch. Other modalities and scales (NLP on reports and EPDs, LLM
+small corner of the field, not the whole of AI in IE. Each branch carries a rough
+maturity verdict and a demo slot. Other modalities and scales (NLP on reports and EPDs, LLM
 extraction, region- or economy-scale work) are wide open for the group to add.
 
 :::caution[Draft / prototype]
@@ -46,7 +46,7 @@ For each taxonomy category:
 
 Two axes: **physical scale** (product, component, material) and **information type**
 (identity, quantity, structure, condition). Each populated cell is a CV task carrying a
-maturity verdict. Read against its own rubric the map is largely negative: no cell reaches
+maturity verdict. Read against its own rubric, the map is largely negative: no cell reaches
 *strong* under end-of-life capture, and the useful signal sits in the gradations below it.
 
 | Scale ↓ / Info type → | Identity | Quantity | Structure (BoC) | Condition |
@@ -78,7 +78,7 @@ collection. Verdicts and coverage will shift as it develops._
   Depth Anything v2), feed-forward multi-view geometry (VGGT, MapAnything), and
   photogrammetry / NeRF / 3D Gaussian splatting recover error-bounded geometry; single-image
   mass estimation exists but is coarse. Visible surfaces only; reflective, transparent, and
-  thin parts bind.
+  thin parts are the limiting cases.
 - **Condition (plausible but unvalidated).** Wear, damage, and corrosion recognition feeding
   repair / reuse / recycle triage. Nearest method is zero-shot anomaly detection (WinCLIP,
   AnomalyCLIP), which flags an anomaly's presence, not a graded per-unit condition, and is

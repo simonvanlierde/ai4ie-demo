@@ -19,8 +19,7 @@ hero:
 ---
 
 A community-curated guide to using AI in industrial ecology (IE), maintained by the
-**AI4IE working group**. It collects the hardware, tools, practices, and worked examples
-that help IE researchers use AI without getting burned by it.
+**AI4IE working group**.
 
 :::caution[This is a scaffold, not a finished list]
 Most entries here are placeholders marked `TODO(wg)`. That is deliberate: this is a
@@ -35,16 +34,16 @@ for how to add real entries.
 | 1 | [Hardware recommendations](hardware/) | What to run AI on, including federated and locally-hosted options for sensitive data. |
 | 2 | [Best practices & protocols](best-practices/) | Verification checklists, reusable prompts, and Claude skill files. |
 | 3 | [Tool recommendations](tools/) | Models, apps, and libraries the group actually uses. |
-| 4 | [AI for coding & research](guides/) | How to use AI for coding and research, from scratch. |
-| 5 | [Map of AI applications in IE](applications-map/) | The Paper 2 taxonomy as a map, with slots for live web-app demos. |
+| 4 | [AI for coding & research](guides/) | Get-started guides: what you wish someone had told you first. |
+| 5 | [Map of AI applications in IE](applications-map/) | A draft taxonomy with maturity verdicts and slots for live web-app demos. |
 
 ## Who this is for
 
-IE researchers and students who want to use AI in their work and want to do it well:
+IE researchers and students who want to use AI in their work and do it well:
 reproducibly, with data governance in mind, and without citing papers that don't exist.
 
 ## Contributing
 
-Everything here is proposable. Add a tool, a prompt, a checklist item, or a demo by
+Everything here is a proposal. Add a tool, a prompt, a checklist item, or a demo by
 opening a pull request. The [contributing guide](https://github.com/simonvanlierde/ai4ie-demo/blob/main/CONTRIBUTING.md)
 explains the format and where each type of entry goes.
