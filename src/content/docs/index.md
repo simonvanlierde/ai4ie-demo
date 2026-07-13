@@ -1,6 +1,11 @@
 ---
 title: Awesome AI for Industrial Ecology
 description: A community-curated guide to using AI in industrial ecology, by the AI4IE working group.
+head:
+  # The page title equals the site title, so Starlight's "page | site" pattern
+  # would double it. Override with the plain name.
+  - tag: title
+    content: Awesome AI for Industrial Ecology
 template: splash
 hero:
   tagline: Hardware, tools, practices, and worked examples that help IE researchers use AI without getting burned by it.
