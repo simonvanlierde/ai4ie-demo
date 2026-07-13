@@ -61,7 +61,7 @@ Two options:
   the [map page](src/content/docs/applications-map.mdx).
 - **In-page island** (a client-side widget, no backend): copy
   [`src/components/DemoIsland.tsx`](src/components/DemoIsland.tsx), then use it in an `.mdx`
-  page: `import YourDemo from '...'` and `<YourDemo client:load />`.
+  page: `import YourDemo from '...'` and `<YourDemo client:visible />`.
 
 ### Adding a Claude skill
 
