@@ -6,7 +6,7 @@ import { countWords } from "./wordCount";
  * AI tool. Anything that calls a model needs a backend; host that separately and embed
  * it with an <iframe>. A purely client-side widget (like this) ships as a static island
  * with zero server code. Copy this file to build your own, then drop
- * `<YourDemo client:load />` into an .mdx page.
+ * `<YourDemo client:visible />` into an .mdx page (hydrates only when scrolled into view).
  */
 export default function DemoIsland() {
   const [text, setText] = useState("");
