@@ -1,20 +1,25 @@
 # Awesome AI for Industrial Ecology
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
-[![CI](https://img.shields.io/github/actions/workflow/status/simonvanlierde/ai4ie-demo/ci.yml?)](https://github.com/simonvanlierde/ai4ie-demo/actions)
-[![codecov](https://img.shields.io/codecov/c/github/simonvanlierde/ai4ie-demo)](https://codecov.io/gh/simonvanlierde/ai4ie-demo)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+**A community-curated resource for using AI in industrial ecology research,
+maintained by the [AI4IE working group](CONTRIBUTING.md).**
 
-> A community-curated resource for using AI in industrial ecology research, maintained by
-> the **AI4IE working group**.
+[![Live site](https://img.shields.io/badge/live_site-ai4ie-c2410c)](https://simonvanlierde.github.io/ai4ie-demo/)
+[![Contributing](https://img.shields.io/badge/contributing-guide-0f766e)](CONTRIBUTING.md)
+[![CI](https://img.shields.io/github/actions/workflow/status/simonvanlierde/ai4ie-demo/ci.yml?label=CI)](https://github.com/simonvanlierde/ai4ie-demo/actions)
+[![Coverage](https://img.shields.io/codecov/c/github/simonvanlierde/ai4ie-demo)](https://codecov.io/gh/simonvanlierde/ai4ie-demo)
+[![Built with Astro](https://img.shields.io/badge/built%20with-Astro-BC52EE?logo=astro&logoColor=white)](https://astro.build)
+[![License: CC BY 4.0](https://img.shields.io/badge/license-CC--BY--4.0-lightgrey)](LICENSE)
 
-**Live site:** <https://simonvanlierde.github.io/ai4ie-demo/>
+**See it live: [simonvanlierde.github.io/ai4ie-demo](https://simonvanlierde.github.io/ai4ie-demo/)**
 
-This repo is a **scaffold**, not finished work: placeholder content and `TODO`
-markers throughout, waiting for working-group members to fill in. Contributions are the
-whole point.
+<a href="https://simonvanlierde.github.io/ai4ie-demo/">
+  <img src=".github/screenshot.png" alt="The AI4IE site homepage" width="800">
+</a>
 
-## Sections
+## What this is
+
+A **scaffold**, not finished work. Placeholder content and `TODO(wg)` markers throughout,
+waiting for working-group members to fill in. Contributions are the whole point.
 
 | Page | Contents |
 |---|---|
@@ -26,22 +31,22 @@ whole point.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: edit a Markdown file under
-`src/content/docs/`, replace a `TODO`, and open a pull request. No local setup needed to
-edit prose.
+Edit a Markdown file under `src/content/docs/`, replace a `TODO(wg)`, open a pull request.
+No local setup needed to edit prose — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## How it's built
 
 [Astro](https://astro.build) + the [Starlight](https://starlight.astro.build) docs theme.
-Content is plain Markdown/MDX; interactive demos are **Astro islands** (client-side
-components that ship zero JS on pages that don't use them). Pushing to `main` builds and
-deploys to GitHub Pages.
+Content is plain Markdown/MDX; interactive demos are **Astro islands**, so pages that don't
+use one ship zero JavaScript. Pushing to `main` builds and deploys to GitHub Pages.
 
-- Content: `src/content/docs/*.md` (and `.mdx` for pages that embed a component).
-- Sidebar, theme, site config: [`astro.config.mjs`](astro.config.mjs).
-- Brand colors: [`src/styles/custom.css`](src/styles/custom.css).
-- Example interactive island: [`src/components/DemoIsland.tsx`](src/components/DemoIsland.tsx).
-- CI & deploy: [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+| Where | What |
+|---|---|
+| `src/content/docs/*.md` | Page content (`.mdx` when a page embeds a component). |
+| [`astro.config.mjs`](astro.config.mjs) | Sidebar, theme, site config. |
+| [`src/styles/custom.css`](src/styles/custom.css) | Brand colors. |
+| [`src/components/DemoIsland.tsx`](src/components/DemoIsland.tsx) | Example interactive island. |
+| [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | Lint, test, build, deploy. |
 
 Preview locally (needs Node 26+):
 
