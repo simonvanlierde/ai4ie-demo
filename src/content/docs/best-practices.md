@@ -15,22 +15,44 @@ in research.
 Adapt these stubs to IE work and add domain-specific checks.
 :::
 
-### General AI output
+### AI-assisted coding
 
-- [ ] Did I state the task, constraints, and success criteria explicitly?
-- [ ] Can I trace every claim to a source I checked myself?
-- [ ] Did I test the opposite / an edge case?
-- [ ] Would a domain expert agree, or does this just *sound* right?
+AI-generated code runs and looks plausible whether or not it's doing the right thing. This is
+especially risky in data pipelines (LCA, MFA, ML), where a silently wrong default or unit
+conversion won't throw an error — it'll just quietly change your results.
 
-### Citations and literature (IE-specific)
+- [ ] Did I read the actual diff, not just skim the chat summary of what changed?
+- [ ] Are units, defaults, and thresholds still what I intended, not silently changed?
+- [ ] Does every imported package/function actually exist and do what the AI claims?
+- [ ] Did I run it on a case with a known answer, not just "it executed without error"?
+- [ ] If I didn't fully understand a change, did I ask the AI to explain it before accepting it?
 
-- [ ] Does every cited paper exist? (Check DOI / title, not just the formatting.)
-- [ ] Do the numbers match the source, or were they paraphrased into being wrong?
-- [ ] _TODO(wg): add checks for LCA data, MFA figures, emission factors._
+### Machine learning reproducibility
 
-### Code and data pipelines
+AI coding tools lower the barrier to using ML in applied research, which also lowers the
+minimum domain knowledge needed to spot reproducibility errors. The checklist below is drawn
+from a CML literature review of ML reproducibility in IE research
+([Ranking et al.](https://doi.org/10.21203/rs.3.rs-9270723/v1)); the two most common failure
+modes were **data leakage** and **poor computational reporting**.
 
-- [ ] _TODO(wg): reproducibility, unit checks, provenance of input data._
+- [ ] Is the test set isolated *before* any pre-processing, normalization, or gap-filling?
+- [ ] If the data has a time dimension, was splitting done in a way that avoids temporal leakage
+      (e.g. time-series cross-validation, not a random split)?
+- [ ] Does the write-up plainly describe the pipeline steps in order (e.g. "we split the data,
+      then normalized, then trained"), not just the model architecture?
+- [ ] Is there a simple baseline (e.g. linear regression) reported alongside any complex model?
+- [ ] Is ML actually needed here, or could the hypothesis be tested with empirical data instead?
+- [ ] If data, code, or a model is withheld, is the reason stated (e.g. proprietary data), and is
+      there a pointer to how similar data could be obtained?
+- [ ] If an LLM was used in the modeling workflow itself (not just for coding), are its training
+      data cutoff and provenance discussed as a possible source of test-set leakage?
+
+:::note[For reviewers]
+The following are disqualifying regardless of ML expertise: no hold-out test set, temporal
+leakage, or normalization/gap-filling performed before the train/test split. A withheld or
+proprietary dataset is not disqualifying on its own if the rest of the study follows best
+practice and the reason is stated.
+:::
 
 ## Reusable prompts
 
@@ -41,7 +63,7 @@ Prompts the group has found to work, with a note on *when* to use each.
 
 ### Example: verify a claim before citing it
 
-_Use when an AI gives you a fact or citation you plan to put in a paper._
+*Use when an AI gives you a fact or citation you plan to put in a paper.*
 
 ```text
 TODO(wg): replace with a vetted prompt. Sketch:
@@ -56,8 +78,8 @@ Reusable [Claude skills](https://docs.claude.com/en/docs/claude-code/skills) tha
 package a workflow (checklist + instructions) so it triggers automatically.
 
 - A **template** to start from: [`skills/SKILL-template.md`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/skills/SKILL-template.md)
-- _TODO(wg): contribute skills, e.g. an "LCA-data-sanity-check" skill, a
-  "citation-verifier" skill. One folder per skill under `skills/`._
+- *TODO(wg): contribute skills, e.g. an "LCA-data-sanity-check" skill, a
+  "citation-verifier" skill. One folder per skill under `skills/`.*
 
 See [CONTRIBUTING](https://github.com/simonvanlierde/ai4ie-demo/blob/main/CONTRIBUTING.md#adding-a-claude-skill)
 for the format.

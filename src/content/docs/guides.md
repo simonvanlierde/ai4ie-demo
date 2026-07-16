@@ -27,14 +27,6 @@ _Using assistants to write and debug research code without shipping subtle bugs.
 - _TODO: how to review AI-written code before trusting it_
 - _TODO: keeping the AI on a leash, tests and small diffs_
 
-## AI for research & writing
-
-_Literature search, drafting, editing, and the integrity line you don't cross._
-
-<!-- TODO(wg): cross-link the verification checklists on the Best practices page. -->
-- _TODO: verifying citations (see [Best practices](../best-practices/#citations-and-literature-ie-specific))_
-- _TODO: disclosure and journal AI-use policies_
-
 ## Pitfalls
 
 _Where people get burned._
