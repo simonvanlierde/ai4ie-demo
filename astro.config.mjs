@@ -77,6 +77,7 @@ export default defineConfig({
           ],
         },
         { label: "Literature & resources", slug: "literature" },
+        { label: "Demos", slug: "demos" },
       ],
     }),
   ],

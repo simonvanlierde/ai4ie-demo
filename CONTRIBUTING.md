@@ -56,12 +56,15 @@ To add a **new section page**:
 
 Two options:
 
-- **External app** (anything that calls a model; it needs a backend): host it (Hugging
-  Face Space, an institute server, a small FastAPI app) and embed it with an `<iframe>` on
-  the [map page](src/content/docs/applications-map.mdx).
-- **In-page island** (a client-side widget, no backend): copy
-  [`src/components/DemoIsland.tsx`](src/components/DemoIsland.tsx), then use it in an `.mdx`
-  page: `import YourDemo from '...'` and `<YourDemo client:visible />`.
+- **External app** (anything that calls a hosted model; it needs a backend): host it
+  (Hugging Face Space, an institute server, a small FastAPI app) and embed it with an
+  `<iframe>` on the [demos page](src/content/docs/demos.mdx).
+- **In-page island** (client-side, no backend — including in-browser inference via
+  transformers.js): copy
+  [`src/components/ZeroShotDemo.tsx`](src/components/ZeroShotDemo.tsx), then use it in
+  an `.mdx` page: `import YourDemo from '...'` and `<YourDemo client:only="react" />`.
+
+Link new demos from the matching `demo:` field in `src/data/applications.yaml`.
 
 ### Adding a Claude skill
 

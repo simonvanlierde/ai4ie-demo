@@ -44,7 +44,7 @@ use one ship zero JavaScript. Pushing to `main` builds and deploys to GitHub Pag
 | `src/content/docs/*.md` | Page content (`.mdx` when a page embeds a component). |
 | [`astro.config.mjs`](astro.config.mjs) | Sidebar, theme, site config. |
 | [`src/styles/custom.css`](src/styles/custom.css) | Brand colors. |
-| [`src/components/DemoIsland.tsx`](src/components/DemoIsland.tsx) | Example interactive island. |
+| [`src/components/ZeroShotDemo.tsx`](src/components/ZeroShotDemo.tsx) | In-browser CLIP demo island (transformers.js). |
 | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | Lint, test, build, deploy. |
 
 Preview locally (needs Node 26+):

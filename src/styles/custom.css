@@ -383,27 +383,90 @@
   text-decoration: none;
 }
 
-/* ── Example demo island: retheme to the material tokens ─────────────────── */
-.demo-island {
+/* ── Zero-shot demo island ──────────────────────────────────────────────── */
+.zsd {
   border: 1px solid var(--sl-color-gray-5);
   border-left: 3px solid var(--patina);
   border-radius: 0.5rem;
   padding: 1rem;
   background: var(--sl-color-gray-6);
 }
-.demo-island textarea {
+.zsd-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.zsd-labels {
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--sl-color-gray-3);
+}
+.zsd-labels input {
+  display: block;
   width: 100%;
-  min-height: 5rem;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
+  margin-top: 0.3rem;
+  padding: 0.45rem 0.6rem;
   border-radius: 0.35rem;
   border: 1px solid var(--sl-color-gray-5);
   background: var(--sl-color-black);
   color: var(--sl-color-white);
   font: inherit;
+  font-size: 0.85rem;
 }
-.demo-island output {
-  display: block;
-  margin-top: 0.5rem;
+.zsd-controls button {
+  align-self: flex-start;
+  font-family: var(--sl-font);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.35rem;
+  border: none;
+  background: var(--copper);
+  color: #fff;
+  cursor: pointer;
+}
+.zsd-controls button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.zsd-img {
+  max-width: min(100%, 360px);
+  border-radius: 0.35rem;
+  margin-top: 0.8rem;
+}
+.zsd-status {
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  color: var(--sl-color-gray-3);
+  margin: 0.6rem 0 0;
+}
+.zsd-results {
+  list-style: none;
+  padding: 0;
+  margin: 0.8rem 0 0;
+}
+.zsd-results li {
+  display: grid;
+  grid-template-columns: minmax(8rem, 14rem) 1fr 3.5rem;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.25rem 0;
+}
+.zsd-result-label {
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
+}
+.zsd-bar {
+  height: 0.6rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--patina), var(--copper));
+  min-width: 2px;
+}
+.zsd-score {
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  text-align: right;
   color: var(--sl-color-gray-2);
 }
