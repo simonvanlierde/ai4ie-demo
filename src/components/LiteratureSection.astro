@@ -1,0 +1,10 @@
+---
+import { getCollection } from "astro:content";
+import LiteratureBrowser from "./LiteratureBrowser";
+
+const entries = (await getCollection("literature"))
+  .map((e) => ({ id: e.id, ...e.data }))
+  .sort((a, b) => b.year - a.year || a.authors.localeCompare(b.authors));
+---
+
+<LiteratureBrowser client:load entries={entries} />

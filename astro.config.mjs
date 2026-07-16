@@ -71,6 +71,7 @@ export default defineConfig({
         { label: "Best practices & guides", slug: "best-practices" },
         { label: "Tool recommendations", slug: "tools" },
         { label: "Map of AI applications in IE", slug: "applications-map" },
+        { label: "Literature & resources", slug: "literature" },
       ],
     }),
   ],

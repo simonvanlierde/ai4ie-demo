@@ -110,6 +110,148 @@
   outline-offset: 2px;
 }
 
+/* ── Literature browser ──────────────────────────────────────────────────────
+   Tag chips carry the two-dimensional story: IE-field chips wear the patina,
+   AI-technique chips wear the copper, entry-type chips stay neutral mono. */
+.lit-browser {
+  margin-top: 1.5rem;
+}
+.lit-chip-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+}
+.lit-dim-label {
+  flex: 0 0 6.5rem;
+  font-family: var(--sl-font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3);
+}
+.lit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.lit-chip {
+  font-family: var(--sl-font-mono);
+  font-size: 0.68rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--sl-color-gray-5);
+  background: transparent;
+  color: var(--sl-color-gray-2);
+  cursor: pointer;
+}
+.lit-chip[aria-pressed="true"].lit-chip-ie {
+  background: var(--patina);
+  border-color: var(--patina);
+  color: #fff;
+}
+.lit-chip[aria-pressed="true"].lit-chip-ml {
+  background: var(--copper);
+  border-color: var(--copper);
+  color: #fff;
+}
+.lit-chip[aria-pressed="true"].lit-chip-type {
+  background: var(--sl-color-gray-4);
+  border-color: var(--sl-color-gray-4);
+  color: var(--sl-color-white);
+}
+.lit-count {
+  margin: 1rem 0 0.5rem;
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--sl-color-gray-3);
+}
+.lit-clear {
+  margin-left: 0.75rem;
+  border: none;
+  background: none;
+  font: inherit;
+  color: var(--sl-color-text-accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.lit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.lit-entry {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--sl-color-hairline-shade);
+}
+.lit-meta {
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--sl-color-gray-3);
+}
+.lit-title {
+  display: block;
+  font-family: var(--sl-font);
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.3;
+  margin: 0.15rem 0;
+  text-decoration: none;
+  color: var(--sl-color-white);
+}
+.lit-title:hover {
+  color: var(--sl-color-text-accent);
+  text-decoration: underline;
+}
+.lit-blurb {
+  font-family: var(--font-prose);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0.15rem 0 0.4rem;
+  color: var(--sl-color-gray-2);
+}
+.lit-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.lit-tag {
+  font-family: var(--sl-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  padding: 0.08rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--sl-color-gray-5);
+  color: var(--sl-color-gray-3);
+}
+.lit-tag-ie {
+  border-color: color-mix(in srgb, var(--patina) 55%, transparent);
+  color: var(--patina-bright);
+}
+:root[data-theme="light"] .lit-tag-ie {
+  color: var(--patina);
+}
+.lit-tag-ml {
+  border-color: color-mix(in srgb, var(--copper) 55%, transparent);
+  color: var(--copper-bright);
+}
+:root[data-theme="light"] .lit-tag-ml {
+  color: var(--copper);
+}
+.lit-empty {
+  font-family: var(--font-prose);
+  color: var(--sl-color-gray-3);
+}
+@media (max-width: 640px) {
+  .lit-chip-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
 /* ── Example demo island: retheme to the material tokens ─────────────────── */
 .demo-island {
   border: 1px solid var(--sl-color-gray-5);
