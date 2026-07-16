@@ -6,10 +6,27 @@ AI is being used in IE, add it.
 
 ## The short version
 
-1. Find the right page under `src/content/docs/`: `best-practices.md`, `tools.md`,
-   `literature.mdx`, or `applications-map/index.mdx`.
-2. Replace a `TODO` / `_placeholder_`, or add a new entry in the same format as its neighbours.
+1. **Papers and applications live in data files**, not prose:
+   [`src/data/literature.yaml`](src/data/literature.yaml) and
+   [`src/data/applications.yaml`](src/data/applications.yaml). Copy a neighbouring
+   entry, edit the fields, done — the pages render themselves.
+2. **Everything else** is a Markdown page under `src/content/docs/`:
+   `best-practices.md`, `tools.md`, `demos.mdx`, `applications-map/index.mdx`.
+   Add an entry in the same format as its neighbours.
 3. Open a pull request. One entry per PR is fine. Small is good.
+
+### Adding a paper or an application
+
+- Tags come from the shared vocabulary in [`src/data/tags.ts`](src/data/tags.ts)
+  (IE field · AI technique · entry type). Need a tag that doesn't exist? Add it
+  there in the same PR — a tag ships together with its first entry.
+- Literature entries need: `id` (citation key), `title`, `authors`, `year`, `link`
+  (DOI preferred), a one-line `blurb` saying why it's worth reading, tags, and
+  `added: YYYY-MM`.
+- Application entries need both tag dimensions (`ie:` and `ml:`), an honest
+  one-line `maturity:`, and `papers:` referencing literature ids.
+- `npm run test` validates every field, tag, and cross-reference; CI runs it on
+  your PR, so a typo can't break the site.
 
 You don't need to run anything locally to edit text. Editing the Markdown on GitHub is
 enough, or use the **edit pencil** on any page of the live site, which takes you straight
@@ -77,8 +94,9 @@ skills/
     ...             # any supporting files
 ```
 
-Start from [`skills/SKILL-template.md`](skills/SKILL-template.md). Keep it generic enough
-that another member can use it without editing.
+Start from [`skills/SKILL-template.md`](skills/SKILL-template.md), or use
+[`skills/ml-reproducibility/SKILL.md`](skills/ml-reproducibility/SKILL.md) as a worked
+example. Keep it generic enough that another member can use it without editing.
 
 ## Forking or renaming this repo
 

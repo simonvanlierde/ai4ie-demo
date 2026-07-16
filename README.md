@@ -18,8 +18,11 @@ maintained by the [AI4IE working group](CONTRIBUTING.md).**
 
 ## What this is
 
-A **scaffold**, not finished work. Placeholder content and `TODO(wg)` markers throughout,
-waiting for working-group members to fill in. Contributions are the whole point.
+A **seeded proposal**: real, checkable starter content in every section — a
+two-dimensional applications map, a 58-entry tag-filterable literature list, vetted
+tools and hardware guidance, working Claude skills, and in-browser demos — with the
+group framing intact. Everything is open to challenge, and the genuinely
+group-specific items stay marked `TODO(wg)`. Contributions are the whole point.
 
 | Page | Contents |
 |---|---|
@@ -27,10 +30,12 @@ waiting for working-group members to fill in. Contributions are the whole point.
 | [Tools & hardware](src/content/docs/tools.md) | Recommended software, services, libraries — and hardware to run models locally. |
 | [Map of AI in IE](src/content/docs/applications-map/index.mdx) | A two-dimensional map of AI applications by IE field and AI technique. |
 | [Literature & resources](src/content/docs/literature.mdx) | Tag-filterable reading list backed by `src/data/literature.yaml`. |
+| [Demos](src/content/docs/demos.mdx) | In-browser (transformers.js) and embedded demos, tied to map cells. |
 
 ## Contributing
 
-Edit a Markdown file under `src/content/docs/`, replace a `TODO(wg)`, open a pull request.
+Add a paper or application to a YAML file under `src/data/`, or edit a Markdown page
+under `src/content/docs/`, and open a pull request.
 No local setup needed to edit prose — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## How it's built
