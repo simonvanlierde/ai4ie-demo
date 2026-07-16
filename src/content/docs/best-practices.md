@@ -1,10 +1,30 @@
 ---
-title: Best practices & protocols
-description: Verification checklists, reusable prompts, and Claude skill files for reliable AI use.
+title: Best practices & guides
+description: Get-started guides, verification checklists, reusable prompts, and Claude skill files for reliable AI use.
 ---
 
-How to get reliable results from AI and check them before you trust them:
-**verification checklists**, **reusable prompts**, and **Claude skill files**.
+How to get reliable results from AI in coding and research, and check them before you
+trust them: **get-started guides**, **verification checklists**, **reusable prompts**, and
+**Claude skill files**.
+
+## Getting started
+
+_The five-minute version: what these tools do, what they don't, and how not to embarrass
+yourself in a paper. Short and practical — link out rather than duplicating good external
+material._
+
+<!-- TODO(wg): prompting for code, keeping the AI on a leash (tests, small diffs),
+     when NOT to use it. -->
+- _TODO_
+
+## Pitfalls
+
+_Where people get burned._
+
+<!-- TODO(wg) -->
+- _TODO: hallucinated citations and data_
+- _TODO: confident-but-wrong numbers_
+- _TODO: leaking confidential data to a cloud service_
 
 ## Verification checklists
 

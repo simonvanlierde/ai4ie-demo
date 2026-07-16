@@ -14,8 +14,8 @@ hero:
     light: ../../assets/ai4ie-mark.svg
     dark: ../../assets/ai4ie-mark-dark.svg
   actions:
-    - text: Explore the map
-      link: applications-map/
+    - text: Best practices & protocols
+      link: best-practices/
       icon: right-arrow
     - text: How to contribute
       link: https://github.com/simonvanlierde/ai4ie-demo/blob/main/CONTRIBUTING.md
@@ -36,11 +36,10 @@ for how to add real entries.
 
 | # | Section | What's in it |
 |---|---------|--------------|
-| 1 | [Hardware recommendations](hardware/) | What to run AI on, including federated and locally-hosted options for sensitive data. |
-| 2 | [Best practices & protocols](best-practices/) | Verification checklists, reusable prompts, and Claude skill files. |
+| 1 | [Best practices & guides](best-practices/) | Getting started, verification checklists, reusable prompts, and Claude skill files. |
+| 2 | [Hardware recommendations](hardware/) | What to run AI on, including federated and locally-hosted options for sensitive data. |
 | 3 | [Tool recommendations](tools/) | Models, apps, and libraries the group actually uses. |
-| 4 | [AI for coding & research](guides/) | Get-started guides: what you wish someone had told you first. |
-| 5 | [Map of AI applications in IE](applications-map/) | A draft taxonomy with maturity verdicts and slots for live web-app demos. |
+| 4 | [Map of AI applications in IE](applications-map/) | A draft taxonomy with maturity verdicts and slots for live web-app demos. |
 
 ## Who this is for
 

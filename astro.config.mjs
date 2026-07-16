@@ -68,9 +68,8 @@ export default defineConfig({
       sidebar: [
         { label: "Home", link: "/" },
         { label: "Hardware recommendations", slug: "hardware" },
-        { label: "Best practices & protocols", slug: "best-practices" },
+        { label: "Best practices & guides", slug: "best-practices" },
         { label: "Tool recommendations", slug: "tools" },
-        { label: "AI for coding & research", slug: "guides" },
         { label: "Map of AI applications in IE", slug: "applications-map" },
       ],
     }),

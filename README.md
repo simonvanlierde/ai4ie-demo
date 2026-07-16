@@ -24,9 +24,8 @@ waiting for working-group members to fill in. Contributions are the whole point.
 | Page | Contents |
 |---|---|
 | [Hardware](src/content/docs/hardware.md) | Local, federated, and self-hosted setups for running AI. |
-| [Best practices & protocols](src/content/docs/best-practices.md) | Verification checklists, reusable prompts, Claude skill files. |
+| [Best practices & guides](src/content/docs/best-practices.md) | Get-started guides, verification checklists, reusable prompts, Claude skill files. |
 | [Tools](src/content/docs/tools.md) | Recommended software, services, and libraries. |
-| [AI for coding & research](src/content/docs/guides.md) | Get-started guides. |
 | [Map of AI in IE](src/content/docs/applications-map.mdx) | A draft taxonomy of AI applications, with slots for live demos. |
 
 ## Contributing
