@@ -252,6 +252,137 @@
   }
 }
 
+/* ── Applications explorer ──────────────────────────────────────────────────
+   Same dimension colors as the literature browser: IE = patina, ML = copper. */
+.apx {
+  margin: 1.5rem 0;
+}
+.apx-switch {
+  display: inline-flex;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.apx-switch button {
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.8rem;
+  border: none;
+  background: transparent;
+  color: var(--sl-color-gray-2);
+  cursor: pointer;
+}
+.apx-switch button + button {
+  border-left: 1px solid var(--sl-color-gray-5);
+}
+.apx-switch button[aria-selected="true"] {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-white);
+}
+.apx-group {
+  margin-top: 1.4rem;
+}
+.apx-group-label {
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 0.4rem;
+}
+.apx-group-label.apx-ie {
+  color: var(--patina-bright);
+}
+:root[data-theme="light"] .apx-group-label.apx-ie {
+  color: var(--patina);
+}
+.apx-group-label.apx-ml {
+  color: var(--copper-bright);
+}
+:root[data-theme="light"] .apx-group-label.apx-ml {
+  color: var(--copper);
+}
+.apx-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.apx-entry {
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--sl-color-hairline-shade);
+}
+.apx-name {
+  font-family: var(--sl-font);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.apx-summary {
+  font-family: var(--font-prose);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0.2rem 0 0.4rem;
+  color: var(--sl-color-gray-2);
+}
+.apx-maturity {
+  color: var(--sl-color-gray-3);
+}
+.apx-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.6rem;
+  align-items: center;
+}
+.apx-links a {
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+  color: var(--sl-color-text-accent);
+  text-decoration: none;
+}
+.apx-links a:hover {
+  text-decoration: underline;
+}
+.apx-grid-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+.apx-grid {
+  border-collapse: collapse;
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+}
+.apx-grid th,
+.apx-grid td {
+  border: 1px solid var(--sl-color-hairline-shade);
+  padding: 0.4rem 0.55rem;
+  text-align: center;
+}
+.apx-grid thead th a {
+  color: var(--copper-bright);
+  text-decoration: none;
+}
+.apx-grid tbody th {
+  text-align: left;
+}
+.apx-grid tbody th a {
+  color: var(--patina-bright);
+  text-decoration: none;
+}
+:root[data-theme="light"] .apx-grid thead th a {
+  color: var(--copper);
+}
+:root[data-theme="light"] .apx-grid tbody th a {
+  color: var(--patina);
+}
+.apx-grid td a {
+  display: inline-block;
+  min-width: 1.6rem;
+  border-radius: 999px;
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-white);
+  text-decoration: none;
+}
+
 /* ── Example demo island: retheme to the material tokens ─────────────────── */
 .demo-island {
   border: 1px solid var(--sl-color-gray-5);

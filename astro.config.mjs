@@ -70,7 +70,13 @@ export default defineConfig({
         { label: "Hardware recommendations", slug: "hardware" },
         { label: "Best practices & guides", slug: "best-practices" },
         { label: "Tool recommendations", slug: "tools" },
-        { label: "Map of AI applications in IE", slug: "applications-map" },
+        {
+          label: "Map of AI applications in IE",
+          items: [
+            { label: "The map", slug: "applications-map" },
+            { label: "Worked example: CV taxonomy", slug: "applications-map/cv-taxonomy" },
+          ],
+        },
         { label: "Literature & resources", slug: "literature" },
       ],
     }),

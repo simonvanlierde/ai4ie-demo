@@ -1,0 +1,31 @@
+---
+title: Map of AI applications in IE
+description: A two-dimensional map of where AI is applied in industrial ecology, by IE field and AI technique.
+---
+
+import ApplicationsSection from '../../../components/ApplicationsSection.astro';
+
+A map of where AI is being applied across industrial ecology, organized along **two
+dimensions**: the IE field (LCA, MFA, waste & circularity, …) and the AI technique
+(LLMs, computer vision, tabular ML, …). Every entry links to the
+[literature list](../literature/) pre-filtered to the same tags, so the map doubles as
+an index into the reading list.
+
+:::note[Seeded proposal]
+Entries are seeded by working-group members and honestly imperfect. Argue with them,
+and add what's missing: entries live in
+[`src/data/applications.yaml`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/data/applications.yaml);
+see [Contributing](https://github.com/simonvanlierde/ai4ie-demo/blob/main/CONTRIBUTING.md).
+:::
+
+## Explore the map
+
+Pivot the same set of applications by IE field, by AI technique, or as a grid of both:
+
+<ApplicationsSection />
+
+## Deeper dives
+
+- [Worked example: CV for product-scale data collection](cv-taxonomy/) — one corner of
+  this map (computer vision at end-of-life) taken to full depth, with per-cell maturity
+  verdicts. The pattern to copy when your own corner deserves more than a map entry.
