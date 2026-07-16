@@ -6,8 +6,8 @@ AI is being used in IE, add it.
 
 ## The short version
 
-1. Find the right page under `src/content/docs/`: `hardware.md`, `best-practices.md`,
-   `tools.md`, or `applications-map.mdx`.
+1. Find the right page under `src/content/docs/`: `best-practices.md`, `tools.md`,
+   `literature.mdx`, or `applications-map/index.mdx`.
 2. Replace a `TODO` / `_placeholder_`, or add a new entry in the same format as its neighbours.
 3. Open a pull request. One entry per PR is fine. Small is good.
 

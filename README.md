@@ -23,10 +23,10 @@ waiting for working-group members to fill in. Contributions are the whole point.
 
 | Page | Contents |
 |---|---|
-| [Hardware](src/content/docs/hardware.md) | Local, federated, and self-hosted setups for running AI. |
 | [Best practices & guides](src/content/docs/best-practices.md) | Get-started guides, verification checklists, reusable prompts, Claude skill files. |
-| [Tools](src/content/docs/tools.md) | Recommended software, services, and libraries. |
-| [Map of AI in IE](src/content/docs/applications-map.mdx) | A draft taxonomy of AI applications, with slots for live demos. |
+| [Tools & hardware](src/content/docs/tools.md) | Recommended software, services, libraries — and hardware to run models locally. |
+| [Map of AI in IE](src/content/docs/applications-map/index.mdx) | A two-dimensional map of AI applications by IE field and AI technique. |
+| [Literature & resources](src/content/docs/literature.mdx) | Tag-filterable reading list backed by `src/data/literature.yaml`. |
 
 ## Contributing
 

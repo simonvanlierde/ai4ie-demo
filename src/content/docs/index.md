@@ -35,11 +35,11 @@ for how to add real entries.
 ## Sections
 
 | # | Section | What's in it |
-|---|---------|--------------|
+| --- | --- | --- |
 | 1 | [Best practices & guides](best-practices/) | Getting started, verification checklists, reusable prompts, and Claude skill files. |
-| 2 | [Hardware recommendations](hardware/) | What to run AI on, including federated and locally-hosted options for sensitive data. |
-| 3 | [Tool recommendations](tools/) | Models, apps, and libraries the group actually uses. |
-| 4 | [Map of AI applications in IE](applications-map/) | A draft taxonomy with maturity verdicts and slots for live web-app demos. |
+| 2 | [Tools & hardware](tools/) | Models, apps, libraries — and what to run them on, including local options for sensitive data. |
+| 3 | [Map of AI applications in IE](applications-map/) | A two-dimensional map of AI applications by IE field and AI technique. |
+| 4 | [Literature & resources](literature/) | A tag-filterable reading list: AI in IE, research practice, and ML landmarks. |
 
 ## Who this is for
 
