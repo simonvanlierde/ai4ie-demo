@@ -104,6 +104,16 @@
   font-family: var(--font-prose);
 }
 
+/* ── Asides: note wears the patina instead of Starlight's default blue ───── */
+.starlight-aside--note {
+  --sl-color-asides-text-accent: var(--patina-bright);
+  --sl-color-asides-border: var(--patina);
+  background-color: color-mix(in srgb, var(--patina) 12%, transparent);
+}
+:root[data-theme="light"] .starlight-aside--note {
+  --sl-color-asides-text-accent: var(--patina);
+}
+
 /* ── Accessibility floor ─────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--copper);

@@ -55,10 +55,6 @@ Where people get burned — each with a documented case, not folklore:
 AI output looks confident whether or not it's right. Run a checklist before using it
 in research.
 
-:::caution[Scaffold]
-Adapt these stubs to IE work and add domain-specific checks.
-:::
-
 ### AI-assisted coding
 
 AI-generated code runs and looks plausible whether or not it's doing the right thing. This is
