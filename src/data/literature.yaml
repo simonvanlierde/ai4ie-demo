@@ -1,0 +1,34 @@
+# Curated reading list, rendered on the Literature & resources page.
+# One entry per paper; id = citation key. Required fields: title, authors,
+# year, link (DOI preferred), blurb (one line, why read this), type, added.
+# Tags must exist in src/data/tags.ts — the test suite enforces this.
+# See CONTRIBUTING.md for how to add an entry.
+- id: sterkensProductLabelIdentification2023
+  title: "Product label identification with OCR for model-specific reuse, repair, and recycling: A case study for washing machines"
+  authors: "Sterkens, W., et al."
+  year: 2023
+  link: "https://doi.org/10.1111/jiec.13279"
+  blurb: "Deployed label-OCR pipeline for e-waste identification; shows the professional-repair vs recycler performance gap."
+  ie: [eol]
+  ml: [cv, nlp-extraction]
+  type: [method]
+  added: 2026-07
+- id: rankinCallEnsureReproducibility2026
+  title: "A call to ensure reproducibility of machine learning applications in industrial ecology"
+  authors: "Rankin, J., et al."
+  year: 2026
+  link: "https://doi.org/10.21203/rs.3.rs-9270723/v1"
+  blurb: "CML survey of ML-in-IE papers; data leakage and poor computational reporting are the two dominant failure modes."
+  ie: [lca, mfa, eol]
+  ml: [tabular-ml]
+  type: [meta, review]
+  added: 2026-07
+- id: vaswaniAttentionAllYou2017
+  title: "Attention is all you need"
+  authors: "Vaswani, A., et al."
+  year: 2017
+  link: "https://arxiv.org/abs/1706.03762"
+  blurb: "The transformer architecture behind every modern LLM; worth knowing what 'attention' actually does."
+  ml: [foundation]
+  type: [landmark-ml]
+  added: 2026-07

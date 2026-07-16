@@ -1,0 +1,18 @@
+# AI applications in industrial ecology, rendered by the explorer on the
+# applications-map page. One entry per application; tags come from
+# src/data/tags.ts (both dimensions required), papers[] reference ids in
+# literature.yaml. See CONTRIBUTING.md for how to add an entry.
+- id: label-ocr-identification
+  name: "Product identification from labels (OCR + retrieval)"
+  ie: [eol, urban-mining]
+  ml: [cv, nlp-extraction]
+  summary: "Read model/serial text off product labels and match it against a reference database to identify products at end-of-life."
+  maturity: "Deployed in pilots; strong on intact labels, degrades badly on worn EoL devices."
+  papers: [sterkensProductLabelIdentification2023]
+- id: component-detection
+  name: "Component detection & counting in opened products"
+  ie: [eol]
+  ml: [cv, segmentation]
+  summary: "Detect, segment, and count components inside opened devices to build bills of components for disassembly and recycling."
+  maturity: "Well-validated where task-tuned; foundation segmenters still need a class-assignment layer."
+  papers: []
