@@ -1,13 +1,13 @@
 // Shared tag vocabulary: used by the literature list, the applications map,
 // and the schema validation in content.config.ts. Add new tags here first;
 // the collections test enforces that data files only use tags defined here.
+// Areas with no vetted entries yet (e.g. input–output analysis, forecasting &
+// scenarios) are deliberately absent: add the tag together with its first entry.
 export const IE_TAGS = {
   lca: "LCA & footprinting",
   mfa: "MFA & stocks and flows",
-  io: "Input–output analysis",
   eol: "Waste, EoL & circularity",
   "urban-mining": "Urban mining & secondary resources",
-  forecasting: "Forecasting & scenarios",
 } as const;
 
 export const ML_TAGS = {
@@ -18,7 +18,6 @@ export const ML_TAGS = {
   depth: "Depth & 3D geometry",
   "remote-sensing": "Remote sensing",
   "tabular-ml": "Tabular ML & regression",
-  "time-series": "Time series",
   generative: "Generative models",
   foundation: "Foundation models & transformers",
 } as const;
