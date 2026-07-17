@@ -114,6 +114,23 @@
   --sl-color-asides-text-accent: var(--patina);
 }
 
+/* ── Collapsible skill files ─────────────────────────────────────────────── */
+.sl-markdown-content details {
+  border: 1px solid var(--sl-color-hairline-shade);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem;
+}
+.sl-markdown-content details summary {
+  font-family: var(--sl-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--sl-color-text-accent);
+  cursor: pointer;
+}
+.sl-markdown-content details[open] summary {
+  margin-bottom: 0.6rem;
+}
+
 /* ── Accessibility floor ─────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--copper);

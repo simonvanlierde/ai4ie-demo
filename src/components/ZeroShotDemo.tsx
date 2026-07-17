@@ -23,7 +23,7 @@ function getClassifier(onProgress: (msg: string) => void): Promise<Classifier> {
 
 /**
  * Zero-shot image classification (CLIP), running entirely in the browser via
- * transformers.js. The photo never leaves the machine — the point of the demo.
+ * transformers.js. The photo never leaves the machine, which is the point of the demo.
  */
 export default function ZeroShotDemo() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -66,7 +66,7 @@ export default function ZeroShotDemo() {
           onChange={(e) => onFile(e.target.files?.[0])}
         />
         <label className="zsd-labels">
-          Candidate labels — edit them; zero-shot means you pick the categories
+          Candidate labels (edit them; zero-shot means you pick the categories)
           <input type="text" value={labels} onChange={(e) => setLabels(e.target.value)} />
         </label>
         <button type="button" onClick={classify} disabled={!imageUrl || status !== null}>

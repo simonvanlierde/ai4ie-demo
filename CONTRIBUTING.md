@@ -9,9 +9,9 @@ AI is being used in IE, add it.
 1. **Papers and applications live in data files**, not prose:
    [`src/data/literature.yaml`](src/data/literature.yaml) and
    [`src/data/applications.yaml`](src/data/applications.yaml). Copy a neighbouring
-   entry, edit the fields, done — the pages render themselves.
+   entry, edit the fields, done; the pages render themselves.
 2. **Everything else** is a Markdown page under `src/content/docs/`:
-   `best-practices.md`, `tools.md`, `demos.mdx`, `applications-map/index.mdx`.
+   `best-practices.mdx`, `tools.md`, `demos.mdx`, `applications-map/index.mdx`.
    Add an entry in the same format as its neighbours.
 3. Open a pull request. One entry per PR is fine. Small is good.
 
@@ -19,7 +19,7 @@ AI is being used in IE, add it.
 
 - Tags come from the shared vocabulary in [`src/data/tags.ts`](src/data/tags.ts)
   (IE field · AI technique · entry type). Need a tag that doesn't exist? Add it
-  there in the same PR — a tag ships together with its first entry.
+  there in the same PR; a tag ships together with its first entry.
 - Literature entries need: `id` (citation key), `title`, `authors`, `year`, `link`
   (DOI preferred), a one-line `blurb` saying why it's worth reading, tags, and
   `added: YYYY-MM`.
@@ -76,7 +76,7 @@ Two options:
 - **External app** (anything that calls a hosted model; it needs a backend): host it
   (Hugging Face Space, an institute server, a small FastAPI app) and embed it with an
   `<iframe>` on the [demos page](src/content/docs/demos.mdx).
-- **In-page island** (client-side, no backend — including in-browser inference via
+- **In-page island** (client-side, no backend needed, including in-browser inference via
   transformers.js): copy
   [`src/components/ZeroShotDemo.tsx`](src/components/ZeroShotDemo.tsx), then use it in
   an `.mdx` page: `import YourDemo from '...'` and `<YourDemo client:only="react" />`.
@@ -104,9 +104,10 @@ Two places hold the repo's identity:
 
 1. `owner` / `repo` at the top of [`astro.config.mjs`](astro.config.mjs): drives the
    site URL, edit-pencil links, and the GitHub icon.
-2. Absolute `github.com/…/blob/main/…` links in the Markdown under `src/content/`: plain
-   Markdown can't read the config, so grep and replace the old slug:
-   `grep -rl OLD-OWNER/OLD-REPO src/content`.
+2. Absolute links in the Markdown under `src/content/` and `src/data/`: both the
+   `github.com/…/blob/main/…` links and the site-internal `/REPO-NAME/…` links carry
+   the repo slug, because plain Markdown can't read the config. Grep and replace:
+   `grep -rl OLD-REPO src/content src/data`.
 
 ## Preview locally (optional)
 

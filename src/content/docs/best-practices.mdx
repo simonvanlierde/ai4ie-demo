@@ -3,6 +3,10 @@ title: Best practices & guides
 description: Get-started guides, verification checklists, reusable prompts, and Claude skill files for reliable AI use.
 ---
 
+import { Code } from '@astrojs/starlight/components';
+import mlReproducibility from '../../../skills/ml-reproducibility/SKILL.md?raw';
+import lcaSanityCheck from '../../../skills/lca-data-sanity-check/SKILL.md?raw';
+
 How to get reliable results from AI in coding and research, and check them before you
 trust them: **get-started guides**, **verification checklists**, **reusable prompts**, and
 **Claude skill files**.
@@ -15,7 +19,7 @@ The five-minute version:
   (summarize, restructure, translate, explain, draft) and writing code you can
   test. The common thread: outputs you can *verify* faster than you could produce.
 - **What they're bad at:** being a source. Facts, citations, and numbers produced
-  from a model's memory need verification against a primary source, every time —
+  from a model's memory need verification against a primary source, every time;
   see [Pitfalls](#pitfalls) for the measured failure rates.
 - **Keep it on a leash when coding:** small diffs you read, tests that would catch
   a wrong answer, and a known-answer check for anything numerical. The
@@ -39,7 +43,7 @@ Where people get burned, each with a documented case:
   ([Mata v. Avianca](https://apnews.com/article/artificial-intelligence-chatgpt-fake-case-lawyers-d6ae9fa79d0542db9e1455397aef381c)).
   Rule: a citation an AI gives you does not exist until you've opened it.
 - **Confident-but-wrong numbers.** Models state numbers with the same fluency
-  whether recalled correctly, approximated, or invented — there is no tonal
+  whether recalled correctly, approximated, or invented; there is no tonal
   difference to detect. Any number destined for a paper gets traced to a primary
   source or recomputed.
 - **Leaking confidential data.** Anything pasted into a hosted service leaves your
@@ -47,7 +51,7 @@ Where people get burned, each with a documented case:
   pasted internal source code into ChatGPT
   ([TechCrunch, 2023](https://techcrunch.com/2023/05/02/samsung-bans-use-of-generative-ai-tools-like-chatgpt-after-april-internal-data-leak/)).
   For NDA'd inventories and industry data, use the
-  [local options on the tools page](../tools/#local--self-hosted-inference), and
+  [local options on the tools page](/ai4ie-demo/tools/#local--self-hosted-inference), and
   check your data-management plan before pasting.
 
 ## Verification checklists
@@ -59,7 +63,7 @@ in research.
 
 AI-generated code runs and looks plausible whether or not it's doing the right thing. This is
 especially risky in data pipelines (LCA, MFA, ML), where a silently wrong default or unit
-conversion won't throw an error — it'll just quietly change your results.
+conversion won't throw an error; it will just quietly change your results.
 
 - [ ] Did I read the actual diff, not just skim the chat summary of what changed?
 - [ ] Are units, defaults, and thresholds still what I intended, not silently changed?
@@ -96,7 +100,7 @@ practice and the reason is stated.
 
 ## Reusable prompts
 
-Copy-pasteable prompts with a one-line "use when". Add your own in the same format —
+Copy-pasteable prompts with a one-line "use when". Add your own in the same format:
 one fenced block, nothing project-specific.
 
 ### Verify a claim before citing it
@@ -107,18 +111,18 @@ one fenced block, nothing project-specific.
 Here is a claim I want to cite: <claim>.
 Find the primary source. Quote the exact sentence(s) from it that support or
 contradict the claim, with a full citation including DOI. If you cannot locate a
-primary source, say "no primary source found" — do not substitute a similar paper
+primary source, say "no primary source found". Do not substitute a similar paper
 and do not guess. If the source only partially supports the claim, state exactly
 which part is unsupported.
 ```
 
 ### Adversarial review of AI-written code
 
-*Use when accepting a non-trivial AI-written change to analysis code — ideally in a
+*Use when accepting a non-trivial AI-written change to analysis code, ideally in a
 fresh session, so the reviewer isn't grading its own work.*
 
 ```text
-Review this diff as a skeptical colleague. Do not explain what it does — hunt for
+Review this diff as a skeptical colleague. Do not explain what it does; hunt for
 what's wrong. Specifically check: (1) units and unit conversions on every changed
 quantity; (2) defaults or identifiers that changed meaning (methods, database
 versions, regions, years); (3) filters, cutoffs, or NA-handling that silently
@@ -158,7 +162,7 @@ minimal reordering that fixes the failures.
 ```text
 Extract the following fields from the attached document: <fields>.
 Rules: quote values exactly as written, with the page or section they came from.
-If a field is not stated in the document, write "not stated" — do not infer,
+If a field is not stated in the document, write "not stated". Do not infer,
 convert, or fill from general knowledge. Flag any value whose unit differs from
 the requested unit rather than converting it.
 ```
@@ -168,16 +172,31 @@ the requested unit rather than converting it.
 Reusable [Claude skills](https://docs.claude.com/en/docs/claude-code/skills) that
 package a workflow (checklist + instructions) so it triggers automatically.
 
-Two working skills to install or copy:
+Two working skills, shown in full below. Use the copy button in the code block, then
+save the content as `SKILL.md` in your skills folder (or grab the file from
+[`skills/`](https://github.com/simonvanlierde/ai4ie-demo/tree/main/skills) on GitHub).
 
-- [**`ml-reproducibility`**](https://github.com/simonvanlierde/ai4ie-demo/blob/main/skills/ml-reproducibility/SKILL.md) —
-  enforces the [Rankin et al.](https://doi.org/10.21203/rs.3.rs-9270723/v1)
-  recommendations whenever a model is trained or reviewed: test-set isolation
-  before preprocessing, a linear baseline first, plain-language pipeline
-  reporting, and the three disqualifying reviewer checks.
-- [**`lca-data-sanity-check`**](https://github.com/simonvanlierde/ai4ie-demo/blob/main/skills/lca-data-sanity-check/SKILL.md) —
-  a structured pass over AI-written pipeline code: units, defaults, thresholds,
-  mappings, a known-answer test, and a mass/energy balance check.
+### ml-reproducibility
+
+Enforces the [Rankin et al.](https://doi.org/10.21203/rs.3.rs-9270723/v1)
+recommendations whenever a model is trained or reviewed: test-set isolation before
+preprocessing, a linear baseline first, plain-language pipeline reporting, and the
+three disqualifying reviewer checks.
+
+<details>
+<summary>Show the skill file</summary>
+<Code code={mlReproducibility} lang="md" title="skills/ml-reproducibility/SKILL.md" />
+</details>
+
+### lca-data-sanity-check
+
+A structured pass over AI-written pipeline code: units, defaults, thresholds,
+mappings, a known-answer test, and a mass/energy balance check.
+
+<details>
+<summary>Show the skill file</summary>
+<Code code={lcaSanityCheck} lang="md" title="skills/lca-data-sanity-check/SKILL.md" />
+</details>
 
 To add your own, start from
 [`skills/SKILL-template.md`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/skills/SKILL-template.md);

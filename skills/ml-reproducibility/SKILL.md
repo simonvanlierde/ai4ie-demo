@@ -1,6 +1,6 @@
 ---
 name: ml-reproducibility
-description: Use when building, reviewing, or writing up a machine-learning model on research data (LCA, MFA, or any IE dataset) — enforces a reproducibility-first workflow that prevents data leakage and under-reported pipelines.
+description: Use when building, reviewing, or writing up a machine-learning model on research data (LCA, MFA, or any IE dataset); enforces a reproducibility-first workflow that prevents data leakage and under-reported pipelines.
 ---
 
 # ML reproducibility for IE research
@@ -27,12 +27,12 @@ to one of them.
    empirical data or a mechanistic model, prefer that. ML reproducibility errors
    can't occur in an analysis that doesn't use ML.
 3. **Fit the simplest model first.** Report a linear-regression (or equivalent)
-   baseline before any complex model. If the complex model barely beats it, say so —
+   baseline before any complex model. If the complex model barely beats it, say so;
    several best-practice studies found linear models nearly as good.
 4. **Fill in a model info sheet.** Use Kapoor & Narayanan's model info sheets to
    self-evaluate the study against known leakage types before writing up.
 5. **Describe the pipeline plainly, in order.** The write-up must say things like
-   "we split the data, then normalized, then trained" — a reader should be able to
+   "we split the data, then normalized, then trained". A reader should be able to
    confirm the order of operations from the text alone.
 6. **Justify anything withheld.** If data, code, or model weights can't be shared
    (e.g. proprietary data), state why, and point to where similar data could be
@@ -44,7 +44,7 @@ to one of them.
 
 ## Reviewer mode
 
-When reviewing an ML-using study, check the three **disqualifying errors** first —
+When reviewing an ML-using study, check the three **disqualifying errors** first:
 they need no ML expertise to spot, and any one of them puts the results in serious
 dispute:
 
@@ -60,10 +60,10 @@ Then the softer checks:
 - [ ] If data/models are withheld, is the reason stated and reasonable? (Withheld
       data alone is *not* disqualifying when the rest follows best practice.)
 - [ ] If you can't tell whether an error is present, that ambiguity is itself a
-      finding — request clarification in revision rather than guessing.
+      finding; request clarification in revision rather than guessing.
 
 ## Output
 
 When applying this skill, state explicitly which rules were checked and what was
-found — "checked test-set isolation: split happens in `split.py` before the scaler
-is fit — OK" — not a generic "looks reproducible".
+found ("checked test-set isolation: split happens in `split.py` before the scaler
+is fit, OK"), not a generic "looks reproducible".

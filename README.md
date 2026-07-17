@@ -26,8 +26,8 @@ point.
 
 | Page | Contents |
 |---|---|
-| [Best practices & guides](src/content/docs/best-practices.md) | Get-started guides, verification checklists, reusable prompts, Claude skill files. |
-| [Tools & hardware](src/content/docs/tools.md) | Recommended software, services, libraries — and hardware to run models locally. |
+| [Best practices & guides](src/content/docs/best-practices.mdx) | Get-started guides, verification checklists, reusable prompts, Claude skill files. |
+| [Tools & hardware](src/content/docs/tools.md) | Recommended software, services, libraries, and hardware to run models locally. |
 | [Map of AI in IE](src/content/docs/applications-map/index.mdx) | A two-dimensional map of AI applications by IE field and AI technique. |
 | [Literature & resources](src/content/docs/literature.mdx) | Tag-filterable reading list backed by `src/data/literature.yaml`. |
 | [Demos](src/content/docs/demos.mdx) | In-browser (transformers.js) and embedded demos, tied to map cells. |
@@ -36,7 +36,7 @@ point.
 
 Add a paper or application to a YAML file under `src/data/`, or edit a Markdown page
 under `src/content/docs/`, and open a pull request.
-No local setup needed to edit prose — see [CONTRIBUTING.md](CONTRIBUTING.md).
+No local setup needed to edit prose; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## How it's built
 

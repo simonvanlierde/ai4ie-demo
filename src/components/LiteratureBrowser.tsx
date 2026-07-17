@@ -112,7 +112,7 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
         ))}
       </ol>
       {shown.length === 0 && (
-        <p className="lit-empty">No entries match this combination — remove a filter or two.</p>
+        <p className="lit-empty">No entries match this combination. Remove a filter or two.</p>
       )}
     </div>
   );

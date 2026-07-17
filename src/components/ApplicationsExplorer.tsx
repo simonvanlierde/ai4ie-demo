@@ -24,9 +24,12 @@ const VIEWS: { key: View; label: string }[] = [
 const label = (dim: "ie" | "ml", tag: string) =>
   dim === "ie" ? IE_TAGS[tag as keyof typeof IE_TAGS] : ML_TAGS[tag as keyof typeof ML_TAGS];
 
+// Base-absolute so links resolve regardless of trailing slash on the current URL.
+const BASE = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
 /** Literature-page URL pre-filtered to this application's tags. */
 const litLink = (ie: string[], ml: string[]) =>
-  `../literature/?ie=${ie.join(",")}&ml=${ml.join(",")}`;
+  `${BASE}literature/?ie=${ie.join(",")}&ml=${ml.join(",")}`;
 
 /**
  * Pivotable view of applications.yaml: the same entries grouped by IE field,
@@ -105,7 +108,7 @@ function Grid({ entries }: { entries: AppEntry[] }) {
             <th aria-label="IE field by AI technique" />
             {cols.map((c) => (
               <th key={c} scope="col">
-                <a href={`../literature/?ml=${c}`}>{label("ml", c)}</a>
+                <a href={`${BASE}literature/?ml=${c}`}>{label("ml", c)}</a>
               </th>
             ))}
           </tr>
@@ -114,7 +117,7 @@ function Grid({ entries }: { entries: AppEntry[] }) {
           {rows.map((r) => (
             <tr key={r}>
               <th scope="row">
-                <a href={`../literature/?ie=${r}`}>{label("ie", r)}</a>
+                <a href={`${BASE}literature/?ie=${r}`}>{label("ie", r)}</a>
               </th>
               {cols.map((c) => {
                 const apps = cells.get(`${r}|${c}`);
@@ -122,7 +125,7 @@ function Grid({ entries }: { entries: AppEntry[] }) {
                   <td key={c}>
                     {apps && (
                       <a
-                        href={`../literature/?ie=${r}&ml=${c}`}
+                        href={`${BASE}literature/?ie=${r}&ml=${c}`}
                         title={apps.map((a) => a.name).join(" · ")}
                       >
                         {apps.length}

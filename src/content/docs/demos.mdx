@@ -1,13 +1,13 @@
 ---
 title: Demos
-description: Interactive demos of AI methods relevant to IE — in-browser, embedded, and how to add your own.
+description: Interactive demos of AI methods relevant to IE, in-browser and embedded, and how to add your own.
 ---
 
 import ZeroShotDemo from '../../components/ZeroShotDemo.tsx';
 
-Seeing a method run on *your own* photo beats reading about it. Three demos so far —
-one built into this page, two embedded from Hugging Face Spaces — each tied to a cell
-of the [applications map](../applications-map/), each with an honest note on what it
+Seeing a method run on *your own* photo beats reading about it. Three demos so far,
+one built into this page and two embedded from Hugging Face Spaces, each tied to a cell
+of the [applications map](/ai4ie-demo/applications-map/), each with an honest note on what it
 does and doesn't show.
 
 ## In this browser: zero-shot identification (CLIP)
@@ -15,14 +15,14 @@ does and doesn't show.
 Pick a photo (a product, a part, a pile of scrap) and a set of candidate labels;
 [CLIP](https://arxiv.org/abs/2103.00020) scores the labels against the image. It runs
 **entirely in this browser tab** via
-[transformers.js](https://huggingface.co/docs/transformers.js) — the photo is never
+[transformers.js](https://huggingface.co/docs/transformers.js); the photo is never
 uploaded. That is the practical argument for local models on sensitive data (see
-[Tools & hardware](../tools/#local--self-hosted-inference)).
+[Tools & hardware](/ai4ie-demo/tools/#local--self-hosted-inference)).
 
 <ZeroShotDemo client:only="react" />
 
-**What it shows:** open-vocabulary recognition — the *identity* column of the
-[CV taxonomy](../applications-map/cv-taxonomy/) — with labels you choose at run time.
+**What it shows:** open-vocabulary recognition with labels you choose at run time;
+the *identity* column of the [CV taxonomy](/ai4ie-demo/applications-map/cv-taxonomy/).
 **What it doesn't:** reliability. Scores are relative to *your* candidate list, and a
 confident-looking score proves nothing about labels you didn't offer. The gap between
 an impressive demo and a validated method is what the map's maturity notes track.
@@ -31,11 +31,11 @@ an impressive demo and a validated method is what the map's maturity notes track
 
 ### Segment Anything (in-browser, WebGPU)
 
-SAM segments whatever you click — the *detection & segmentation* step behind
+SAM segments whatever you click: the *detection & segmentation* step behind
 component-counting at end-of-life. This Space also runs fully client-side.
 
 <iframe src="https://webml-community-segment-anything-webgpu.static.hf.space/index.html"
-        width="100%" height="520"
+        width="100%" height="780"
         style="border:1px solid var(--sl-color-hairline-shade);border-radius:6px"
         loading="lazy" title="Demo: Segment Anything WebGPU"></iframe>
 
@@ -46,12 +46,12 @@ model from a usable bill of components.
 
 ### Depth Anything V2 (hosted)
 
-Monocular depth estimation — the *quantity/geometry* column: error-bounded geometry
+Monocular depth estimation, the *quantity/geometry* column: error-bounded geometry
 from a single photo. This one calls a hosted GPU, so **your image leaves the
 browser**; use test images, not confidential ones.
 
 <iframe src="https://depth-anything-depth-anything-v2.hf.space"
-        width="100%" height="620"
+        width="100%" height="920"
         style="border:1px solid var(--sl-color-hairline-shade);border-radius:6px"
         loading="lazy" title="Demo: Depth Anything V2"></iframe>
 
@@ -72,11 +72,11 @@ reflective, transparent, and thin parts that dominate real products.
           loading="lazy" title="Demo: category name"></iframe>
   ```
 
-- **In-page island:** a client-side widget ships as an Astro island, no backend —
-  including real in-browser inference via transformers.js. Copy
+- **In-page island:** a client-side widget ships as an Astro island, no backend
+  needed, including real in-browser inference via transformers.js. Copy
   [`src/components/ZeroShotDemo.tsx`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/components/ZeroShotDemo.tsx),
   then drop `<YourDemo client:only="react" />` into an `.mdx` page.
 
 When adding a demo, link it from the matching entry in
 [`src/data/applications.yaml`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/data/applications.yaml)
-(`demo:` field) so the [map](../applications-map/) points to it.
+(`demo:` field) so the [map](/ai4ie-demo/applications-map/) points to it.

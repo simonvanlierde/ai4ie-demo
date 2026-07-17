@@ -1,7 +1,7 @@
 # Curated reading list, rendered on the Literature & resources page.
 # One entry per paper; id = citation key. Required fields: title, authors,
 # year, link (DOI preferred), blurb (one line, why read this), type, added.
-# Tags must exist in src/data/tags.ts — the test suite enforces this.
+# Tags must exist in src/data/tags.ts; the test suite enforces this.
 # See CONTRIBUTING.md for how to add an entry.
 
 # ── AI × IE: cross-cutting perspectives ──────────────────────────────────────
@@ -89,7 +89,7 @@
   authors: "Balaji, B., et al."
   year: 2023
   link: "https://doi.org/10.1145/3616385"
-  blurb: "Zero-shot matching of products to impact factors — the Amazon-scale take on automating footprinting."
+  blurb: "Zero-shot matching of products to impact factors; the Amazon-scale take on automating footprinting."
   ie: [lca]
   ml: [nlp-extraction, llm]
   type: [method]
@@ -109,7 +109,7 @@
   authors: "Kumar, A., et al."
   year: 2025
   link: "https://doi.org/10.1021/acs.est.5c05955"
-  blurb: "Fine-tuned LLaMA-2 + RAG extracts LCI data at F1 ≈ 0.82–0.86 — good enough to accelerate, not to skip human checks."
+  blurb: "Fine-tuned LLaMA-2 + RAG extracts LCI data at F1 ≈ 0.82–0.86: good enough to accelerate, not to skip human checks."
   ie: [lca]
   ml: [llm, nlp-extraction]
   type: [method]
@@ -129,7 +129,7 @@
   authors: "Tu, Q., et al."
   year: 2024
   link: "https://doi.org/10.1021/acs.est.4c07634"
-  blurb: "Maps LCI's chronic data problems onto what LLMs can realistically fix — and what they make worse."
+  blurb: "Maps LCI's chronic data problems onto what LLMs can realistically fix, and what they make worse."
   ie: [lca]
   ml: [llm]
   type: [review]
@@ -159,7 +159,7 @@
   authors: "Forster, P., et al."
   year: 2026
   link: "https://doi.org/10.1038/s41467-026-75160-z"
-  blurb: "LLM extraction of 501 ESRS indicators from 9,173 corporate reports — corpus-scale evidence extraction works; the 29% hit rate is non-disclosure, not model failure."
+  blurb: "LLM extraction of 501 ESRS indicators from 9,173 corporate reports shows corpus-scale extraction works; the 29% hit rate is non-disclosure, not model failure."
   ie: [lca]
   ml: [nlp-extraction, llm]
   type: [method]
@@ -171,7 +171,7 @@
   authors: "Haberl, H., et al."
   year: 2021
   link: "https://doi.org/10.1021/acs.est.0c05642"
-  blurb: "National material stock maps at 10 m from free satellite data + OSM — no cadastre needed; ~5 Gt Austria, ~38 Gt Germany."
+  blurb: "National material stock maps at 10 m from free satellite data + OSM, no cadastre needed; ~5 Gt Austria, ~38 Gt Germany."
   ie: [mfa]
   ml: [remote-sensing, tabular-ml]
   type: [method]
@@ -181,7 +181,7 @@
   authors: "Haberl, H., et al."
   year: 2024
   link: "https://doi.org/10.1111/jiec.13585"
-  blurb: "Global building material stocks (547 Gt) at 90 m from Earth observation — with an honest 53–200% validation spread."
+  blurb: "Global building material stocks (547 Gt) at 90 m from Earth observation, with an honest 53–200% validation spread."
   ie: [mfa]
   ml: [remote-sensing]
   type: [method]
@@ -191,7 +191,7 @@
   authors: "Peled, Y. & Fishman, T."
   year: 2021
   link: "https://doi.org/10.1016/j.resconrec.2021.105509"
-  blurb: "Night-lights radiance as a continent-scale proxy for built-up volume — MFA without a single site visit."
+  blurb: "Night-lights radiance as a continent-scale proxy for built-up volume: MFA without a single site visit."
   ie: [mfa]
   ml: [remote-sensing]
   type: [method]
@@ -201,7 +201,7 @@
   authors: "Bao, S., et al."
   year: 2023
   link: "https://doi.org/10.1111/jiec.13356"
-  blurb: "Feature-fusion deep model beats single-source baselines for Beijing's building stock (<14% total error) — but still needs ground data."
+  blurb: "Feature-fusion deep model beats single-source baselines for Beijing's building stock (<14% total error), but still needs ground data."
   ie: [mfa]
   ml: [remote-sensing]
   type: [method]
@@ -211,7 +211,7 @@
   authors: "Huang, Y., et al."
   year: 2024
   link: "https://doi.org/10.1111/jiec.13591"
-  blurb: "Street-view CV predicts floor area (~19% MAPE) and age (~70%) in Toronto — and degrades sharply in other cities; feasibility, not production."
+  blurb: "Street-view CV predicts floor area (~19% MAPE) and age (~70%) in Toronto, and degrades sharply in other cities; feasibility, not production."
   ie: [mfa]
   ml: [cv]
   type: [method]
@@ -231,7 +231,7 @@
   authors: "Dai, M., et al."
   year: 2025
   link: "https://doi.org/10.1111/jiec.70048"
-  blurb: "Predicts what's inside buildings from what's visible outside — ML as a shortcut around impossible surveys."
+  blurb: "Predicts what's inside buildings from what's visible outside: ML as a shortcut around impossible surveys."
   ie: [mfa, "urban-mining"]
   ml: [tabular-ml]
   type: [method]
@@ -253,7 +253,7 @@
   authors: "Lu, W. & Chen, J."
   year: 2022
   link: "https://doi.org/10.1016/j.wasman.2022.02.009"
-  blurb: "The critical review of CV-for-waste-sorting research — including why lab accuracies don't survive the sorting plant."
+  blurb: "The critical review of CV-for-waste-sorting research, including why lab accuracies don't survive the sorting plant."
   ie: [eol]
   ml: [cv]
   type: [review]
@@ -283,7 +283,7 @@
   authors: "Koyanaka, S., et al."
   year: 2024
   link: "https://doi.org/10.1007/s10163-024-01961-3"
-  blurb: "CNN + weight sensor identifies individual device models on a sorting line — identity recovery under real EoL conditions."
+  blurb: "CNN + weight sensor identifies individual device models on a sorting line: identity recovery under real EoL conditions."
   ie: [eol]
   ml: [cv]
   type: [method]
@@ -293,7 +293,7 @@
   authors: "Vogelgesang, M., et al."
   year: 2025
   link: "https://doi.org/10.1016/j.wasman.2025.114904"
-  blurb: "Camera-based deep learning characterizes shredded WEEE composition in an operating plant — CV feeding MFA directly."
+  blurb: "Camera-based deep learning characterizes shredded WEEE composition in an operating plant: CV feeding MFA directly."
   ie: [eol, mfa]
   ml: [cv, segmentation]
   type: [method]
@@ -333,7 +333,7 @@
   authors: "Zhang, R., et al."
   year: 2026
   link: "https://doi.org/10.48550/ARXIV.2603.27441"
-  blurb: "Head-to-head of foundation vs. lightweight segmenters on opened e-waste — what 'SAM needs a class layer' looks like in practice."
+  blurb: "Head-to-head of foundation vs. lightweight segmenters on opened e-waste: what 'SAM needs a class layer' looks like in practice."
   ie: [eol]
   ml: [cv, segmentation, foundation]
   type: [method]
@@ -343,7 +343,7 @@
   authors: "Liu, X., et al."
   year: 2025
   link: "https://doi.org/10.48550/ARXIV.2509.23048"
-  blurb: "A full working cell — perception to manipulation — for selective phone disassembly; where the integration problems live."
+  blurb: "A full working cell, from perception to manipulation, for selective phone disassembly; where the integration problems live."
   ie: [eol]
   ml: [cv, segmentation]
   type: [method]
@@ -353,16 +353,16 @@
   authors: "Babbitt, C. W., et al."
   year: 2020
   link: "https://doi.org/10.1038/s41597-020-0573-9"
-  blurb: "95 products physically disassembled into validated BoM data — the ground truth CV-based approaches need to beat."
+  blurb: "95 products physically disassembled into validated BoM data: the ground truth CV-based approaches need to beat."
   ie: [eol, "urban-mining"]
   type: [dataset]
   added: 2026-07
 - id: vanlierdeReverseEngineeringLab2026
-  title: "Reverse Engineering Lab — data collection platform"
+  title: "Reverse Engineering Lab - Data Collection Platform"
   authors: "van Lierde, S."
   year: 2026
   link: "https://doi.org/10.5281/zenodo.19703316"
-  blurb: "Open platform for structured product-disassembly data collection (CML) — infrastructure for the datasets this field lacks."
+  blurb: "Open platform for structured product-disassembly data collection (CML): infrastructure for the datasets this field lacks."
   ie: [eol, "urban-mining"]
   ml: [cv]
   type: [dataset]
@@ -372,7 +372,7 @@
   authors: "Yang, L., et al."
   year: 2024
   link: "https://doi.org/10.48550/ARXIV.2406.09414"
-  blurb: "Monocular depth that mostly just works — the geometry-from-one-photo building block; try it on the demos page."
+  blurb: "Monocular depth that mostly just works; the geometry-from-one-photo building block. Try it on the demos page."
   ml: [depth, cv]
   type: [method]
   added: 2026-07
@@ -393,7 +393,7 @@
   authors: "Kapoor, S. & Narayanan, A."
   year: 2023
   link: "https://doi.org/10.1016/j.patter.2023.100804"
-  blurb: "The taxonomy of 8 data-leakage types that silently inflate ML results — found in 294 papers across 17 fields."
+  blurb: "The taxonomy of 8 data-leakage types that silently inflate ML results, found in 294 papers across 17 fields."
   ml: [tabular-ml]
   type: [meta]
   added: 2026-07
@@ -410,7 +410,7 @@
   authors: "Semmelrock, H., et al."
   year: 2023
   link: "https://arxiv.org/abs/2307.10320"
-  blurb: "Quick map of why 'we used ML' so often means 'nobody can rerun it' — barriers and the practices that fix them."
+  blurb: "Quick map of why 'we used ML' so often means 'nobody can rerun it': barriers and the practices that fix them."
   type: [meta, review]
   added: 2026-07
 - id: waltersFabricationErrorsBibliographic2023
@@ -436,7 +436,7 @@
   authors: "Aljamaan, F., et al."
   year: 2024
   link: "https://doi.org/10.2196/54345"
-  blurb: "A usable metric for citation hallucination — and evidence that retrieval-backed tools hallucinate far less."
+  blurb: "A usable metric for citation hallucination, and evidence that retrieval-backed tools hallucinate far less."
   ml: [llm]
   type: [meta, method]
   added: 2026-07
@@ -453,7 +453,7 @@
   authors: "Verdecchia, R., et al."
   year: 2023
   link: "https://doi.org/10.1002/widm.1507"
-  blurb: "What's actually known about making AI itself less resource-hungry — an IE question applied to our own tools."
+  blurb: "What's actually known about making AI itself less resource-hungry: an IE question applied to our own tools."
   type: [meta, review]
   added: 2026-07
 
@@ -499,7 +499,7 @@
   authors: "Brown, T., et al."
   year: 2020
   link: "https://arxiv.org/abs/2005.14165"
-  blurb: "GPT-3: scale alone produced in-context learning — the paper that made 'prompting' a verb."
+  blurb: "GPT-3: scale alone produced in-context learning. The paper that made 'prompting' a verb."
   ml: [llm, foundation]
   type: [landmark-ml]
   added: 2026-07
@@ -508,7 +508,7 @@
   authors: "Ho, J., et al."
   year: 2020
   link: "https://arxiv.org/abs/2006.11239"
-  blurb: "The diffusion formulation behind modern image generation — noise in, image out, one denoising step at a time."
+  blurb: "The diffusion formulation behind modern image generation: noise in, image out, one denoising step at a time."
   ml: [generative]
   type: [landmark-ml]
   added: 2026-07
@@ -517,7 +517,7 @@
   authors: "Dosovitskiy, A., et al."
   year: 2020
   link: "https://arxiv.org/abs/2010.11929"
-  blurb: "ViT: transformers displace convolutions in vision — the reason 'foundation model' now includes images."
+  blurb: "ViT: transformers displace convolutions in vision, the reason 'foundation model' now includes images."
   ml: [cv, foundation]
   type: [landmark-ml]
   added: 2026-07
@@ -526,7 +526,7 @@
   authors: "Radford, A., et al."
   year: 2021
   link: "https://doi.org/10.48550/ARXIV.2103.00020"
-  blurb: "CLIP: images and text in one embedding space — the zero-shot recognition used in this site's own demo."
+  blurb: "CLIP: images and text in one embedding space; the zero-shot recognition used in this site's own demo."
   ml: [cv, foundation]
   type: [landmark-ml]
   added: 2026-07
@@ -535,7 +535,7 @@
   authors: "Jumper, J., et al."
   year: 2021
   link: "https://doi.org/10.1038/s41586-021-03819-2"
-  blurb: "The clearest case of deep learning solving a real scientific problem — and the bar for 'AI for science' claims."
+  blurb: "The clearest case of deep learning solving a real scientific problem, and the bar for 'AI for science' claims."
   type: [landmark-ml]
   added: 2026-07
 - id: ouyangTrainingLanguageModels2022
@@ -543,7 +543,7 @@
   authors: "Ouyang, L., et al."
   year: 2022
   link: "https://arxiv.org/abs/2203.02155"
-  blurb: "InstructGPT/RLHF: why chat models answer questions instead of continuing your sentence — and where their politeness bias comes from."
+  blurb: "InstructGPT/RLHF: why chat models answer questions instead of continuing your sentence, and where their politeness bias comes from."
   ml: [llm]
   type: [landmark-ml]
   added: 2026-07
@@ -552,7 +552,7 @@
   authors: "Kirillov, A., et al."
   year: 2023
   link: "https://doi.org/10.48550/ARXIV.2304.02643"
-  blurb: "SAM: promptable segmentation of anything — try it on the demos page, then note it can't tell you what the segments are."
+  blurb: "SAM: promptable segmentation of anything. Try it on the demos page, then note it can't tell you what the segments are."
   ml: [cv, segmentation, foundation]
   type: [landmark-ml]
   added: 2026-07
@@ -561,7 +561,7 @@
   authors: "Zhao, W. X., et al."
   year: 2023
   link: "https://arxiv.org/abs/2303.18223"
-  blurb: "The reference survey when you need the full LLM landscape — training, capabilities, evaluation — in one document."
+  blurb: "The reference survey when you need the full LLM landscape (training, capabilities, evaluation) in one document."
   ml: [llm]
   type: [landmark-ml, review]
   added: 2026-07

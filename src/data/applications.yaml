@@ -23,7 +23,7 @@
   ie: [lca]
   ml: [llm, nlp-extraction]
   summary: "Fine-tuned or retrieval-augmented LLMs pull inventory and impact data out of papers, reports, and MSDS into structured databases."
-  maturity: "Working systems exist (F1 ≈ 0.82–0.86); consensus is extraction with human verification — never generation of missing data."
+  maturity: "Working systems exist (F1 ≈ 0.82–0.86); consensus is extraction with human verification, never generation of missing data."
   papers: [kumarLargeLanguageModelbased2025, preussLargeLanguageModels2024, tuMitigatingGrandChallenges2024]
 - id: automated-carbon-footprinting
   name: "Automated product carbon footprinting"
@@ -59,7 +59,7 @@
   name: "Night-lights & multi-source stock estimation"
   ie: [mfa]
   ml: [remote-sensing]
-  summary: "Use nighttime-light radiance — alone or fused with optical imagery by deep models — as a proxy for built-up volume and stocks."
+  summary: "Use nighttime-light radiance, alone or fused with optical imagery by deep models, as a proxy for built-up volume and stocks."
   maturity: "Continent-scale proxy validated; deep fusion improves accuracy but still needs ground data for calibration."
   papers: [peledSpatialMaterialStock2021, baoDeepLearningFusion2023]
 - id: street-view-building-attributes
@@ -73,7 +73,7 @@
   name: "Interior component stocks from exterior features"
   ie: [mfa, urban-mining]
   ml: [tabular-ml]
-  summary: "Predict what's inside dwellings (pipes, radiators, wiring) from observable exterior features — a shortcut around impossible surveys."
+  summary: "Predict what's inside dwellings (pipes, radiators, wiring) from observable exterior features: a shortcut around impossible surveys."
   maturity: "Early single-country demonstrations; useful priors, wide uncertainty per building."
   papers: [daiModelingInteriorComponent2025]
 
@@ -83,7 +83,7 @@
   ie: [eol, urban-mining]
   ml: [cv, nlp-extraction]
   summary: "Read model/serial text off product labels and match it against a reference database to identify products at end-of-life."
-  maturity: "Deployed in pilots; reads 95.7% of labels in repair settings but 39.7% at the recycler — label wear is the limit."
+  maturity: "Deployed in pilots; reads 95.7% of labels in repair settings but 39.7% at the recycler; label wear is the limit."
   papers: [sterkensProductLabelIdentification2023, koyanakaIndividualModelIdentification2024]
 - id: waste-stream-classification
   name: "Waste image classification & detection"
@@ -106,15 +106,15 @@
   summary: "Detect, segment, and count components inside opened devices to build bills of components for disassembly and recycling."
   maturity: "Well-validated where task-tuned; foundation segmenters (SAM) still need a class-assignment layer."
   papers: [zhangEvaluatingLargeLightweight2026, kirillovSegmentAnything2023]
-  demo: "../demos/"
+  demo: "/ai4ie-demo/demos/"
 - id: zero-shot-eol-recognition
   name: "Zero-shot recognition with vision-language models"
   ie: [eol]
   ml: [cv, foundation]
-  summary: "CLIP-class models score user-chosen labels against images — recognition without task-specific training data."
+  summary: "CLIP-class models score user-chosen labels against images: recognition without task-specific training data."
   maturity: "Works impressively in demos; measured MRF-condition evaluations show it's not yet sorting-grade."
   papers: [funkEvaluationVisionLanguage2026, radfordLearningTransferableVisual2021]
-  demo: "../demos/"
+  demo: "/ai4ie-demo/demos/"
 - id: single-image-geometry
   name: "Geometry & quantity from single images"
   ie: [eol]
@@ -122,7 +122,7 @@
   summary: "Monocular depth and feed-forward 3D reconstruction recover error-bounded product geometry from ordinary photos."
   maturity: "Foundation depth models generalize well; reflective, transparent, and thin parts are the failure cases."
   papers: [yangDepthAnythingV22024]
-  demo: "../demos/"
+  demo: "/ai4ie-demo/demos/"
 - id: robotic-disassembly
   name: "Vision-guided robotic disassembly"
   ie: [eol]

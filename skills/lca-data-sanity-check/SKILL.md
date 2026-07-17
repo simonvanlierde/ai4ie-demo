@@ -1,6 +1,6 @@
 ---
 name: lca-data-sanity-check
-description: Use when AI has written or edited code in an LCA/MFA/IO data pipeline — catches silently changed units, defaults, thresholds, and mappings that run without error but change results.
+description: Use when AI has written or edited code in an LCA/MFA/IO data pipeline; catches silently changed units, defaults, thresholds, and mappings that run without error but change results.
 ---
 
 # LCA / MFA data-pipeline sanity check
@@ -26,7 +26,7 @@ AI-produced diff before its results are trusted.
    the boundary of the changed code.
 3. **Defaults and identifiers.** Did any function default change meaning
    (allocation method, characterization method, database version, region code,
-   reference year)? AI models substitute "similar" identifiers — verify exact
+   reference year)? AI models substitute "similar" identifiers, so verify exact
    database/method names against the originals, character for character.
 4. **Thresholds and filters.** Any cutoff, `dropna`, filter, or rounding introduced
    or altered? Quantify what it excludes: row counts before and after.
@@ -43,6 +43,6 @@ AI-produced diff before its results are trusted.
 
 ## Output
 
-Report per item: what was checked, how, and the result — with the failing case
+Report per item: what was checked, how, and the result, with the failing case
 attached when something breaks. If everything passes, say which known-answer case
 was used; a pass without a named test case doesn't count.
