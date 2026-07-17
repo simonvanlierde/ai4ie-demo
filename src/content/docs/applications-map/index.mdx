@@ -12,8 +12,8 @@ dimensions**: the IE field (LCA, MFA, waste & circularity, …) and the AI techn
 an index into the reading list.
 
 :::note[Seeded proposal]
-Entries are seeded by working-group members and honestly imperfect. Argue with them,
-and add what's missing: entries live in
+Working-group members seeded these entries, and they are certainly incomplete. Argue
+with them, and add what's missing: entries live in
 [`src/data/applications.yaml`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/data/applications.yaml);
 see [Contributing](https://github.com/simonvanlierde/ai4ie-demo/blob/main/CONTRIBUTING.md).
 :::
@@ -26,46 +26,47 @@ Pivot the same set of applications by IE field, by AI technique, or as a grid of
 
 ## What works today, per field
 
-The one-paragraph honest versions. Papers behind every claim are in the
-[literature list](../literature/), pre-filtered by the links below.
+One paragraph per field on what actually works. The papers behind every claim are in
+the [literature list](../literature/), pre-filtered by the links below.
 
 ### LCA & footprinting
 
 Two things demonstrably work: **tabular ML** for rapid impact screening and inventory
 gap-filling (validated repeatedly since 2017), and **LLM extraction** of inventory
 data from literature and reports (working systems at F1 ≈ 0.82–0.86, always with
-human verification). The field's consensus rule is worth tattooing somewhere:
-*extraction, not generation* — a 2025 benchmark found 37% of general-purpose LLM
-answers to LCA questions inaccurate or misleading, with hallucinated-citation rates
-up to 40%. Automated footprinting deploys at catalog scale for common products and
-degrades off it. [Papers →](../literature/?ie=lca)
+human verification). The consensus rule across this work: use LLMs to *extract*
+inventory data, never to generate it. A 2025 benchmark found 37% of general-purpose
+LLM answers to LCA questions inaccurate or misleading, with hallucinated-citation
+rates up to 40%. Automated footprinting deploys at catalog scale for common products
+and degrades off it. [Papers →](../literature/?ie=lca)
 
 ### MFA & stocks and flows
 
 The most mature corner of the map. Satellite-based material stock mapping works at
 **national scale (10 m)** from free data, and a **global estimate (90 m, 547 Gt in
-buildings)** exists — with an honest validation spread of 53–200% against independent
-studies, which is the real accuracy ceiling. Night-lights proxies and deep multi-source
+buildings)** exists. Mind the validation spread, though: 53–200% against independent
+studies, and that is the real accuracy ceiling. Night-lights proxies and deep multi-source
 fusion improve on single sources but still need ground data. Street-view CV for
 building attributes is demonstrated feasibility: good in the training city, sharply
 worse elsewhere. [Papers →](../literature/?ie=mfa)
 
 ### Waste, EoL & circularity
 
-The most *published* corner. Task-tuned detection and counting of waste and
+The corner with the most publications. Task-tuned detection and counting of waste and
 components is well-validated; camera-based flow characterization runs in operating
-WEEE sorting plants; label-OCR identification is deployed in pilots (and collapses
-from 96% to 40% readability between repair shop and recycler — condition at EoL is
-the recurring villain). Foundation models (SAM, CLIP) demo impressively but need a
-class-assignment layer and sorting-grade evaluation before they count as methods.
+WEEE sorting plants; label-OCR identification is deployed in pilots, where readability
+collapses from 96% in repair shops to 40% at the recycler. Worn, dirty, damaged
+products are the recurring failure mode. Foundation models (SAM, CLIP) demo
+impressively but need a class-assignment layer and sorting-grade evaluation before
+they count as methods.
 Robotic disassembly works for narrow product families.
 [Papers →](../literature/?ie=eol) · Full depth in the
 [CV taxonomy worked example](cv-taxonomy/).
 
 ### Not mapped yet
 
-Input–output analysis, forecasting, and scenario modeling have no vetted entries —
-our research sweep found no claims in these areas that survived verification, which
+Input–output analysis, forecasting, and scenario modeling have no vetted entries yet.
+Our research sweep found no claims in these areas that survived verification, which
 is itself a data point. If you work there and know better, this is the easiest place
 to contribute.
 

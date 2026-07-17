@@ -23,12 +23,12 @@ The five-minute version:
 - **When not to use it:** when you couldn't tell a good output from a bad one.
   If you can't verify it, don't delegate it.
 - **Learn prompting from:** the [Prompt Engineering Guide](https://www.promptingguide.ai)
-  (free, tool-agnostic) — most "the AI is bad at this" complaints are one specific
-  instruction away from working.
+  (free, tool-agnostic). Many "the AI is bad at this" complaints trace back to a
+  missing instruction.
 
 ## Pitfalls
 
-Where people get burned — each with a documented case, not folklore:
+Where people get burned, each with a documented case:
 
 - **Hallucinated citations.** In a controlled study, 55% of the references
   GPT-3.5 produced and 18% of GPT-4's were entirely fabricated, and much of the
@@ -43,8 +43,8 @@ Where people get burned — each with a documented case, not folklore:
   difference to detect. Any number destined for a paper gets traced to a primary
   source or recomputed.
 - **Leaking confidential data.** Anything pasted into a hosted service leaves your
-  machine and may be retained; Samsung famously banned generative-AI tools after
-  engineers pasted internal source code into ChatGPT
+  machine and may be retained; Samsung banned generative-AI tools after engineers
+  pasted internal source code into ChatGPT
   ([TechCrunch, 2023](https://techcrunch.com/2023/05/02/samsung-bans-use-of-generative-ai-tools-like-chatgpt-after-april-internal-data-leak/)).
   For NDA'd inventories and industry data, use the
   [local options on the tools page](../tools/#local--self-hosted-inference), and

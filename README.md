@@ -18,11 +18,11 @@ maintained by the [AI4IE working group](CONTRIBUTING.md).**
 
 ## What this is
 
-A **seeded proposal**: real, checkable starter content in every section — a
-two-dimensional applications map, a 58-entry tag-filterable literature list, vetted
-tools and hardware guidance, working Claude skills, and in-browser demos — with the
-group framing intact. Everything is open to challenge, and the genuinely
-group-specific items stay marked `TODO(wg)`. Contributions are the whole point.
+A **seeded proposal**, not finished work. Every section has real, checkable starter
+content: an applications map, a 58-entry literature list, tool and hardware guidance,
+working Claude skills, and in-browser demos. All of it is open to challenge, and the
+genuinely group-specific items stay marked `TODO(wg)`. Contributions are the whole
+point.
 
 | Page | Contents |
 |---|---|

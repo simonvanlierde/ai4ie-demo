@@ -16,7 +16,7 @@ Pick a photo (a product, a part, a pile of scrap) and a set of candidate labels;
 [CLIP](https://arxiv.org/abs/2103.00020) scores the labels against the image. It runs
 **entirely in this browser tab** via
 [transformers.js](https://huggingface.co/docs/transformers.js) — the photo is never
-uploaded, which is the whole argument for local models on sensitive data (see
+uploaded. That is the practical argument for local models on sensitive data (see
 [Tools & hardware](../tools/#local--self-hosted-inference)).
 
 <ZeroShotDemo client:only="react" />
@@ -24,9 +24,8 @@ uploaded, which is the whole argument for local models on sensitive data (see
 **What it shows:** open-vocabulary recognition — the *identity* column of the
 [CV taxonomy](../applications-map/cv-taxonomy/) — with labels you choose at run time.
 **What it doesn't:** reliability. Scores are relative to *your* candidate list, and a
-confident-looking score proves nothing about labels you didn't offer. That gap between
-"impressive demo" and "validated method" is precisely the maturity question the map
-tracks.
+confident-looking score proves nothing about labels you didn't offer. The gap between
+an impressive demo and a validated method is what the map's maturity notes track.
 
 ## Embedded: segmentation and depth
 
@@ -41,9 +40,9 @@ component-counting at end-of-life. This Space also runs fully client-side.
         loading="lazy" title="Demo: Segment Anything WebGPU"></iframe>
 
 [Open directly](https://huggingface.co/spaces/webml-community/segment-anything-webgpu)
-if the embed fails to load. **What it doesn't show:** class assignment — SAM finds
-*regions*, not *component types*; that layer is exactly what's missing between the
-foundation model and a bill of components.
+if the embed fails to load. **What it doesn't show:** class assignment. SAM finds
+regions, not component types, and that missing layer is what separates the foundation
+model from a usable bill of components.
 
 ### Depth Anything V2 (hosted)
 

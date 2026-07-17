@@ -10,7 +10,7 @@
   authors: "Donati, F., et al."
   year: 2022
   link: "https://doi.org/10.1111/jiec.13313"
-  blurb: "The JIE perspective piece on what AI can and cannot do for IE — the framing this whole resource argues with."
+  blurb: "The JIE perspective on what AI can and cannot do for IE; a good starting point for this whole resource."
   ie: [lca, mfa, eol]
   type: [review]
   added: 2026-07
@@ -19,7 +19,7 @@
   authors: "Gong, Y., et al."
   year: 2025
   link: "https://doi.org/10.1111/jiec.13612"
-  blurb: "Topic-model map of the IE∩AI literature: where the field has actually been publishing, not where it says it is."
+  blurb: "Topic-model map of the IE-and-AI literature: which applications the field has actually been publishing on."
   ie: [lca, mfa, eol]
   type: [review]
   added: 2026-07
@@ -38,7 +38,7 @@
   authors: "Xu, M., et al."
   year: 2015
   link: "https://doi.org/10.1111/jiec.12241"
-  blurb: "The early argument for data-intensive IE — a decade old and still the framing for why this list exists."
+  blurb: "The early (2015) case for data-intensive IE; useful context for everything newer on this list."
   ie: [lca, mfa]
   type: [review]
   added: 2026-07
@@ -303,7 +303,7 @@
   authors: "Jiang, Y., et al."
   year: 2025
   link: "https://doi.org/10.1021/acs.est.5c01600"
-  blurb: "CV-derived product counts feed an MFA of recycling potential — the two-methods-in-one-pipeline pattern this map predicts more of."
+  blurb: "Couples CV-derived product counts to an MFA of recycling potential; CV and MFA in a single pipeline."
   ie: [eol, mfa]
   ml: [cv]
   type: [method]
@@ -463,7 +463,7 @@
   authors: "Deng, J., et al."
   year: 2009
   link: "https://doi.org/10.1109/CVPR.2009.5206848"
-  blurb: "The dataset that made deep learning happen — and the template for why benchmarks drive the whole field."
+  blurb: "The dataset that kicked off the deep-learning era, and the reason benchmarks steer the field."
   ml: [cv]
   type: [landmark-ml, dataset]
   added: 2026-07

@@ -90,7 +90,7 @@
   ie: [eol]
   ml: [cv]
   summary: "CNN/transformer classifiers recognize waste categories in images, from litter surveys to conveyor streams."
-  maturity: "The most-published application in the field; lab accuracies are high, plant-condition performance is the honest test."
+  maturity: "The most-published application in the field; lab accuracies are high, performance under plant conditions is the real test."
   papers: [luComputerVisionSolid2022, wuApplicationsConvolutionalNeural2023, majchrowskaDeepLearningbasedWaste2022]
 - id: sorting-plant-characterization
   name: "Sensor-based material flow characterization in sorting plants"

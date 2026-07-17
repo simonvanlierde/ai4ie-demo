@@ -66,11 +66,11 @@ export default function ZeroShotDemo() {
           onChange={(e) => onFile(e.target.files?.[0])}
         />
         <label className="zsd-labels">
-          Candidate labels (edit freely — that's the "zero-shot")
+          Candidate labels — edit them; zero-shot means you pick the categories
           <input type="text" value={labels} onChange={(e) => setLabels(e.target.value)} />
         </label>
         <button type="button" onClick={classify} disabled={!imageUrl || status !== null}>
-          Classify — in this browser, nothing is uploaded
+          Classify (runs in this browser, nothing is uploaded)
         </button>
       </div>
       {imageUrl && <img src={imageUrl} alt="Your photo, processed locally" className="zsd-img" />}
