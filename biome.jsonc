@@ -41,10 +41,32 @@
       }
     },
     {
+      // Tests read YAML fixtures off disk and import without extensions.
       "includes": ["**/*.test.ts"],
       "linter": {
         "rules": {
-          "security": { "noSecrets": "off" }
+          "security": { "noSecrets": "off" },
+          "correctness": { "noNodejsModules": "off", "useImportExtensions": "off" }
+        }
+      }
+    },
+    {
+      // Biome's .astro support is partial: it reads the frontmatter script but
+      // not the template, so anything used only in the markup reads as unused.
+      // The first four are the rules Biome's own docs say to disable; the last
+      // two fire for the same reason (`astro:content` is a virtual module, and
+      // Astro resolves extensionless imports via the bundler).
+      // https://biomejs.dev/internals/language-support/#html-super-languages-support
+      "includes": ["**/*.astro"],
+      "linter": {
+        "rules": {
+          "style": { "useConst": "off", "useImportType": "off" },
+          "correctness": {
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off",
+            "noUnresolvedImports": "off",
+            "useImportExtensions": "off"
+          }
         }
       }
     }
