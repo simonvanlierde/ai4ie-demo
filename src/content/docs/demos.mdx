@@ -3,6 +3,7 @@ title: Demos
 description: Interactive demos of AI methods relevant to IE, in-browser and embedded, and how to add your own.
 ---
 
+import Cite from '../../components/Cite.astro';
 import ZeroShotDemo from '../../components/ZeroShotDemo.tsx';
 
 Seeing a method run on *your own* photo beats reading about it. There are three
@@ -13,7 +14,7 @@ it does and doesn't show.
 ## In this browser: zero-shot identification (CLIP)
 
 Pick a photo (a product, a part, a pile of scrap) and a set of candidate labels;
-[CLIP](https://arxiv.org/abs/2103.00020) scores the labels against the image. It runs
+<Cite id="radfordLearningTransferableVisual2021">CLIP</Cite> scores the labels against the image. It runs
 **entirely in this browser tab** via
 [transformers.js](https://huggingface.co/docs/transformers.js); the photo is never
 uploaded. That is why local models matter for sensitive data (see

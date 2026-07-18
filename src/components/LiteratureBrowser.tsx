@@ -38,17 +38,23 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
   const [sort, setSort] = useState<SortKey>("year");
   const [hydrated, setHydrated] = useState(false);
 
-  // Read the initial filter from the URL after hydration (SSR shows everything).
+  // Read the initial filter and sort from the URL after hydration (SSR shows everything).
   useEffect(() => {
     setFilter(parseFilterParams(window.location.search));
+    const s = new URLSearchParams(window.location.search).get("sort");
+    if (SORTS.some((o) => o.key === s)) setSort(s as SortKey);
     setHydrated(true);
   }, []);
 
-  // Keep the shareable filter URL in sync once the initial URL has been read.
+  // Keep the shareable URL in sync once the initial URL has been read. Sort rides
+  // along so a shared link reproduces the order it was shared in; the default is
+  // left out to keep the common URL clean.
   useEffect(() => {
     if (!hydrated) return;
-    history.replaceState(null, "", window.location.pathname + toFilterParams(filter));
-  }, [filter, hydrated]);
+    const query = toFilterParams(filter);
+    const sortParam = sort === "year" ? "" : `${query ? "&" : "?"}sort=${sort}`;
+    history.replaceState(null, "", window.location.pathname + query + sortParam);
+  }, [filter, sort, hydrated]);
 
   function apply(next: Filter) {
     setFilter(next);

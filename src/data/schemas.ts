@@ -12,7 +12,7 @@ export const literatureSchema = z.object({
   title: z.string(),
   authors: z.string(), // short form ("Sterkens, W., et al."); full list lives at the DOI
   year: z.number().int().min(1950).max(2027),
-  link: z.string().url(), // DOI link preferred, arXiv otherwise
+  link: z.url(), // DOI link preferred, arXiv otherwise
   blurb: z.string().min(10).max(300), // one line: why read this
   ie: z.array(ieTag).default([]), // empty = not IE-specific (e.g. ML landmarks)
   ml: z.array(mlTag).default([]),

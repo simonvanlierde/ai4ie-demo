@@ -22,6 +22,33 @@ This started in the **AI4IE working group**, but it's a community resource and c
 
 You don't need to run anything locally to edit text. Editing the Markdown on GitHub is enough, or use the **edit pencil** on any page of the live site, which takes you straight to the file.
 
+### Citing a source in prose
+
+Don't paste a bare link when the source is (or should be) in the reading list. Use the `Cite` component, which looks the entry up by `id` at build time and links to the reading list filtered to that one paper:
+
+```mdx
+---
+title: Your page
+---
+
+import Cite from '../../components/Cite.astro';
+
+Label readability collapses at the recycler <Cite id="sterkensProductLabelIdentification2023" />.
+```
+
+That renders `(Sterkens et al., 2023)`. Author and year come from `literature.yaml`, so a citation can't drift out of sync with the data, and a wrong or missing `id` **fails the build** rather than shipping a dead reference.
+
+When the prose already names the thing, pass the name as children so the wording survives:
+
+```mdx
+foundation segmenters (<Cite id="kirillovSegmentAnything2023">SAM</Cite>, …)
+```
+
+Two rules of thumb:
+
+- **A claim with a number in it needs a citation.** If the paper behind it isn't in `literature.yaml` yet, add it in the same PR — that's the point of the format.
+- **If you can't find the source, don't guess.** Leave the claim uncited and mark it `TODO`, so the gap is visible instead of implied.
+
 ## Ground rules
 
 - **No fabricated entries.** Every tool, paper, or number must be real and checkable. If you're not sure, mark it `TODO` and say what needs confirming.
