@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react";
+import type { LitEntry } from "../data/schemas";
 import { IE_TAGS, ML_TAGS, TYPE_TAGS } from "../data/tags";
 import { type Filter, matchesFilter, parseFilterParams, toFilterParams } from "./litFilter";
 
-export type LitEntry = {
-  id: string;
-  title: string;
-  authors: string;
-  year: number;
-  link: string;
-  blurb: string;
-  ie: string[];
-  ml: string[];
-  type: string[];
-};
-
-const EMPTY: Filter = { ie: [], ml: [], type: [] };
+const EMPTY: Filter = { ie: [], ml: [], type: [], papers: [] };
 
 const DIMENSIONS = [
   { key: "ie", label: "IE field", tags: IE_TAGS },
@@ -25,7 +14,8 @@ const DIMENSIONS = [
 /**
  * Tag-filterable reading list. SSRs the full list (filters need JS); the
  * active filter round-trips through URL params so filtered views are
- * shareable and the applications map can deep-link here.
+ * shareable and the applications map can deep-link here (by tag or, via
+ * `?papers=`, by cited entry ids).
  */
 export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) {
   const [filter, setFilter] = useState<Filter>(EMPTY);
@@ -35,7 +25,7 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
     setFilter(parseFilterParams(window.location.search));
   }, []);
 
-  function toggle(dim: keyof Filter, tag: string) {
+  function toggle(dim: (typeof DIMENSIONS)[number]["key"], tag: string) {
     const active = filter[dim].includes(tag);
     const next = {
       ...filter,
@@ -51,7 +41,7 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
   }
 
   const shown = entries.filter((e) => matchesFilter(e, filter));
-  const anyActive = DIMENSIONS.some((d) => filter[d.key].length > 0);
+  const anyActive = DIMENSIONS.some((d) => filter[d.key].length > 0) || filter.papers.length > 0;
 
   return (
     <div className="lit-browser not-content">
@@ -94,17 +84,17 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
             <span className="lit-tags">
               {e.ie.map((t) => (
                 <span key={t} className="lit-tag lit-tag-ie">
-                  {IE_TAGS[t as keyof typeof IE_TAGS]}
+                  {IE_TAGS[t]}
                 </span>
               ))}
               {e.ml.map((t) => (
                 <span key={t} className="lit-tag lit-tag-ml">
-                  {ML_TAGS[t as keyof typeof ML_TAGS]}
+                  {ML_TAGS[t]}
                 </span>
               ))}
               {e.type.map((t) => (
                 <span key={t} className="lit-tag lit-tag-type">
-                  {TYPE_TAGS[t as keyof typeof TYPE_TAGS]}
+                  {TYPE_TAGS[t]}
                 </span>
               ))}
             </span>

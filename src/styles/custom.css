@@ -19,6 +19,12 @@
   --patina: #2a7d74; /* verdigris: what the copper becomes */
   --patina-bright: #5bb3a8; /* AA-safe patina for dark surfaces */
 
+  /* Theme-aware text inks: bright variants on dark surfaces, base variants on
+     light (reassigned in the light-theme block). Use these for colored text so
+     each new element doesn't need its own light-theme override. */
+  --copper-ink: var(--copper-bright);
+  --patina-ink: var(--patina-bright);
+
   /* Type roles */
   --sl-font: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
   --font-prose: "Literata Variable", Georgia, "Times New Roman", serif;
@@ -45,6 +51,8 @@
   --sl-color-text-accent: var(--copper); /* 4.95:1 on white: AA */
   --sl-color-bg: #fbfaf7; /* warm white */
   --sl-color-hairline-shade: #ece5dc;
+  --copper-ink: var(--copper);
+  --patina-ink: var(--patina);
 }
 
 /* ── Typography ──────────────────────────────────────────────────────────── */
@@ -106,12 +114,9 @@
 
 /* ── Asides: note wears the patina instead of Starlight's default blue ───── */
 .starlight-aside--note {
-  --sl-color-asides-text-accent: var(--patina-bright);
+  --sl-color-asides-text-accent: var(--patina-ink);
   --sl-color-asides-border: var(--patina);
   background-color: color-mix(in srgb, var(--patina) 12%, transparent);
-}
-:root[data-theme="light"] .starlight-aside--note {
-  --sl-color-asides-text-accent: var(--patina);
 }
 
 /* ── Collapsible skill files ─────────────────────────────────────────────── */
@@ -256,17 +261,11 @@
 }
 .lit-tag-ie {
   border-color: color-mix(in srgb, var(--patina) 55%, transparent);
-  color: var(--patina-bright);
-}
-:root[data-theme="light"] .lit-tag-ie {
-  color: var(--patina);
+  color: var(--patina-ink);
 }
 .lit-tag-ml {
   border-color: color-mix(in srgb, var(--copper) 55%, transparent);
-  color: var(--copper-bright);
-}
-:root[data-theme="light"] .lit-tag-ml {
-  color: var(--copper);
+  color: var(--copper-ink);
 }
 .lit-empty {
   font-family: var(--font-prose);
@@ -319,16 +318,10 @@
   margin: 0 0 0.4rem;
 }
 .apx-group-label.apx-ie {
-  color: var(--patina-bright);
-}
-:root[data-theme="light"] .apx-group-label.apx-ie {
-  color: var(--patina);
+  color: var(--patina-ink);
 }
 .apx-group-label.apx-ml {
-  color: var(--copper-bright);
-}
-:root[data-theme="light"] .apx-group-label.apx-ml {
-  color: var(--copper);
+  color: var(--copper-ink);
 }
 .apx-list {
   list-style: none;
@@ -385,21 +378,15 @@
   text-align: center;
 }
 .apx-grid thead th a {
-  color: var(--copper-bright);
+  color: var(--copper-ink);
   text-decoration: none;
 }
 .apx-grid tbody th {
   text-align: left;
 }
 .apx-grid tbody th a {
-  color: var(--patina-bright);
+  color: var(--patina-ink);
   text-decoration: none;
-}
-:root[data-theme="light"] .apx-grid thead th a {
-  color: var(--copper);
-}
-:root[data-theme="light"] .apx-grid tbody th a {
-  color: var(--patina);
 }
 .apx-grid td a {
   display: inline-block;

@@ -1,17 +1,8 @@
 import { useState } from "react";
+import type { AppEntry } from "../data/schemas";
 import { IE_TAGS, ML_TAGS } from "../data/tags";
 import { groupBy, toGrid } from "./appPivot";
-
-export type AppEntry = {
-  id: string;
-  name: string;
-  ie: string[];
-  ml: string[];
-  summary: string;
-  maturity: string;
-  papers: string[];
-  demo?: string;
-};
+import { type Filter, toFilterParams } from "./litFilter";
 
 type View = "ie" | "ml" | "grid";
 
@@ -27,14 +18,15 @@ const label = (dim: "ie" | "ml", tag: string) =>
 // Base-absolute so links resolve regardless of trailing slash on the current URL.
 const BASE = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 
-/** Literature-page URL pre-filtered to this application's tags. */
-const litLink = (ie: string[], ml: string[]) =>
-  `${BASE}literature/?ie=${ie.join(",")}&ml=${ml.join(",")}`;
+/** Literature-page URL with the given filter pre-applied. */
+const lit = (f: Partial<Filter>) =>
+  `${BASE}literature/${toFilterParams({ ie: [], ml: [], type: [], papers: [], ...f })}`;
 
 /**
  * Pivotable view of applications.yaml: the same entries grouped by IE field,
- * by AI technique, or as an IE × ML grid. Every entry and cell deep-links to
- * the literature list pre-filtered to the same tags.
+ * by AI technique, or as an IE × ML grid. Entries and cells deep-link to the
+ * literature list, by cited paper ids where an entry cites papers, by the
+ * same tags otherwise.
  */
 export default function ApplicationsExplorer({ entries }: { entries: AppEntry[] }) {
   const [view, setView] = useState<View>("ie");
@@ -70,20 +62,28 @@ export default function ApplicationsExplorer({ entries }: { entries: AppEntry[] 
                     <span className="apx-links">
                       {a.ie.map((t) => (
                         <span key={t} className="lit-tag lit-tag-ie">
-                          {label("ie", t)}
+                          {IE_TAGS[t]}
                         </span>
                       ))}
                       {a.ml.map((t) => (
                         <span key={t} className="lit-tag lit-tag-ml">
-                          {label("ml", t)}
+                          {ML_TAGS[t]}
                         </span>
                       ))}
-                      <a href={litLink(a.ie, a.ml)}>
+                      <a
+                        href={
+                          a.papers.length > 0
+                            ? lit({ papers: a.papers })
+                            : lit({ ie: a.ie, ml: a.ml })
+                        }
+                      >
                         {a.papers.length > 0
                           ? `papers (${a.papers.length}) →`
                           : "related reading →"}
                       </a>
-                      {a.demo && <a href={a.demo}>demo →</a>}
+                      {a.demo && (
+                        <a href={a.demo.startsWith("http") ? a.demo : BASE + a.demo}>demo →</a>
+                      )}
                     </span>
                   </li>
                 ))}
@@ -108,7 +108,7 @@ function Grid({ entries }: { entries: AppEntry[] }) {
             <th aria-label="IE field by AI technique" />
             {cols.map((c) => (
               <th key={c} scope="col">
-                <a href={`${BASE}literature/?ml=${c}`}>{label("ml", c)}</a>
+                <a href={lit({ ml: [c] })}>{label("ml", c)}</a>
               </th>
             ))}
           </tr>
@@ -117,19 +117,21 @@ function Grid({ entries }: { entries: AppEntry[] }) {
           {rows.map((r) => (
             <tr key={r}>
               <th scope="row">
-                <a href={`${BASE}literature/?ie=${r}`}>{label("ie", r)}</a>
+                <a href={lit({ ie: [r] })}>{label("ie", r)}</a>
               </th>
               {cols.map((c) => {
                 const apps = cells.get(`${r}|${c}`);
+                if (!apps) return <td key={c} />;
+                const papers = [...new Set(apps.flatMap((a) => a.papers))];
+                const title = apps.map((a) => a.name).join(" · ");
                 return (
                   <td key={c}>
-                    {apps && (
-                      <a
-                        href={`${BASE}literature/?ie=${r}&ml=${c}`}
-                        title={apps.map((a) => a.name).join(" · ")}
-                      >
+                    {papers.length > 0 ? (
+                      <a href={lit({ papers })} title={title}>
                         {apps.length}
                       </a>
+                    ) : (
+                      <span title={title}>{apps.length}</span>
                     )}
                   </td>
                 );

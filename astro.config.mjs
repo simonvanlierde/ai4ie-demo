@@ -17,6 +17,10 @@ export default defineConfig({
   site: `https://${owner}.github.io`,
   base: `/${repo}`,
 
+  // Old URLs that are live on the deployed site must keep working after a move.
+  // (Astro base-prefixes the route but not the destination, hence `/${repo}`.)
+  redirects: { "/hardware/": `/${repo}/tools/local-ai/` },
+
   integrations: [
     react(), // enables interactive React "islands" for demos
     starlight({
