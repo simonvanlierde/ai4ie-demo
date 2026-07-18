@@ -5,10 +5,10 @@ description: Interactive demos of AI methods relevant to IE, in-browser and embe
 
 import ZeroShotDemo from '../../components/ZeroShotDemo.tsx';
 
-Seeing a method run on *your own* photo beats reading about it. Three demos so far,
-one built into this page and two embedded from Hugging Face Spaces, each tied to a cell
-of the [applications map](../applications-map/), each with an honest note on what it
-does and doesn't show.
+Seeing a method run on *your own* photo beats reading about it. There are three
+demos so far: one built into this page, two embedded from Hugging Face Spaces.
+Each is tied to a cell of the [applications map](../applications-map/) and notes what
+it does and doesn't show.
 
 ## In this browser: zero-shot identification (CLIP)
 
@@ -16,16 +16,15 @@ Pick a photo (a product, a part, a pile of scrap) and a set of candidate labels;
 [CLIP](https://arxiv.org/abs/2103.00020) scores the labels against the image. It runs
 **entirely in this browser tab** via
 [transformers.js](https://huggingface.co/docs/transformers.js); the photo is never
-uploaded. That is the practical argument for local models on sensitive data (see
+uploaded. That is why local models matter for sensitive data (see
 [Local AI & hardware](../tools/local-ai/)).
 
-<ZeroShotDemo client:only="react" />
+<ZeroShotDemo client:visible />
 
 **What it shows:** open-vocabulary recognition with labels you choose at run time;
 the *identity* column of the [CV taxonomy](../applications-map/cv-taxonomy/).
 **What it doesn't:** reliability. Scores are relative to *your* candidate list, and a
-confident-looking score proves nothing about labels you didn't offer. The gap between
-an impressive demo and a validated method is what the map's maturity notes track.
+confident-looking score proves nothing about labels you didn't offer.
 
 ## Embedded: segmentation and depth
 
@@ -41,8 +40,8 @@ component-counting at end-of-life. This Space also runs fully client-side.
 
 [Open directly](https://huggingface.co/spaces/webml-community/segment-anything-webgpu)
 if the embed fails to load. **What it doesn't show:** class assignment. SAM finds
-regions, not component types, and that missing layer is what separates the foundation
-model from a usable bill of components.
+regions, not component types; you still need a classification step on top before
+you get a usable bill of components.
 
 ### Depth Anything V2 (hosted)
 
@@ -75,7 +74,7 @@ reflective, transparent, and thin parts that dominate real products.
 - **In-page island:** a client-side widget ships as an Astro island, no backend
   needed, including real in-browser inference via transformers.js. Copy
   [`src/components/ZeroShotDemo.tsx`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/components/ZeroShotDemo.tsx),
-  then drop `<YourDemo client:only="react" />` into an `.mdx` page.
+  then drop `<YourDemo client:visible />` into an `.mdx` page.
 
 When adding a demo, link it from the matching entry in
 [`src/data/applications.yaml`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/data/applications.yaml)

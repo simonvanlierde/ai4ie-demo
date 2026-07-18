@@ -1,6 +1,6 @@
 ---
 title: Awesome AI for Industrial Ecology
-description: A community-curated guide to using AI in industrial ecology, by the AI4IE working group.
+description: A community-curated guide to using AI in industrial ecology, open to contributions from anyone.
 head:
   # The page title equals the site title, so Starlight's "page | site" pattern
   # would double it. Override with the plain name.
@@ -25,13 +25,12 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-A community-curated guide to using AI in industrial ecology (IE), maintained by the
-**AI4IE working group**.
+A community-curated guide to using AI in industrial ecology (IE). It started in the
+**AI4IE working group** — IE researchers scattered across institutes, who meet on
+[Discord](https://discord.gg/zhHAZakXHX) — and is open to contributions from anyone.
 
-:::note[A seeded proposal: argue with it]
-Working-group members seeded every section with real, checkable entries, and all of
-it is open to challenge. If you disagree with a maturity call or miss your subfield,
-that's a [pull request](https://github.com/simonvanlierde/ai4ie-demo/blob/main/CONTRIBUTING.md).
+:::note[A proposal: argue with it]
+This website is currently in the demo phase. If something looks wrong or your subfield is missing, [open a pull request](https://github.com/simonvanlierde/ai4ie-demo/blob/main/CONTRIBUTING.md).
 :::
 
 ## How it fits together
@@ -39,18 +38,15 @@ that's a [pull request](https://github.com/simonvanlierde/ai4ie-demo/blob/main/C
 One tag vocabulary connects the whole site. For every application area you can
 follow the same three steps:
 
-1. **See what works today** on the [map of AI applications](applications-map/),
-   e.g. computer vision at end-of-life;
-2. **Read the evidence** in the [literature list](literature/), pre-filtered to the
-   same tags, e.g. [EoL × computer vision](literature/?ie=eol&ml=cv);
-3. **Try it** on the [demos page](demos/) where a demo exists, e.g. zero-shot
-   recognition running in your browser.
+1. **See what works today** on the [map of AI applications](applications-map/), e.g. computer vision at end-of-life;
+2. **Read the evidence** in the [literature list](literature/), pre-filtered to the same tags, e.g. [EoL × computer vision](literature/?ie=eol&ml=cv);
+3. **Try it** on the [demos page](demos/) where a demo exists, e.g. zero-shot recognition running in your browser.
 
 ## Sections
 
 | # | Section | What's in it |
 | --- | --- | --- |
-| 1 | [Map of AI applications in IE](applications-map/) | What works today, by IE field × AI technique, with honest maturity calls. |
+| 1 | [Map of AI applications in IE](applications-map/) | What works today, by IE field × AI technique, with a maturity call for each entry. |
 | 2 | [Literature & resources](literature/) | A tag-filterable reading list: AI in IE, research practice, and ML landmarks. |
 | 3 | [Best practices & guides](best-practices/) | Getting started, pitfalls, verification checklists, reusable prompts, Claude skills. |
 | 4 | [Tools & hardware](tools/) | Models, apps, libraries, and what to run them on, including local options for sensitive data. |
@@ -62,7 +58,7 @@ follow the same three steps:
   <Card title="LCA / MFA researcher" icon="magnifier">
     Start with [what works in your field](applications-map/#what-works-today-per-field),
     then the [ML-reproducibility checklist](best-practices/checklists/#machine-learning-reproducibility)
-    before your first model. *Contribute:* a maturity call you disagree with.
+    before your first model. *Contribute:* add your own examples of AI in your field.
   </Card>
   <Card title="Student" icon="open-book">
     Start with [getting started](best-practices/) and the
@@ -74,9 +70,9 @@ follow the same three steps:
     [how-to-add-a-demo guide](demos/#two-ways-to-add-a-demo).
     *Contribute:* a demo of your method, embedded or in-browser.
   </Card>
-  <Card title="Working-group member" icon="star">
-    Everything is a proposal aimed at you. *Contribute:* the `TODO(wg)` items
-    only you can fill: Leiden HPC access, data-policy classifications.
+  <Card title="Anyone else" icon="star">
+    The whole site is a proposal, not a finished product. *Contribute:* answers to the
+    `TODO` items across the site, or a pull request for any other change or addition.
   </Card>
 </CardGrid>
 

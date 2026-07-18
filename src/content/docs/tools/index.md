@@ -3,7 +3,7 @@ title: Software tools
 description: Assistants, coding assistants, research tools, and libraries for AI-assisted IE work.
 ---
 
-The software the group finds useful for AI-assisted IE work. Two sibling pages cover
+Software worth knowing for AI-assisted IE work. Two sibling pages cover
 [running models locally and hardware](../tools/local-ai/) and
 [where to find datasets and pretrained models](../tools/data-and-models/).
 
@@ -30,7 +30,7 @@ industry data and anything under an NDA or data-management plan).
 
 ## Research and literature
 
-- **[Zotero](https://www.zotero.org)**: open-source reference manager; the group's default. With [Better BibTeX](https://retorque.re/zotero-better-bibtex/) for stable citation keys; AI integrations exist as plugins. *Good for:* holding the references you have actually verified; AI-suggested citations go in only after checking. Free. **Local-first** (sync optional). *(checked 2026-07)*
+- **[Zotero](https://www.zotero.org)**: open-source reference manager. With [Better BibTeX](https://retorque.re/zotero-better-bibtex/) for stable citation keys; AI integrations exist as plugins. *Good for:* holding the references you have actually verified; AI-suggested citations go in only after checking. Free. **Local-first** (sync optional). *(checked 2026-07)*
 - **[Semantic Scholar](https://www.semanticscholar.org)**: free scholarly search with citation graph and a good API. *Good for:* checking whether a paper an AI cited actually exists. Free. *(checked 2026-07)*
 - **[Connected Papers](https://www.connectedpapers.com)**: visual citation-graph exploration from a seed paper. *Good for:* getting into an unfamiliar literature quickly. Free tier + paid. *(checked 2026-07)*
 - **[Elicit](https://elicit.com)**: LLM-assisted literature search and structured data extraction from papers. *Good for:* first-pass screening and extraction tables. *Not for:* trusting extractions unverified; spot-check against the PDFs. Free tier + paid. **Data leaves your machine.** *(checked 2026-07)*

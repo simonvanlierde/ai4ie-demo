@@ -3,10 +3,12 @@ title: "Worked example: CV for product-scale data collection"
 description: A draft taxonomy of computer-vision tasks for product-scale data collection at end-of-life, with maturity verdicts per cell.
 ---
 
+import Cite from '../../../components/Cite.astro';
+
 One member's **draft working taxonomy** of computer-vision tasks for product-scale
 data collection at end-of-life: a worked example of how one corner of the
-[applications map](../../applications-map/) can be mapped in depth. Treat it as a starting point to
-argue with, not settled work.
+[applications map](../../applications-map/) can be mapped in depth. Treat it as a starting
+point, not settled work.
 
 ## How this map works
 
@@ -46,7 +48,7 @@ collection. Verdicts and coverage will shift as it develops._
   then fuzzy match to a reference database), with retrieval-based classification and VLM
   scene-text reading as complements. Deployed precedent: a washing-machine label pipeline
   run by non-experts on commodity phones read model numbers from 95.7% of label-visible
-  images in professional repair but only 39.7% at a recycler (Sterkens et al., 2023).
+  images in professional repair but only 39.7% at a recycler <Cite id="sterkensProductLabelIdentification2023" />.
   Failure mode: label degradation at EoL, plus a database-coverage limit downstream.
 - **Quantity (partial, approximate).** Monocular metric depth (Metric3D v2, Depth Pro,
   Depth Anything v2), feed-forward multi-view geometry (VGGT, MapAnything), and

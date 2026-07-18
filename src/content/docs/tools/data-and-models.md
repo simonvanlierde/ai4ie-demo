@@ -5,7 +5,7 @@ description: Open IE datasets, general ML data sources, and where to find pretra
 
 Where the data and the models live: open IE datasets first, then the general ML
 sources, then pretrained-model registries. Same rules as the rest of the
-[tools section](../../tools/): dated entries, honest one-liners.
+[tools section](../../tools/): each entry is dated and gets a one-line verdict.
 
 ## Datasets
 
