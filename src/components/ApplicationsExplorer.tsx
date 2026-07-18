@@ -98,34 +98,45 @@ export default function ApplicationsExplorer({ entries }: { entries: AppEntry[] 
   );
 }
 
+/**
+ * AI technique as rows, IE field as columns: there are far more techniques than
+ * fields, so this reads as a tall table rather than a wide one. `toGrid` keeps
+ * its IE × ML contract and keys cells "ie|ml"; only the presentation transposes.
+ * Both axes are sorted by label so the table can be scanned.
+ */
 function Grid({ entries }: { entries: AppEntry[] }) {
-  const { rows, cols, cells } = toGrid(entries);
+  const { rows: ieTags, cols: mlTags, cells } = toGrid(entries);
+  const byLabel = (dim: "ie" | "ml") => (a: string, b: string) =>
+    label(dim, a).localeCompare(label(dim, b));
+  const ies = [...ieTags].sort(byLabel("ie"));
+  const mls = [...mlTags].sort(byLabel("ml"));
+
   return (
     <div className="apx-grid-wrap">
       <table className="apx-grid">
         <thead>
           <tr>
-            <th aria-label="IE field by AI technique" />
-            {cols.map((c) => (
-              <th key={c} scope="col">
-                <a href={lit({ ml: [c] })}>{label("ml", c)}</a>
+            <th aria-label="AI technique by IE field" />
+            {ies.map((ie) => (
+              <th key={ie} scope="col">
+                <a href={lit({ ie: [ie] })}>{label("ie", ie)}</a>
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {rows.map((r) => (
-            <tr key={r}>
+          {mls.map((ml) => (
+            <tr key={ml}>
               <th scope="row">
-                <a href={lit({ ie: [r] })}>{label("ie", r)}</a>
+                <a href={lit({ ml: [ml] })}>{label("ml", ml)}</a>
               </th>
-              {cols.map((c) => {
-                const apps = cells.get(`${r}|${c}`);
-                if (!apps) return <td key={c} />;
+              {ies.map((ie) => {
+                const apps = cells.get(`${ie}|${ml}`);
+                if (!apps) return <td key={ie} />;
                 const papers = [...new Set(apps.flatMap((a) => a.papers))];
                 const title = apps.map((a) => a.name).join(" · ");
                 return (
-                  <td key={c}>
+                  <td key={ie}>
                     {papers.length > 0 ? (
                       <a href={lit({ papers })} title={title}>
                         {apps.length}
