@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { matchesFilter, parseFilterParams, sortEntries, toFilterParams } from "./litFilter";
+import {
+  BASE,
+  litUrl,
+  matchesFilter,
+  parseFilterParams,
+  sortEntries,
+  toFilterParams,
+} from "./litFilter";
 
 const entry = { ie: ["eol"], ml: ["cv", "segmentation"], type: ["method"] };
 
@@ -44,6 +51,16 @@ describe("parseFilterParams", () => {
       papers: ["kirillovSegmentAnything2023"],
     };
     expect(parseFilterParams(toFilterParams(f))).toEqual(f);
+  });
+  it("omits empty filters", () => {
+    expect(toFilterParams(none)).toBe("");
+  });
+});
+
+describe("litUrl", () => {
+  it("uses the literature page with optional filters", () => {
+    expect(litUrl()).toBe(`${BASE}literature/`);
+    expect(litUrl({ ie: ["eol"] })).toBe(`${BASE}literature/?ie=eol`);
   });
 });
 

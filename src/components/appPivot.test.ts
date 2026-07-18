@@ -34,4 +34,11 @@ describe("toGrid", () => {
     expect(grid.cells.get("lca|llm")?.length).toBe(1);
     expect(grid.cells.get("lca|cv")).toBeUndefined();
   });
+  it("adds entries that share a tag pair to the same cell", () => {
+    const grid = toGrid([
+      { id: "a", ie: ["eol"], ml: ["cv"] },
+      { id: "b", ie: ["eol"], ml: ["cv"] },
+    ]);
+    expect(grid.cells.get("eol|cv")?.map((e) => e.id)).toEqual(["a", "b"]);
+  });
 });
