@@ -575,3 +575,152 @@
   ml: [llm]
   type: [landmark-ml, review]
   added: 2026-07
+
+# ── Computer-vision models (the CV taxonomy's toolbox) ───────────────────────
+# The models named in the CV-for-EoL worked example. General-purpose vision
+# work rather than IE research, so no `ie:` tag: they are the instruments, not
+# the application.
+- id: huMetric3DV22024
+  title: "Metric3D v2: a versatile monocular geometric foundation model for zero-shot metric depth and surface normal estimation"
+  authors: "Hu, M., et al."
+  year: 2024
+  link: "https://doi.org/10.1109/TPAMI.2024.3444912"
+  blurb: "Monocular depth in real metres rather than relative units, plus surface normals; the difference between a nice depth map and a measurement."
+  ml: [depth, cv, foundation]
+  type: [method]
+  added: 2026-07
+- id: bochkovskiiDepthProSharp2024
+  title: "Depth Pro: sharp monocular metric depth in less than a second"
+  authors: "Bochkovskii, A., et al."
+  year: 2024
+  link: "https://doi.org/10.48550/ARXIV.2410.02073"
+  blurb: "Metric depth from one image in under a second, with boundaries crisp enough to trace a part; the fast end of monocular depth."
+  ml: [depth, cv]
+  type: [method]
+  added: 2026-07
+- id: wangVGGTVisualGeometry2025
+  title: "VGGT: visual geometry grounded transformer"
+  authors: "Wang, J., et al."
+  year: 2025
+  link: "https://doi.org/10.48550/ARXIV.2503.11651"
+  blurb: "Feed-forward 3D from a handful of photos, no per-scene optimisation; multi-view geometry without running a photogrammetry pipeline."
+  ml: [depth, cv, foundation]
+  type: [method]
+  added: 2026-07
+- id: keethaMapAnythingUniversalFeedForward2025
+  title: "MapAnything: universal feed-forward metric 3D reconstruction"
+  authors: "Keetha, N., et al."
+  year: 2025
+  link: "https://doi.org/10.48550/ARXIV.2509.13414"
+  blurb: "One feed-forward model for metric 3D across many input combinations; the generalist counterpart to VGGT."
+  ml: [depth, cv, foundation]
+  type: [method]
+  added: 2026-07
+- id: mildenhallNeRFRepresentingScenes2020
+  title: "NeRF: representing scenes as neural radiance fields for view synthesis"
+  authors: "Mildenhall, B., et al."
+  year: 2020
+  link: "https://doi.org/10.48550/ARXIV.2003.08934"
+  blurb: "The paper that made photorealistic 3D-from-photos routine. Slow to fit per scene, and the ancestor of everything that followed."
+  ml: [depth, cv]
+  type: [landmark-ml]
+  added: 2026-07
+- id: kerbl3DGaussianSplatting2023
+  title: "3D Gaussian splatting for real-time radiance field rendering"
+  authors: "Kerbl, B., et al."
+  year: 2023
+  link: "https://doi.org/10.48550/ARXIV.2308.04079"
+  blurb: "Radiance fields you can render in real time; where NeRF's quality met a practical speed budget."
+  ml: [depth, cv]
+  type: [landmark-ml]
+  added: 2026-07
+- id: jeongWinCLIPZeroFewShot2023
+  title: "WinCLIP: zero-/few-shot anomaly classification and segmentation"
+  authors: "Jeong, J., et al."
+  year: 2023
+  link: "https://doi.org/10.48550/ARXIV.2303.14814"
+  blurb: "Zero-shot anomaly detection built on CLIP: flags that something is wrong without defect training data, but not how bad it is."
+  ml: [cv, foundation]
+  type: [method]
+  added: 2026-07
+- id: zhouAnomalyCLIPObjectAgnostic2023
+  title: "AnomalyCLIP: object-agnostic prompt learning for zero-shot anomaly detection"
+  authors: "Zhou, Q., et al."
+  year: 2023
+  link: "https://doi.org/10.48550/ARXIV.2310.18961"
+  blurb: "Prompts learned to be object-agnostic, so zero-shot anomaly detection travels across product types instead of being tuned per object."
+  ml: [cv, foundation]
+  type: [method]
+  added: 2026-07
+- id: raviSAM2Segment2024
+  title: "SAM 2: segment anything in images and videos"
+  authors: "Ravi, N., et al."
+  year: 2024
+  link: "https://doi.org/10.48550/ARXIV.2408.00714"
+  blurb: "SAM extended to video with memory across frames: segmentation that tracks, still without naming what it found."
+  ml: [cv, segmentation, foundation]
+  type: [method]
+  added: 2026-07
+- id: carionSAM3Segment2025
+  title: "SAM 3: segment anything with concepts"
+  authors: "Carion, N., et al."
+  year: 2025
+  link: "https://doi.org/10.48550/ARXIV.2511.16719"
+  blurb: "Segmentation promptable by concept rather than by click; the class-assignment gap the original SAM left open starts to close here."
+  ml: [cv, segmentation, foundation]
+  type: [method]
+  added: 2026-07
+- id: liuGroundingDINOMarrying2024
+  title: "Grounding DINO: marrying DINO with grounded pre-training for open-set object detection"
+  authors: "Liu, S., et al."
+  year: 2024
+  link: "https://doi.org/10.1007/978-3-031-72970-6_3"
+  blurb: "Open-set detection driven by a text prompt: turns \"find the screws\" into boxes without a fixed, pre-trained class list."
+  ml: [cv, segmentation, foundation]
+  type: [method]
+  added: 2026-07
+- id: renGroundedSAMAssembling2024
+  title: "Grounded SAM: assembling open-world models for diverse visual tasks"
+  authors: "Ren, T., et al."
+  year: 2024
+  link: "https://doi.org/10.48550/ARXIV.2401.14159"
+  blurb: "Grounding DINO and SAM wired together, text prompt in and masks out; the pragmatic open-vocabulary segmentation stack."
+  ml: [cv, segmentation, foundation]
+  type: [method]
+  added: 2026-07
+- id: liuSINGAPOSingleImage2025
+  title: "SINGAPO: single image controlled generation of articulated parts in objects"
+  authors: "Liu, J., et al."
+  year: 2025
+  link: "https://doi.org/10.48550/ARXIV.2410.16499"
+  blurb: "Articulated parts inferred from one image. Relevant to disassembly structure, but demonstrated only on a few household categories."
+  ml: [cv, generative]
+  type: [method]
+  added: 2026-07
+- id: chenURDFormerPipelineConstructing2024
+  title: "URDFormer: a pipeline for constructing articulated simulation environments from real-world images"
+  authors: "Chen, Z., et al."
+  year: 2024
+  link: "https://doi.org/10.48550/ARXIV.2405.11656"
+  blurb: "Turns a photo into a simulatable articulated model; recovers kinematic joints, not the fastener relations a disassembly plan needs."
+  ml: [cv, generative]
+  type: [method]
+  added: 2026-07
+- id: bellMaterialRecognitionWild2015
+  title: "Material recognition in the wild with the Materials in Context Database"
+  authors: "Bell, S., et al."
+  year: 2015
+  link: "https://doi.org/10.1109/CVPR.2015.7298970"
+  blurb: "MINC: 23 material classes on real in-the-wild photos, and still the reference point for recognising what a surface is made of."
+  ml: [cv]
+  type: [dataset]
+  added: 2026-07
+- id: redmonYouOnlyLook2015
+  title: "You only look once: unified, real-time object detection"
+  authors: "Redmon, J., et al."
+  year: 2015
+  link: "https://doi.org/10.48550/ARXIV.1506.02640"
+  blurb: "Detection as a single regression pass; the reason real-time object detection is cheap enough to run on a sorting line."
+  ml: [cv, segmentation]
+  type: [landmark-ml]
+  added: 2026-07

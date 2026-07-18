@@ -339,8 +339,9 @@
   border-radius: 0.25rem;
   padding: 0.1rem 0.3rem;
 }
-/* Inline citation link (the <Cite> component), kept on one line. */
-.cite {
+/* Inline citation link (the <Cite> component). Only the "(Author, Year)" form
+   is kept on one line; a labelled cite carries prose that must be free to wrap. */
+.cite-ref {
   white-space: nowrap;
 }
 .lit-list {

@@ -7,7 +7,7 @@ import Cite from '../../../components/Cite.astro';
 
 One member's **draft working taxonomy** of computer-vision tasks for product-scale
 data collection at end-of-life: a worked example of how one corner of the
-[applications map](../../applications-map/) can be mapped in depth. Treat it as a starting
+[applications map](/applications-map/) can be mapped in depth. Treat it as a starting
 point, not settled work.
 
 ## How this map works
@@ -50,17 +50,17 @@ collection. Verdicts and coverage will shift as it develops._
   run by non-experts on commodity phones read model numbers from 95.7% of label-visible
   images in professional repair but only 39.7% at a recycler <Cite id="sterkensProductLabelIdentification2023" />.
   Failure mode: label degradation at EoL, plus a database-coverage limit downstream.
-- **Quantity (partial, approximate).** Monocular metric depth ([Metric3D v2](https://arxiv.org/abs/2404.15506), [Depth Pro](https://arxiv.org/abs/2410.02073),
-  [Depth Anything v2](https://arxiv.org/abs/2406.09414)), feed-forward multi-view geometry ([VGGT](https://arxiv.org/abs/2503.11651), [MapAnything](https://arxiv.org/abs/2509.13414)), and
-  photogrammetry / [NeRF](https://arxiv.org/abs/2003.08934) / [3D Gaussian splatting](https://arxiv.org/abs/2308.04079) recover error-bounded geometry; single-image
+- **Quantity (partial, approximate).** Monocular metric depth (<Cite id="huMetric3DV22024">Metric3D v2</Cite>, <Cite id="bochkovskiiDepthProSharp2024">Depth Pro</Cite>,
+  <Cite id="yangDepthAnythingV22024">Depth Anything v2</Cite>), feed-forward multi-view geometry (<Cite id="wangVGGTVisualGeometry2025">VGGT</Cite>, <Cite id="keethaMapAnythingUniversalFeedForward2025">MapAnything</Cite>), and
+  photogrammetry / <Cite id="mildenhallNeRFRepresentingScenes2020">NeRF</Cite> / <Cite id="kerbl3DGaussianSplatting2023">3D Gaussian splatting</Cite> recover error-bounded geometry; single-image
   mass estimation exists but is coarse. Visible surfaces only; reflective, transparent, and
   thin parts are the limiting cases.
 - **Condition (plausible but unvalidated).** Wear, damage, and corrosion recognition feeding
-  repair / reuse / recycle triage. Nearest method is zero-shot anomaly detection ([WinCLIP](https://arxiv.org/abs/2303.14814),
-  [AnomalyCLIP](https://arxiv.org/abs/2310.18961)), which flags an anomaly's presence, not a graded per-unit condition, and is
+  repair / reuse / recycle triage. Nearest method is zero-shot anomaly detection (<Cite id="jeongWinCLIPZeroFewShot2023">WinCLIP</Cite>,
+  <Cite id="zhouAnomalyCLIPObjectAgnostic2023">AnomalyCLIP</Cite>), which flags an anomaly's presence, not a graded per-unit condition, and is
   unvalidated on worn consumer products.
 
-**Demo:** the [zero-shot identification demo](../../demos/#in-this-browser-zero-shot-identification-clip)
+**Demo:** the [zero-shot identification demo](/demos/#in-this-browser-zero-shot-identification-clip)
 runs the open-vocabulary part of this cell in your browser.
 
 ## Component-level tasks
@@ -71,10 +71,10 @@ runs the open-vocabulary part of this cell in your browser.
 
 - **Structure / BoC (partial detection, emerging-but-narrow relations).** The most populated
   cell. Detecting, segmenting, and counting components is well-validated where task-tuned
-  (~98.8% mAP50 on a laptop-teardown benchmark); foundation segmenters ([SAM](https://arxiv.org/abs/2304.02643), [SAM 2](https://arxiv.org/abs/2408.00714), [SAM 3](https://arxiv.org/abs/2511.16719),
-  [GroundingDINO](https://arxiv.org/abs/2303.05499), [Grounded-SAM](https://arxiv.org/abs/2401.14159)) need an added class-assignment layer. Inferring
+  (~98.8% mAP50 on a laptop-teardown benchmark); foundation segmenters (<Cite id="kirillovSegmentAnything2023">SAM</Cite>, <Cite id="raviSAM2Segment2024">SAM 2</Cite>, <Cite id="carionSAM3Segment2025">SAM 3</Cite>,
+  <Cite id="liuGroundingDINOMarrying2024">GroundingDINO</Cite>, <Cite id="renGroundedSAMAssembling2024">Grounded-SAM</Cite>) need an added class-assignment layer. Inferring
   component-to-component *attachment relations* is the weakest cell: single-image methods
-  ([SINGAPO](https://arxiv.org/abs/2410.16499), [URDFormer](https://arxiv.org/abs/2405.11656)) exist only for a few articulated household categories, collapse out
+  (<Cite id="liuSINGAPOSingleImage2025">SINGAPO</Cite>, <Cite id="chenURDFormerPipelineConstructing2024">URDFormer</Cite>) exist only for a few articulated household categories, collapse out
   of distribution (~82% → ~39%), and recover kinematic joints rather than the fastener
   relations (screwed, glued, clipped) a disassembly BoC needs.
 - **Identity (partial).** OCR on component markings plus one-shot / retrieval recognition and
@@ -94,10 +94,10 @@ parts.
 **Examples:**
 
 - **Identity / BoM (partial on visible surfaces, open gap for full BoM).** Surface material
-  classification and segmentation of *visible* regions ([MINC](https://arxiv.org/abs/1412.0623)'s 23-class in-the-wild baseline;
-  one/few-shot similarity given a region mask; [CLIP](https://arxiv.org/abs/2103.00020)-based recognition, fragile under domain
+  classification and segmentation of *visible* regions (<Cite id="bellMaterialRecognitionWild2015">MINC</Cite>'s 23-class in-the-wild baseline;
+  one/few-shot similarity given a region mask; <Cite id="radfordLearningTransferableVisual2021">CLIP</Cite>-based recognition, fragile under domain
   shift and multi-material compositeness). One deployed setting delivers image-based
-  composition: an industrial sensor sorter on shredded WEEE ([YOLO](https://arxiv.org/abs/1506.02640), mAP50 ≈ 0.99). But it
+  composition: an industrial sensor sorter on shredded WEEE (<Cite id="redmonYouOnlyLook2015">YOLO</Cite>, mAP50 ≈ 0.99). But it
   characterizes an aggregate flow at a central plant, not the per-component composition of an
   intact product. Occluded interior composition is an open gap.
 - **Quantity (derived, not sensed).** Per-material mass or volume would come from component
