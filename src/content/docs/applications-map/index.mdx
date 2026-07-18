@@ -4,6 +4,7 @@ description: A two-dimensional map of where AI is applied in industrial ecology,
 ---
 
 import ApplicationsSection from '../../../components/ApplicationsSection.astro';
+import Cite from '../../../components/Cite.astro';
 
 A map of where AI is being applied across industrial ecology, organized along **two
 dimensions**: the IE field (LCA, MFA, waste & circularity, …) and the AI technique
@@ -33,33 +34,33 @@ the [literature list](../literature/), pre-filtered by the links below.
 
 Two things demonstrably work: **tabular ML** for rapid impact screening and inventory
 gap-filling (validated repeatedly since 2017), and **LLM extraction** of inventory
-data from literature and reports (working systems at F1 ≈ 0.82–0.86, always with
+data from literature and reports (working systems at F1 ≈ 0.82–0.86 <Cite id="kumarLargeLanguageModelbased2025" />, always with
 human verification). The consensus rule across this work: use LLMs to *extract*
-inventory data, never to generate it. A 2025 benchmark found 37% of general-purpose
+inventory data, never to generate it <Cite id="preussLargeLanguageModels2024" />. A 2025 benchmark found 37% of general-purpose
 LLM answers to LCA questions inaccurate or misleading, with hallucinated-citation
-rates up to 40%. Automated footprinting deploys at catalog scale for common products
+rates up to 40%. Automated footprinting deploys at catalog scale for common products <Cite id="balajiFlamingoEnvironmentalImpact2023" />
 and degrades off it. [Papers →](../literature/?ie=lca)
 
 ### MFA & stocks and flows
 
 The most mature corner of the map. Satellite-based material stock mapping works at
-**national scale (10 m)** from free data, and a **global estimate (90 m, 547 Gt in
-buildings)** exists. Mind the validation spread, though: 53–200% against independent
-studies, and that is the real accuracy ceiling. Night-lights proxies and deep multi-source
-fusion improve on single sources but still need ground data. Street-view CV for
+**national scale (10 m)** <Cite id="haberlHighResolutionMaps2021" /> from free data, and a **global estimate (90 m, 547 Gt in
+buildings)** <Cite id="haberlGlobalBuiltEnvironment2024" /> exists. Mind the validation spread, though: 53–200% against independent
+studies, and that is the real accuracy ceiling. Night-lights proxies <Cite id="peledSpatialMaterialStock2021" /> and deep multi-source
+fusion <Cite id="baoDeepLearningFusion2023" /> improve on single sources but still need ground data. Street-view CV for
 building attributes is demonstrated feasibility: good in the training city, sharply
-worse elsewhere. [Papers →](../literature/?ie=mfa)
+worse elsewhere <Cite id="huangImageBasedPrediction2024" />. [Papers →](../literature/?ie=mfa)
 
 ### Waste, EoL & circularity
 
 The corner with the most publications. Task-tuned detection and counting of waste and
-components is well-validated; camera-based flow characterization runs in operating
-WEEE sorting plants; label-OCR identification is deployed in pilots, where readability
-collapses from 96% in repair shops to 40% at the recycler. Worn, dirty, damaged
+components is well-validated <Cite id="majchrowskaDeepLearningbasedWaste2022" />; camera-based flow characterization runs in operating
+WEEE sorting plants <Cite id="vogelgesangAutomatedMaterialFlow2025" />; label-OCR identification is deployed in pilots, where readability
+collapses from 96% in repair shops to 40% at the recycler <Cite id="sterkensProductLabelIdentification2023" />. Worn, dirty, damaged
 products are the recurring failure mode. Foundation models (SAM, CLIP) demo
 impressively but need a class-assignment layer and sorting-grade evaluation before
 they count as methods.
-Robotic disassembly works for narrow product families.
+Robotic disassembly works for narrow product families <Cite id="ameurFutureRoboticDisassembly2025" />.
 [Papers →](../literature/?ie=eol) · Full depth in the
 [CV taxonomy worked example](../applications-map/cv-taxonomy/).
 
