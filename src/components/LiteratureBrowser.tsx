@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { LitEntry } from "../data/schemas";
 import { IE_TAGS, ML_TAGS, TYPE_TAGS } from "../data/tags";
 import {
+  EMPTY_FILTER,
   type Filter,
   matchesFilter,
   parseFilterParams,
@@ -10,8 +11,6 @@ import {
   sortEntries,
   toFilterParams,
 } from "./litFilter";
-
-const EMPTY: Filter = { ie: [], ml: [], type: [], papers: [] };
 
 const DIMENSIONS = [
   { key: "ie", label: "IE field", tags: IE_TAGS },
@@ -34,7 +33,7 @@ type DimKey = (typeof DIMENSIONS)[number]["key"];
  * entries below use for the same tags.
  */
 export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) {
-  const [filter, setFilter] = useState<Filter>(EMPTY);
+  const [filter, setFilter] = useState<Filter>(EMPTY_FILTER);
   const [sort, setSort] = useState<SortKey>("year");
   const [hydrated, setHydrated] = useState(false);
 
@@ -69,7 +68,7 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
   }
 
   function clear() {
-    setFilter(EMPTY);
+    setFilter(EMPTY_FILTER);
   }
 
   const shown = sortEntries(

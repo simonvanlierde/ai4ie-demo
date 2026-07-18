@@ -5,7 +5,7 @@
 // citations can't drift from the data. Author/year come from the entry, never
 // hardcoded in the text.
 import { getCollection } from "astro:content";
-import { toFilterParams } from "./litFilter";
+import { litUrl } from "./litFilter";
 
 interface Props {
   id: string;
@@ -27,9 +27,7 @@ const short = /\bet al\b/.test(authors) ? `${surname} et al.` : surname;
 // instead of "(Author, Year)", so prose can name the thing and still link it.
 const labelled = Astro.slots.has("default");
 
-// Base-absolute (reads the configured base) so it survives a repo rename.
-const BASE = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-const href = `${BASE}literature/${toFilterParams({ ie: [], ml: [], type: [], papers: [id] })}`;
+const href = litUrl({ papers: [id] });
 ---
 
 <a class:list={["cite", { "cite-ref": !labelled }]} href={href} title={`${authors} (${year}). DOI: ${link}`}>{labelled ? <slot /> : `(${short}, ${year})`}</a>

@@ -17,13 +17,19 @@ describe("groupBy", () => {
     expect(g.get("cv")?.map((e) => e.id)).toEqual(["a"]);
     expect(g.get("llm")?.map((e) => e.id)).toEqual(["b"]);
   });
+  // Groups must not fall back to data order: `eol` is introduced first here but
+  // `lca` comes first in the tags.ts vocabulary, and the views follow the latter.
+  it("emits groups in vocabulary order, not first-appearance order", () => {
+    expect([...groupBy(apps, "ie").keys()]).toEqual(["lca", "eol"]);
+    expect([...groupBy(apps, "ml").keys()]).toEqual(["llm", "cv"]);
+  });
 });
 
 describe("toGrid", () => {
-  it("only includes rows/cols that have entries, cell key is ie|ml", () => {
+  it("only includes rows/cols that have entries, in vocabulary order, cell key is ie|ml", () => {
     const grid = toGrid(apps);
-    expect(grid.rows).toEqual(["eol", "lca"]);
-    expect(grid.cols).toEqual(["cv", "llm"]);
+    expect(grid.rows).toEqual(["lca", "eol"]);
+    expect(grid.cols).toEqual(["llm", "cv"]);
     expect(grid.cells.get("eol|cv")?.length).toBe(1);
     expect(grid.cells.get("lca|llm")?.length).toBe(1);
     expect(grid.cells.get("lca|cv")).toBeUndefined();

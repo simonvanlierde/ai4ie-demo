@@ -8,11 +8,11 @@ import { applicationSchema, literatureSchema } from "./data/schemas";
 export const collections = {
   docs: defineCollection({ loader: docsLoader(), schema: docsSchema() }),
   literature: defineCollection({
-    loader: file("src/data/literature.yaml", { parser: (t) => parse(t) }),
+    loader: file("src/data/literature.yaml", { parser: parse }),
     schema: literatureSchema,
   }),
   applications: defineCollection({
-    loader: file("src/data/applications.yaml", { parser: (t) => parse(t) }),
+    loader: file("src/data/applications.yaml", { parser: parse }),
     schema: applicationSchema,
   }),
 };

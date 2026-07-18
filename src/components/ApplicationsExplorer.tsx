@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { AppEntry } from "../data/schemas";
 import { IE_TAGS, ML_TAGS } from "../data/tags";
 import { groupBy, toGrid } from "./appPivot";
-import { type Filter, toFilterParams } from "./litFilter";
+import { BASE, litUrl } from "./litFilter";
 
 type View = "ie" | "ml" | "grid";
 
@@ -14,13 +14,6 @@ const VIEWS: { key: View; label: string }[] = [
 
 const label = (dim: "ie" | "ml", tag: string) =>
   dim === "ie" ? IE_TAGS[tag as keyof typeof IE_TAGS] : ML_TAGS[tag as keyof typeof ML_TAGS];
-
-// Base-absolute so links resolve regardless of trailing slash on the current URL.
-const BASE = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-
-/** Literature-page URL with the given filter pre-applied. */
-const lit = (f: Partial<Filter>) =>
-  `${BASE}literature/${toFilterParams({ ie: [], ml: [], type: [], papers: [], ...f })}`;
 
 /**
  * Pivotable view of applications.yaml: the same entries grouped by IE field,
@@ -73,8 +66,8 @@ export default function ApplicationsExplorer({ entries }: { entries: AppEntry[] 
                       <a
                         href={
                           a.papers.length > 0
-                            ? lit({ papers: a.papers })
-                            : lit({ ie: a.ie, ml: a.ml })
+                            ? litUrl({ papers: a.papers })
+                            : litUrl({ ie: a.ie, ml: a.ml })
                         }
                       >
                         {a.papers.length > 0
@@ -102,14 +95,10 @@ export default function ApplicationsExplorer({ entries }: { entries: AppEntry[] 
  * AI technique as rows, IE field as columns: there are far more techniques than
  * fields, so this reads as a tall table rather than a wide one. `toGrid` keeps
  * its IE × ML contract and keys cells "ie|ml"; only the presentation transposes.
- * Both axes are sorted by label so the table can be scanned.
+ * `toGrid` already returns both axes in vocabulary order.
  */
 function Grid({ entries }: { entries: AppEntry[] }) {
-  const { rows: ieTags, cols: mlTags, cells } = toGrid(entries);
-  const byLabel = (dim: "ie" | "ml") => (a: string, b: string) =>
-    label(dim, a).localeCompare(label(dim, b));
-  const ies = [...ieTags].sort(byLabel("ie"));
-  const mls = [...mlTags].sort(byLabel("ml"));
+  const { rows: ies, cols: mls, cells } = toGrid(entries);
 
   return (
     <div className="apx-grid-wrap">
@@ -119,7 +108,7 @@ function Grid({ entries }: { entries: AppEntry[] }) {
             <th aria-label="AI technique by IE field" />
             {ies.map((ie) => (
               <th key={ie} scope="col">
-                <a href={lit({ ie: [ie] })}>{label("ie", ie)}</a>
+                <a href={litUrl({ ie: [ie] })}>{label("ie", ie)}</a>
               </th>
             ))}
           </tr>
@@ -128,7 +117,7 @@ function Grid({ entries }: { entries: AppEntry[] }) {
           {mls.map((ml) => (
             <tr key={ml}>
               <th scope="row">
-                <a href={lit({ ml: [ml] })}>{label("ml", ml)}</a>
+                <a href={litUrl({ ml: [ml] })}>{label("ml", ml)}</a>
               </th>
               {ies.map((ie) => {
                 const apps = cells.get(`${ie}|${ml}`);
@@ -138,7 +127,7 @@ function Grid({ entries }: { entries: AppEntry[] }) {
                 return (
                   <td key={ie}>
                     {papers.length > 0 ? (
-                      <a href={lit({ papers })} title={title}>
+                      <a href={litUrl({ papers })} title={title}>
                         {apps.length}
                       </a>
                     ) : (

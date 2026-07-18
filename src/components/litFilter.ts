@@ -25,6 +25,17 @@ export function toFilterParams(f: Filter): string {
   return parts.length > 0 ? `?${parts.join("&")}` : "";
 }
 
+export const EMPTY_FILTER: Filter = { ie: [], ml: [], type: [], papers: [] };
+
+// Base-absolute (reads the configured base) so links resolve regardless of the
+// trailing slash on the current URL, and survive a repo rename.
+export const BASE = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
+/** Literature-page URL with the given filter pre-applied. */
+export function litUrl(f: Partial<Filter> = {}): string {
+  return `${BASE}literature/${toFilterParams({ ...EMPTY_FILTER, ...f })}`;
+}
+
 export type SortKey = "year" | "authors" | "title";
 
 export const SORTS: { key: SortKey; label: string }[] = [
@@ -41,7 +52,7 @@ export function sortEntries<T extends Sortable>(entries: T[], key: SortKey): T[]
   const cmp: Record<SortKey, (a: Sortable, b: Sortable) => number> = {
     year: (a, b) => b.year - a.year || a.authors.localeCompare(b.authors),
     authors: (a, b) => a.authors.localeCompare(b.authors) || b.year - a.year,
-    title: (a, b) => a.title.localeCompare(b.title),
+    title: (a, b) => a.title.localeCompare(b.title) || b.year - a.year,
   };
   return [...entries].sort(cmp[key]);
 }
