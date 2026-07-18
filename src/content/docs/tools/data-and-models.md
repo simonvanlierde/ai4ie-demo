@@ -5,7 +5,7 @@ description: Open IE datasets, general ML data sources, and where to find pretra
 
 Where the data and the models live: open IE datasets first, then the general ML
 sources, then pretrained-model registries. Same rules as the rest of the
-[tools section](/ai4ie-demo/tools/): dated entries, honest one-liners.
+[tools section](../../tools/): dated entries, honest one-liners.
 
 ## Datasets
 
@@ -29,8 +29,8 @@ sources, then pretrained-model registries. Same rules as the rest of the
 
 Where to find models you can download and run (locally or otherwise):
 
-- **[Hugging Face Hub](https://huggingface.co/models)**: the central registry for pretrained models (LLMs, CV, audio); filter by task, license, and size. Most models on the [applications map](/ai4ie-demo/applications-map/) live here. *(checked 2026-07)*
-- **[Ollama library](https://ollama.com/library)**: curated open-weight LLMs packaged for one-command local use; pairs with the [local inference servers](/ai4ie-demo/tools/local-ai/). *(checked 2026-07)*
+- **[Hugging Face Hub](https://huggingface.co/models)**: the central registry for pretrained models (LLMs, CV, audio); filter by task, license, and size. Most models on the [applications map](../../applications-map/) live here. *(checked 2026-07)*
+- **[Ollama library](https://ollama.com/library)**: curated open-weight LLMs packaged for one-command local use; pairs with the [local inference servers](../../tools/local-ai/). *(checked 2026-07)*
 - **[Kaggle Models](https://www.kaggle.com/models)**: model registry tied to Kaggle's datasets and notebooks. *(checked 2026-07)*
 - **[timm](https://huggingface.co/timm)**: the standard collection of pretrained vision backbones for PyTorch. *(checked 2026-07)*
 

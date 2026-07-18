@@ -2,17 +2,17 @@
 
 A community-curated resource for using AI in industrial ecology research. Started in the AI4IE working group; [contributions welcome from anyone](CONTRIBUTING.md).
 
-[![Live site](https://img.shields.io/badge/live_site-ai4ie-c2410c)](https://ai-4-ie.github.io/awesome-ai4ie/)
+[![Live site](https://img.shields.io/badge/live_site-ai4ie-c2410c)](https://simonvanlierde.github.io/ai4ie-demo/)
 [![Contributing](https://img.shields.io/badge/contributing-guide-0f766e)](CONTRIBUTING.md)
 [![Discord](https://img.shields.io/badge/chat-Discord-5865F2?logo=discord&logoColor=white)](https://discord.gg/zhHAZakXHX)
-[![CI](https://img.shields.io/github/actions/workflow/status/ai-4-ie/awesome-ai4ie/ci.yml?label=CI)](https://github.com/ai-4-ie/awesome-ai4ie/actions)
-[![Coverage](https://img.shields.io/codecov/c/github/ai-4-ie/awesome-ai4ie)](https://codecov.io/gh/ai-4-ie/awesome-ai4ie)
+[![CI](https://img.shields.io/github/actions/workflow/status/simonvanlierde/ai4ie-demo/ci.yml?label=CI)](https://github.com/simonvanlierde/ai4ie-demo/actions)
+[![Coverage](https://img.shields.io/codecov/c/github/simonvanlierde/ai4ie-demo)](https://codecov.io/gh/simonvanlierde/ai4ie-demo)
 [![Built with Astro](https://img.shields.io/badge/built%20with-Astro-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![License: CC BY 4.0](https://img.shields.io/badge/license-CC--BY--4.0-lightgrey)](LICENSE)
 
-**See it live: [ai-4-ie.github.io/awesome-ai4ie](https://ai-4-ie.github.io/awesome-ai4ie/)**
+**See it live: [simonvanlierde.github.io/ai4ie-demo](https://simonvanlierde.github.io/ai4ie-demo/)**
 
-<a href="https://ai-4-ie.github.io/awesome-ai4ie/">
+<a href="https://simonvanlierde.github.io/ai4ie-demo/">
   <img src=".github/screenshot.png" alt="The AI4IE site homepage" width="800">
 </a>
 
@@ -49,7 +49,7 @@ Preview locally (needs Node 26+):
 
 ```bash
 npm install
-npm run dev        # → http://localhost:4321/awesome-ai4ie/
+npm run dev        # → http://localhost:4321/ai4ie-demo/
 ```
 
 ## License

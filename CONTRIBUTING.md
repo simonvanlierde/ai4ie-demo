@@ -79,7 +79,7 @@ Start from [`skills/SKILL-template.md`](skills/SKILL-template.md), or use
 ```bash
 npm install
 npm run dev
-# open http://localhost:4321/awesome-ai4ie/
+# open http://localhost:4321/ai4ie-demo/
 ```
 
 ## Questions

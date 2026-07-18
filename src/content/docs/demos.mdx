@@ -7,7 +7,7 @@ import ZeroShotDemo from '../../components/ZeroShotDemo.tsx';
 
 Seeing a method run on *your own* photo beats reading about it. Three demos so far,
 one built into this page and two embedded from Hugging Face Spaces, each tied to a cell
-of the [applications map](/ai4ie-demo/applications-map/), each with an honest note on what it
+of the [applications map](../applications-map/), each with an honest note on what it
 does and doesn't show.
 
 ## In this browser: zero-shot identification (CLIP)
@@ -17,12 +17,12 @@ Pick a photo (a product, a part, a pile of scrap) and a set of candidate labels;
 **entirely in this browser tab** via
 [transformers.js](https://huggingface.co/docs/transformers.js); the photo is never
 uploaded. That is the practical argument for local models on sensitive data (see
-[Local AI & hardware](/ai4ie-demo/tools/local-ai/)).
+[Local AI & hardware](../tools/local-ai/)).
 
 <ZeroShotDemo client:only="react" />
 
 **What it shows:** open-vocabulary recognition with labels you choose at run time;
-the *identity* column of the [CV taxonomy](/ai4ie-demo/applications-map/cv-taxonomy/).
+the *identity* column of the [CV taxonomy](../applications-map/cv-taxonomy/).
 **What it doesn't:** reliability. Scores are relative to *your* candidate list, and a
 confident-looking score proves nothing about labels you didn't offer. The gap between
 an impressive demo and a validated method is what the map's maturity notes track.
@@ -79,4 +79,4 @@ reflective, transparent, and thin parts that dominate real products.
 
 When adding a demo, link it from the matching entry in
 [`src/data/applications.yaml`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/data/applications.yaml)
-(`demo:` field) so the [map](/ai4ie-demo/applications-map/) points to it.
+(`demo:` field) so the [map](../applications-map/) points to it.
