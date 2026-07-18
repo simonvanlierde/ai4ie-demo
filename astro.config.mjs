@@ -2,6 +2,7 @@
 
 import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
+import { unified } from "@astrojs/markdown-remark";
 import { defineConfig } from "astro/config";
 import starlightLinksValidator from "starlight-links-validator";
 import { remarkBaseLinks } from "./src/plugins/remark-base-links.mjs";
@@ -18,7 +19,7 @@ export default defineConfig({
   base,
 
   // Content writes internal links root-absolute (`/tools/`); this adds `base`.
-  markdown: { remarkPlugins: [[remarkBaseLinks, { base }]] },
+  markdown: { processor: unified({ remarkPlugins: [[remarkBaseLinks, { base }]] }) },
 
   // Old URLs that are live on the deployed site must keep working after a move.
   // (Astro base-prefixes the route but not the destination, hence `/${repo}`.)
