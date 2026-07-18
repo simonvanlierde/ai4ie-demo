@@ -14,7 +14,7 @@ the building. Software first, then what to run it on.
 - **[llama.cpp](https://github.com/ggml-org/llama.cpp)**: the inference engine underneath much of the ecosystem. *Use when:* you need maximum control or minimal footprint (it's what the two tools above build on). Free, open source. **Local.** *(checked 2026-07)*
 - **[vLLM](https://github.com/vllm-project/vllm)**: high-throughput GPU serving with an OpenAI-compatible API. *Use when:* serving one model to a whole group from a shared GPU box. *Not for:* laptops. Free, open source. **Local.** *(checked 2026-07)*
 
-Models to run with these live on the [datasets & models page](../../tools/data-and-models/#pretrained-models).
+Models to run with these live on the [datasets & models page](/tools/data-and-models/#pretrained-models).
 
 ## Hardware
 
@@ -49,4 +49,4 @@ hosted providers are approved for which data classification.
 > Public or already-published data → hosted API. Confidential but shareable within
 > the institution → shared workstation/server with a local model. Under NDA or
 > personal data → local only, and check the data-management plan either way. See the
-> [data-handling notes in Best practices](../../best-practices/).
+> [data-handling notes in Best practices](/best-practices/).

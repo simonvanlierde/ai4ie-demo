@@ -45,5 +45,5 @@ proprietary dataset is not disqualifying on its own if the rest of the study fol
 practice and the reason is stated.
 :::
 
-The [`ml-reproducibility` skill](../../best-practices/prompts-and-skills/#ml-reproducibility)
+The [`ml-reproducibility` skill](/best-practices/prompts-and-skills/#ml-reproducibility)
 runs this checklist automatically whenever an AI assistant touches a model.
