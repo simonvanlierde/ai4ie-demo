@@ -134,6 +134,16 @@
   ml: [llm]
   type: [review]
   added: 2026-07
+- id: donaldsonExpertGroundedBenchmark2025
+  title: "An Expert-grounded benchmark of General Purpose LLMs in LCA"
+  authors: "Donaldson, A., et al."
+  year: 2025
+  link: "https://doi.org/10.48550/arXiv.2510.19886"
+  blurb: "Expert-grounded benchmark of eleven general-purpose LLMs on LCA questions: experts judged 37% of answers inaccurate or misleading, with citation hallucination up to 40%."
+  ie: [lca]
+  ml: [llm]
+  type: [review]
+  added: 2026-07
 - id: gkousisMachineLearningLarge2026
   title: "Machine learning and large language models for life cycle inventory compilation: current situation and future perspectives"
   authors: "Gkousis, S., et al."
