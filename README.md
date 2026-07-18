@@ -26,8 +26,8 @@ point.
 
 | Page | Contents |
 |---|---|
-| [Best practices & guides](src/content/docs/best-practices.mdx) | Get-started guides, verification checklists, reusable prompts, Claude skill files. |
-| [Tools & hardware](src/content/docs/tools.md) | Recommended software, services, libraries, and hardware to run models locally. |
+| [Best practices & guides](src/content/docs/best-practices/) | Getting started and pitfalls, verification checklists, prompts and Claude skills (three pages). |
+| [Tools & hardware](src/content/docs/tools/) | Software tools, local AI and hardware, datasets and models (three pages). |
 | [Map of AI in IE](src/content/docs/applications-map/index.mdx) | A two-dimensional map of AI applications by IE field and AI technique. |
 | [Literature & resources](src/content/docs/literature.mdx) | Tag-filterable reading list backed by `src/data/literature.yaml`. |
 | [Demos](src/content/docs/demos.mdx) | In-browser (transformers.js) and embedded demos, tied to map cells. |

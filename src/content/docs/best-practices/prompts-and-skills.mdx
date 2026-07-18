@@ -1,0 +1,119 @@
+---
+title: Prompts & skills
+description: Copy-pasteable prompts with use-when notes, and complete Claude skill files ready to install.
+---
+
+import { Code } from '@astrojs/starlight/components';
+import mlReproducibility from '../../../../skills/ml-reproducibility/SKILL.md?raw';
+import lcaSanityCheck from '../../../../skills/lca-data-sanity-check/SKILL.md?raw';
+
+The copy-paste page: prompts that have worked for the group, and complete Claude
+skill files. Everything here is meant to leave this site with you.
+
+## Reusable prompts
+
+Copy-pasteable prompts with a one-line "use when". Add your own in the same format:
+one fenced block, nothing project-specific.
+
+### Verify a claim before citing it
+
+*Use when an AI gave you a fact or citation you plan to put in a paper.*
+
+```text
+Here is a claim I want to cite: <claim>.
+Find the primary source. Quote the exact sentence(s) from it that support or
+contradict the claim, with a full citation including DOI. If you cannot locate a
+primary source, say "no primary source found". Do not substitute a similar paper
+and do not guess. If the source only partially supports the claim, state exactly
+which part is unsupported.
+```
+
+### Adversarial review of AI-written code
+
+*Use when accepting a non-trivial AI-written change to analysis code, ideally in a
+fresh session, so the reviewer isn't grading its own work.*
+
+```text
+Review this diff as a skeptical colleague. Do not explain what it does; hunt for
+what's wrong. Specifically check: (1) units and unit conversions on every changed
+quantity; (2) defaults or identifiers that changed meaning (methods, database
+versions, regions, years); (3) filters, cutoffs, or NA-handling that silently
+drop data; (4) off-by-one and boundary conditions. For each finding, give the
+line and a concrete failing input. If you find nothing, say what you checked.
+```
+
+### Surface a method's assumptions
+
+*Use when applying an unfamiliar method (statistical, ML, or IE) to your data.*
+
+```text
+I plan to use <method> on <one-line description of data and goal>.
+List the assumptions this method makes about the data, ordered by how badly the
+result degrades when each is violated. For each: how do I test it on my data, and
+what is the standard alternative if it fails? Cite a methods reference I can check.
+```
+
+### Data-leakage self-check
+
+*Use when you've built an ML pipeline and want the leakage audit from the
+[reproducibility checklist](/ai4ie-demo/best-practices/checklists/#machine-learning-reproducibility)
+run against it.*
+
+```text
+Here is my modeling pipeline, in order: <paste the steps or the code>.
+Audit it for data leakage. Check specifically: is the test set isolated before
+any normalization, gap-filling, feature selection, or outlier removal? Is any
+time-structured data split randomly? Does any preprocessing step see test rows?
+Report each check as pass/fail with the offending step named, then suggest the
+minimal reordering that fixes the failures.
+```
+
+### Extract without inventing
+
+*Use when pulling structured data out of reports, EPDs, or papers.*
+
+```text
+Extract the following fields from the attached document: <fields>.
+Rules: quote values exactly as written, with the page or section they came from.
+If a field is not stated in the document, write "not stated". Do not infer,
+convert, or fill from general knowledge. Flag any value whose unit differs from
+the requested unit rather than converting it.
+```
+
+## Claude skill files
+
+Reusable [Claude skills](https://docs.claude.com/en/docs/claude-code/skills) that
+package a workflow (checklist + instructions) so it triggers automatically.
+
+Two working skills, shown in full below. Use the copy button in the code block, then
+save the content as `SKILL.md` in your skills folder (or grab the file from
+[`skills/`](https://github.com/simonvanlierde/ai4ie-demo/tree/main/skills) on GitHub).
+
+### ml-reproducibility
+
+Enforces the [Rankin et al.](https://doi.org/10.21203/rs.3.rs-9270723/v1)
+recommendations whenever a model is trained or reviewed: test-set isolation before
+preprocessing, a linear baseline first, plain-language pipeline reporting, and the
+three disqualifying reviewer checks.
+
+<details>
+<summary>Show the skill file</summary>
+<Code code={mlReproducibility} lang="md" title="skills/ml-reproducibility/SKILL.md" />
+</details>
+
+### lca-data-sanity-check
+
+A structured pass over AI-written pipeline code: units, defaults, thresholds,
+mappings, a known-answer test, and a mass/energy balance check.
+
+<details>
+<summary>Show the skill file</summary>
+<Code code={lcaSanityCheck} lang="md" title="skills/lca-data-sanity-check/SKILL.md" />
+</details>
+
+To add your own, start from
+[`skills/SKILL-template.md`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/skills/SKILL-template.md);
+one folder per skill under `skills/`.
+
+See [CONTRIBUTING](https://github.com/simonvanlierde/ai4ie-demo/blob/main/CONTRIBUTING.md#adding-a-claude-skill)
+for the format.

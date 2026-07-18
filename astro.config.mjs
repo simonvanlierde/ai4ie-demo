@@ -67,8 +67,6 @@ export default defineConfig({
       // Sidebar order + labels. Add new pages here (slug = filename without .md).
       sidebar: [
         { label: "Home", link: "/" },
-        { label: "Best practices & guides", slug: "best-practices" },
-        { label: "Tools & hardware", slug: "tools" },
         {
           label: "Map of AI applications in IE",
           items: [
@@ -77,6 +75,22 @@ export default defineConfig({
           ],
         },
         { label: "Literature & resources", slug: "literature" },
+        {
+          label: "Best practices & guides",
+          items: [
+            { label: "Getting started & pitfalls", slug: "best-practices" },
+            { label: "Verification checklists", slug: "best-practices/checklists" },
+            { label: "Prompts & skills", slug: "best-practices/prompts-and-skills" },
+          ],
+        },
+        {
+          label: "Tools & hardware",
+          items: [
+            { label: "Software tools", slug: "tools" },
+            { label: "Local AI & hardware", slug: "tools/local-ai" },
+            { label: "Datasets & models", slug: "tools/data-and-models" },
+          ],
+        },
         { label: "Demos", slug: "demos" },
       ],
     }),

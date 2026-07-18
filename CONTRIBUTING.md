@@ -11,7 +11,7 @@ AI is being used in IE, add it.
    [`src/data/applications.yaml`](src/data/applications.yaml). Copy a neighbouring
    entry, edit the fields, done; the pages render themselves.
 2. **Everything else** is a Markdown page under `src/content/docs/`:
-   `best-practices.mdx`, `tools.md`, `demos.mdx`, `applications-map/index.mdx`.
+   `best-practices/`, `tools/`, `demos.mdx`, `applications-map/index.mdx`.
    Add an entry in the same format as its neighbours.
 3. Open a pull request. One entry per PR is fine. Small is good.
 

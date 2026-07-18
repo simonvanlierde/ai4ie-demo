@@ -1,0 +1,60 @@
+---
+title: Getting started & pitfalls
+description: The five-minute orientation for AI-assisted research, and the documented ways people get burned.
+---
+
+How to get reliable results from AI in coding and research, and check them before
+you trust them. This page is the orientation; the sibling pages hold the
+[verification checklists](/ai4ie-demo/best-practices/checklists/) and the
+[copy-pasteable prompts and skill files](/ai4ie-demo/best-practices/prompts-and-skills/).
+
+## Getting started
+
+The five-minute version:
+
+- **What these tools are good at:** transforming material you give them
+  (summarize, restructure, translate, explain, draft) and writing code you can
+  test. The common thread: outputs you can *verify* faster than you could produce.
+- **What they're bad at:** being a source. Facts, citations, and numbers produced
+  from a model's memory need verification against a primary source, every time;
+  see [Pitfalls](#pitfalls) for the measured failure rates.
+- **Keep it on a leash when coding:** small diffs you read, tests that would catch
+  a wrong answer, and a known-answer check for anything numerical. The
+  [coding checklist](/ai4ie-demo/best-practices/checklists/#ai-assisted-coding) is
+  the concrete version.
+- **When not to use it:** when you couldn't tell a good output from a bad one.
+  If you can't verify it, don't delegate it.
+- **Learn prompting from:** the [Prompt Engineering Guide](https://www.promptingguide.ai)
+  (free, tool-agnostic). Many "the AI is bad at this" complaints trace back to a
+  missing instruction.
+
+## Pitfalls
+
+Where people get burned, each with a documented case:
+
+- **Hallucinated citations.** In a controlled study, 55% of the references
+  GPT-3.5 produced and 18% of GPT-4's were entirely fabricated, and much of the
+  remainder had substantive errors
+  ([Walters & Wilder, 2023](https://doi.org/10.1038/s41598-023-41032-5)). Newer
+  models are better but not safe: US lawyers were sanctioned for filing a brief
+  with six invented cases
+  ([Mata v. Avianca](https://apnews.com/article/artificial-intelligence-chatgpt-fake-case-lawyers-d6ae9fa79d0542db9e1455397aef381c)).
+  Rule: a citation an AI gives you does not exist until you've opened it.
+- **Confident-but-wrong numbers.** Models state numbers with the same fluency
+  whether recalled correctly, approximated, or invented; there is no tonal
+  difference to detect. Any number destined for a paper gets traced to a primary
+  source or recomputed.
+- **Leaking confidential data.** Anything pasted into a hosted service leaves your
+  machine and may be retained; Samsung banned generative-AI tools after engineers
+  pasted internal source code into ChatGPT
+  ([TechCrunch, 2023](https://techcrunch.com/2023/05/02/samsung-bans-use-of-generative-ai-tools-like-chatgpt-after-april-internal-data-leak/)).
+  For NDA'd inventories and industry data, use the
+  [local options on the tools pages](/ai4ie-demo/tools/local-ai/), and check your
+  data-management plan before pasting.
+
+## Next
+
+- [Verification checklists](/ai4ie-demo/best-practices/checklists/): run one before
+  results go into a paper.
+- [Prompts & skills](/ai4ie-demo/best-practices/prompts-and-skills/): the copy-paste
+  page, including two complete Claude skills.
