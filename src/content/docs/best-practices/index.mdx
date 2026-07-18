@@ -1,36 +1,104 @@
 ---
 title: Getting started & pitfalls
-description: The five-minute orientation for AI-assisted research, and the documented ways people get burned.
+description: The two different things IE researchers call "AI", how to use each, and the documented ways people get burned.
 ---
 
-How to get reliable results from AI in coding and research, and check them before
-you trust them. This page is the orientation; the sibling pages hold the
-[verification checklists](/best-practices/checklists/) and the
-[copy-pasteable prompts and skill files](/best-practices/prompts-and-skills/).
+import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Getting started
+Two different things get called "using AI". One is **AI as a research method**: a
+model inside your pipeline, producing results you publish. The other is **AI as an
+assistant**: a chatbot or coding agent that helps you write the code and the paper.
+They fail in different ways and need different safeguards.
 
-The five-minute version:
+<CardGrid>
+  <Card title="AI as a method" icon="approve-check">
+    A model *is* the result: classifying waste images, gap-filling an inventory,
+    predicting a stock. The risk is a wrong number that no one catches, because
+    the pipeline runs cleanly. → [practices](#ai-as-a-research-method)
+  </Card>
+  <Card title="AI as an assistant" icon="laptop">
+    A model *helps you work*: writing code, restructuring a draft, summarizing a
+    report. The risk is confident invention: a citation, a number, a function
+    that doesn't exist. → [practices](#ai-as-an-assistant)
+  </Card>
+</CardGrid>
 
-- **What these tools are good at:** transforming material you give them
-  (summarize, restructure, translate, explain, draft) and writing code you can
-  test. The common thread: outputs you can *verify* faster than you could produce.
-- **What they're bad at:** being a source. Facts, citations, and numbers produced
-  from a model's memory need verification against a primary source, every time;
-  see [Pitfalls](#pitfalls) for the measured failure rates.
-- **Keep it on a leash when coding:** small diffs you read, tests that would catch
-  a wrong answer, and a known-answer check for anything numerical. The
-  [coding checklist](/best-practices/checklists/#ai-assisted-coding) is
-  the concrete version.
-- **When not to use it:** when you couldn't tell a good output from a bad one.
-  If you can't verify it, don't delegate it.
-- **Learn prompting from:** the [Prompt Engineering Guide](https://www.promptingguide.ai)
-  (free, tool-agnostic). Many "the AI is bad at this" complaints trace back to a
-  missing instruction.
+One rule covers both: **if you couldn't tell a good output from a bad one, don't
+delegate it.**
+
+## AI as a research method
+
+Using ML, deep learning, or generative models to process or produce data you will
+publish. Coding assistants have lowered the barrier to running a model much further
+than the barrier to noticing a broken one.
+
+- **Start with a baseline.** Report a simple model — linear regression will do —
+  alongside any complex one. If the gap is small, the complex model needs a reason
+  to exist, and sometimes the honest answer is that the question didn't need ML.
+- **Isolate the test set first.** Data leakage is the single most common
+  reproducibility failure in IE ML work, and normalization, gap-filling, or feature
+  selection performed before the split is the usual route in. Time-structured data
+  needs a time-aware split, not a random one. The
+  [ML-reproducibility checklist](/best-practices/checklists/#machine-learning-reproducibility)
+  is the full version; the
+  [leakage self-check prompt](/best-practices/prompts-and-skills/#data-leakage-self-check)
+  audits a pipeline you've already built.
+- **Expect performance to collapse off the training distribution.** It happens
+  repeatedly across the map: street-view models degrade sharply outside their
+  training city, and label OCR falls from 96% in repair shops to 40% at the recycler
+  ([evidence](/applications-map/#waste-eol--circularity)). Report where your model
+  was validated, and don't claim beyond it.
+- **Validate against something independent.** Satellite-derived material stocks
+  land within 53–200% of independent studies
+  ([evidence](/applications-map/#mfa--stocks-and-flows)). That spread is the
+  accuracy ceiling, so it belongs in your results rather than an appendix.
+- **Use generative models to extract, not to generate.** The consensus in LCA work
+  is that LLMs can pull inventory data out of documents with human verification, and
+  should not produce inventory values themselves
+  ([evidence](/applications-map/#lca--footprinting)). The
+  [extraction prompt](/best-practices/prompts-and-skills/#extract-without-inventing)
+  encodes the difference. Synthetic data is a modeling assumption; if you use it,
+  it goes in the methods section.
+- **Report the pipeline in order.** "We split, then normalized, then trained" tells a
+  reader more than the architecture diagram does. Pin versions, seeds, and the
+  environment; state the reason when data or code is withheld.
+- **Carry uncertainty through.** A model's point estimate is no more certain than
+  one from a mass balance. Uncertainty is IE's central methodological concern and
+  still has no column in the [map](/applications-map/#ai-techniques-with-no-tag).
+
+## AI as an assistant
+
+Chatbots and coding agents helping you write code, prose, or analysis. The model is
+fast and has no stake in being right, so keep the loop short enough that mistakes
+surface while you can still catch them.
+
+- **Good at transforming what you give it:** summarizing, restructuring,
+  translating, explaining, drafting, and writing code you can test. You can check
+  any of those faster than you could do them yourself. It is bad at being a source;
+  see [pitfalls](#pitfalls) for the measured failure rates.
+- **Give it the real context.** Most "the AI is bad at this" complaints trace to a
+  missing instruction: the actual data schema, the units, the method's constraints,
+  the paper's argument. Paste the thing rather than describing it.
+- **Small diffs you actually read.** Accept changes you can review in one sitting,
+  with tests that would catch a wrong answer and a known-answer check for anything
+  numerical. The [coding checklist](/best-practices/checklists/#ai-assisted-coding)
+  is the concrete version.
+- **Review in a fresh session.** A model grading its own work is a poor reviewer.
+  The [adversarial review prompt](/best-practices/prompts-and-skills/#adversarial-review-of-ai-written-code)
+  starts a skeptical second pass with no memory of having written the code.
+- **Verify before citing, every time.** Ask for the primary source and open it. The
+  [verification prompt](/best-practices/prompts-and-skills/#verify-a-claim-before-citing-it)
+  is built to fail loudly instead of substituting a plausible paper.
+- **Package what you repeat.** A workflow you run more than twice belongs in a
+  [skill file](/best-practices/prompts-and-skills/#claude-skill-files) rather than in
+  your memory of how you phrased it last time.
+- **Learn prompting properly** from the [Prompt Engineering Guide](https://www.promptingguide.ai),
+  which is free and tool-agnostic.
 
 ## Pitfalls
 
-Where people get burned, each with a documented case:
+Where people get burned, each with a documented case. The first two apply to both
+tracks; the third decides whether you can use a hosted service at all.
 
 - **Hallucinated citations.** In a controlled study, 55% of the references
   GPT-3.5 produced and 18% of GPT-4's were entirely fabricated, and much of the
