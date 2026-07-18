@@ -36,15 +36,22 @@ type DimKey = (typeof DIMENSIONS)[number]["key"];
 export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) {
   const [filter, setFilter] = useState<Filter>(EMPTY);
   const [sort, setSort] = useState<SortKey>("year");
+  const [hydrated, setHydrated] = useState(false);
 
   // Read the initial filter from the URL after hydration (SSR shows everything).
   useEffect(() => {
     setFilter(parseFilterParams(window.location.search));
+    setHydrated(true);
   }, []);
+
+  // Keep the shareable filter URL in sync once the initial URL has been read.
+  useEffect(() => {
+    if (!hydrated) return;
+    history.replaceState(null, "", window.location.pathname + toFilterParams(filter));
+  }, [filter, hydrated]);
 
   function apply(next: Filter) {
     setFilter(next);
-    history.replaceState(null, "", window.location.pathname + toFilterParams(next));
   }
 
   function toggle(dim: DimKey, tag: string) {
@@ -57,7 +64,6 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
 
   function clear() {
     setFilter(EMPTY);
-    history.replaceState(null, "", window.location.pathname);
   }
 
   const shown = sortEntries(
@@ -92,17 +98,19 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
                 )}
               </summary>
               <div className="lit-facet-panel">
-                {Object.entries(dim.tags).map(([tag, label]) => (
-                  <button
-                    type="button"
-                    key={tag}
-                    className={`lit-chip lit-chip-${dim.key}`}
-                    aria-pressed={filter[dim.key].includes(tag)}
-                    onClick={() => toggle(dim.key, tag)}
-                  >
-                    {label}
-                  </button>
-                ))}
+                {Object.entries(dim.tags)
+                  .sort(([, a], [, b]) => a.localeCompare(b))
+                  .map(([tag, label]) => (
+                    <button
+                      type="button"
+                      key={tag}
+                      className={`lit-chip lit-chip-${dim.key}`}
+                      aria-pressed={filter[dim.key].includes(tag)}
+                      onClick={() => toggle(dim.key, tag)}
+                    >
+                      {label}
+                    </button>
+                  ))}
               </div>
             </details>
           );
