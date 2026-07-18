@@ -1,20 +1,14 @@
 ---
-title: Map of AI applications in IE
-description: A draft map of computer-vision applications for product-scale data collection in industrial ecology.
+title: "Worked example: CV for product-scale data collection"
+description: A draft taxonomy of computer-vision tasks for product-scale data collection at end-of-life, with maturity verdicts per cell.
 ---
 
-import DemoIsland from '../../components/DemoIsland.tsx';
+import Cite from '../../../components/Cite.astro';
 
-A map of where AI is being applied across industrial ecology. This first slice is a
-**draft working taxonomy** of computer-vision tasks for product-scale data collection: a
-small corner of the field, not the whole of AI in IE. Each branch carries a rough
-maturity verdict and a demo slot. Other modalities and scales (NLP on reports and EPDs, LLM
-extraction, region- or economy-scale work) are wide open for the group to add.
-
-:::caution[Draft / prototype]
-Everything here is early and provisional: a personal working taxonomy, rough maturity
-calls, and placeholder demos. Treat it as a starting point to argue with, not settled work.
-:::
+One member's **draft working taxonomy** of computer-vision tasks for product-scale
+data collection at end-of-life: a worked example of how one corner of the
+[applications map](/applications-map/) can be mapped in depth. Treat it as a starting
+point, not settled work.
 
 ## How this map works
 
@@ -22,8 +16,7 @@ For each taxonomy category:
 
 - **What it covers:** one or two lines, in plain terms.
 - **Examples:** real applications, tools, or papers (link them; don't fabricate).
-- **Demo:** an optional embedded web-app demonstrating the category (see
-  [Two ways to add a demo](#two-ways-to-add-a-demo) at the bottom).
+- **Demo:** an optional embedded web-app demonstrating the category.
 
 ## Taxonomy at a glance
 
@@ -55,21 +48,20 @@ collection. Verdicts and coverage will shift as it develops._
   then fuzzy match to a reference database), with retrieval-based classification and VLM
   scene-text reading as complements. Deployed precedent: a washing-machine label pipeline
   run by non-experts on commodity phones read model numbers from 95.7% of label-visible
-  images in professional repair but only 39.7% at a recycler (Sterkens et al., 2023).
+  images in professional repair but only 39.7% at a recycler <Cite id="sterkensProductLabelIdentification2023" />.
   Failure mode: label degradation at EoL, plus a database-coverage limit downstream.
-- **Quantity (partial, approximate).** Monocular metric depth (Metric3D v2, Depth Pro,
-  Depth Anything v2), feed-forward multi-view geometry (VGGT, MapAnything), and
-  photogrammetry / NeRF / 3D Gaussian splatting recover error-bounded geometry; single-image
+- **Quantity (partial, approximate).** Monocular metric depth (<Cite id="huMetric3DV22024">Metric3D v2</Cite>, <Cite id="bochkovskiiDepthProSharp2024">Depth Pro</Cite>,
+  <Cite id="yangDepthAnythingV22024">Depth Anything v2</Cite>), feed-forward multi-view geometry (<Cite id="wangVGGTVisualGeometry2025">VGGT</Cite>, <Cite id="keethaMapAnythingUniversalFeedForward2025">MapAnything</Cite>), and
+  photogrammetry / <Cite id="mildenhallNeRFRepresentingScenes2020">NeRF</Cite> / <Cite id="kerbl3DGaussianSplatting2023">3D Gaussian splatting</Cite> recover error-bounded geometry; single-image
   mass estimation exists but is coarse. Visible surfaces only; reflective, transparent, and
   thin parts are the limiting cases.
 - **Condition (plausible but unvalidated).** Wear, damage, and corrosion recognition feeding
-  repair / reuse / recycle triage. Nearest method is zero-shot anomaly detection (WinCLIP,
-  AnomalyCLIP), which flags an anomaly's presence, not a graded per-unit condition, and is
+  repair / reuse / recycle triage. Nearest method is zero-shot anomaly detection (<Cite id="jeongWinCLIPZeroFewShot2023">WinCLIP</Cite>,
+  <Cite id="zhouAnomalyCLIPObjectAgnostic2023">AnomalyCLIP</Cite>), which flags an anomaly's presence, not a graded per-unit condition, and is
   unvalidated on worn consumer products.
 
-**Demo (example island, replace with a real one):**
-
-<DemoIsland client:visible />
+**Demo:** the [zero-shot identification demo](/demos/#in-this-browser-zero-shot-identification-clip)
+runs the open-vocabulary part of this cell in your browser.
 
 ## Component-level tasks
 
@@ -79,10 +71,10 @@ collection. Verdicts and coverage will shift as it develops._
 
 - **Structure / BoC (partial detection, emerging-but-narrow relations).** The most populated
   cell. Detecting, segmenting, and counting components is well-validated where task-tuned
-  (~98.8% mAP50 on a laptop-teardown benchmark); foundation segmenters (SAM, SAM 2, SAM 3,
-  GroundingDINO, Grounded-SAM) need an added class-assignment layer. Inferring
+  (~98.8% mAP50 on a laptop-teardown benchmark); foundation segmenters (<Cite id="kirillovSegmentAnything2023">SAM</Cite>, <Cite id="raviSAM2Segment2024">SAM 2</Cite>, <Cite id="carionSAM3Segment2025">SAM 3</Cite>,
+  <Cite id="liuGroundingDINOMarrying2024">GroundingDINO</Cite>, <Cite id="renGroundedSAMAssembling2024">Grounded-SAM</Cite>) need an added class-assignment layer. Inferring
   component-to-component *attachment relations* is the weakest cell: single-image methods
-  (SINGAPO, URDFormer) exist only for a few articulated household categories, collapse out
+  (<Cite id="liuSINGAPOSingleImage2025">SINGAPO</Cite>, <Cite id="chenURDFormerPipelineConstructing2024">URDFormer</Cite>) exist only for a few articulated household categories, collapse out
   of distribution (~82% → ~39%), and recover kinematic joints rather than the fastener
   relations (screwed, glued, clipped) a disassembly BoC needs.
 - **Identity (partial).** OCR on component markings plus one-shot / retrieval recognition and
@@ -94,9 +86,6 @@ collection. Verdicts and coverage will shift as it develops._
   solder joints) for disassembly planning; published work shows fastener *detection*, not
   per-unit condition *grading*.
 
-**Demo:** _none yet; embed an external app or an island (see
-[Two ways to add a demo](#two-ways-to-add-a-demo))._
-
 ## Material-level tasks
 
 **What it covers:** the material composition (bill of materials) of the product and its
@@ -105,10 +94,10 @@ parts.
 **Examples:**
 
 - **Identity / BoM (partial on visible surfaces, open gap for full BoM).** Surface material
-  classification and segmentation of *visible* regions (MINC's 23-class in-the-wild baseline;
-  one/few-shot similarity given a region mask; CLIP-based recognition, fragile under domain
+  classification and segmentation of *visible* regions (<Cite id="bellMaterialRecognitionWild2015">MINC</Cite>'s 23-class in-the-wild baseline;
+  one/few-shot similarity given a region mask; <Cite id="radfordLearningTransferableVisual2021">CLIP</Cite>-based recognition, fragile under domain
   shift and multi-material compositeness). One deployed setting delivers image-based
-  composition: an industrial sensor sorter on shredded WEEE (YOLO, mAP50 ≈ 0.99). But it
+  composition: an industrial sensor sorter on shredded WEEE (<Cite id="redmonYouOnlyLook2015">YOLO</Cite>, mAP50 ≈ 0.99). But it
   characterizes an aggregate flow at a central plant, not the per-component composition of an
   intact product. Occluded interior composition is an open gap.
 - **Quantity (derived, not sensed).** Per-material mass or volume would come from component
@@ -117,27 +106,3 @@ parts.
 - **Condition (plausible but unvalidated).** Corrosion, degradation, and contamination;
   surface segmentation can isolate regions, but per-region grading on arbitrary products is
   not validated.
-
-**Demo:** _none yet._
-
----
-
-## Two ways to add a demo
-
-- **External app (most common):** anything that *calls a model* needs a backend, so host
-  it separately (Hugging Face Space, an institute server, a small FastAPI app) and embed it
-  with an `<iframe>`. Keep a text link too, for when the embed can't load.
-
-  ```html
-  <iframe src="https://example.org/your-demo/" width="100%" height="480"
-          style="border:1px solid #ccc;border-radius:6px"
-          loading="lazy" title="Demo: category name"></iframe>
-  ```
-
-- **In-page island:** a purely client-side widget ships as an Astro island, no backend.
-  Copy [`src/components/DemoIsland.tsx`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/components/DemoIsland.tsx),
-  then drop `<YourDemo client:visible />` into the category (loads only when scrolled
-  into view). The example under [Product-level tasks](#product-level-tasks) is one.
-
-{/* Add other AI modalities (NLP on reports/EPDs, LLM extraction, forecasting) and scales
-    as sibling maps; this first map is a draft CV-for-data-collection taxonomy only. */}

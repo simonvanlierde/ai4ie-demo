@@ -4,25 +4,32 @@ import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
 import starlightLinksValidator from "starlight-links-validator";
+import { remarkBaseLinks } from "./src/plugins/remark-base-links.mjs";
 
 // Repo coordinates: the one place to change when forking or renaming.
-// (Markdown links in src/content can't read this; grep the old slug there too;
-//  see the "Forking or renaming" note in CONTRIBUTING.md.)
 const owner = "simonvanlierde";
 const repo = "ai4ie-demo";
 const repoUrl = `https://github.com/${owner}/${repo}`;
+const base = `/${repo}`;
 
 // https://astro.build/config
 export default defineConfig({
   site: `https://${owner}.github.io`,
-  base: `/${repo}`,
+  base,
+
+  // Content writes internal links root-absolute (`/tools/`); this adds `base`.
+  markdown: { remarkPlugins: [[remarkBaseLinks, { base }]] },
+
+  // Old URLs that are live on the deployed site must keep working after a move.
+  // (Astro base-prefixes the route but not the destination, hence `/${repo}`.)
+  redirects: { "/hardware/": `${base}/tools/local-ai/` },
 
   integrations: [
     react(), // enables interactive React "islands" for demos
     starlight({
-      // Fails the build on broken internal links / missing heading anchors.
-      // Relative links are allowed because they're what resolves correctly under `base`.
-      plugins: [starlightLinksValidator({ errorOnRelativeLinks: false })],
+      // Fails the build on broken internal links / missing heading anchors, and
+      // on relative links — content must be root-absolute so `base` gets applied.
+      plugins: [starlightLinksValidator()],
       // Show each page's last-git-commit date: signals a living, maintained resource.
       lastUpdated: true,
       favicon: "/favicon.svg",
@@ -35,7 +42,7 @@ export default defineConfig({
       },
       title: "Awesome AI for Industrial Ecology",
       description:
-        "A community-curated guide to using AI in industrial ecology, maintained by the AI4IE working group.",
+        "A community-curated guide to using AI in industrial ecology, open to contributions from anyone.",
       // Social preview card (public/og.png). Starlight ships no og:image by
       // default, so shared links would otherwise preview as bare text.
       head: [
@@ -51,7 +58,15 @@ export default defineConfig({
           attrs: { name: "twitter:image", content: `https://${owner}.github.io/${repo}/og.png` },
         },
       ],
-      social: [{ icon: "github", label: "GitHub", href: repoUrl }],
+      social: [
+        { icon: "github", label: "GitHub", href: repoUrl },
+        {
+          icon: "discord",
+          label: "Discord",
+          // TODO: discord admin should make a permanent revokable invite link (or use a vanity link) so this doesn't expire.
+          href: "https://discord.gg/zhHAZakXHX",
+        },
+      ],
       editLink: {
         baseUrl: `${repoUrl}/edit/main/`,
       },
@@ -67,10 +82,31 @@ export default defineConfig({
       // Sidebar order + labels. Add new pages here (slug = filename without .md).
       sidebar: [
         { label: "Home", link: "/" },
-        { label: "Hardware recommendations", slug: "hardware" },
-        { label: "Best practices & guides", slug: "best-practices" },
-        { label: "Tool recommendations", slug: "tools" },
-        { label: "Map of AI applications in IE", slug: "applications-map" },
+        {
+          label: "Map of AI applications in IE",
+          items: [
+            { label: "The map", slug: "applications-map" },
+            { label: "Worked example: CV taxonomy", slug: "applications-map/cv-taxonomy" },
+          ],
+        },
+        { label: "Literature & resources", slug: "literature" },
+        {
+          label: "Best practices & guides",
+          items: [
+            { label: "Getting started & pitfalls", slug: "best-practices" },
+            { label: "Verification checklists", slug: "best-practices/checklists" },
+            { label: "Prompts & skills", slug: "best-practices/prompts-and-skills" },
+          ],
+        },
+        {
+          label: "Tools & hardware",
+          items: [
+            { label: "Software tools", slug: "tools" },
+            { label: "Local AI & hardware", slug: "tools/local-ai" },
+            { label: "Datasets & models", slug: "tools/data-and-models" },
+          ],
+        },
+        { label: "Demos", slug: "demos" },
       ],
     }),
   ],

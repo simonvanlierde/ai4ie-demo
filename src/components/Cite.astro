@@ -1,0 +1,33 @@
+---
+// Inline citation that resolves a literature.yaml id at build time and links to
+// the reading list filtered to that one paper (?papers=<id>, the same deep-link
+// the applications map uses). A typo'd or missing id fails the build, so prose
+// citations can't drift from the data. Author/year come from the entry, never
+// hardcoded in the text.
+import { getCollection } from "astro:content";
+import { litUrl } from "./litFilter";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+
+const entry = (await getCollection("literature")).find((e) => e.id === id);
+if (!entry) {
+  throw new Error(`<Cite id="${id}"/>: no literature.yaml entry with that id`);
+}
+
+const { authors, year, link } = entry.data;
+// "Sterkens, W., et al." -> "Sterkens et al."; single author -> just the surname.
+const surname = authors.split(",")[0].trim();
+const short = /\bet al\b/.test(authors) ? `${surname} et al.` : surname;
+
+// With children, the citation wears the caller's words (a model name, say)
+// instead of "(Author, Year)", so prose can name the thing and still link it.
+const labelled = Astro.slots.has("default");
+
+const href = litUrl({ papers: [id] });
+---
+
+<a class:list={["cite", { "cite-ref": !labelled }]} href={href} title={`${authors} (${year}). DOI: ${link}`}>{labelled ? <slot /> : `(${short}, ${year})`}</a>

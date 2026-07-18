@@ -1,5 +1,5 @@
 {
-  "name": "ai4ie-awesome",
+  "name": "awesome-ai4ie",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -27,13 +27,20 @@
     "astro": "^7.0.6",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "yaml": "^2.9.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.2",
+    "@biomejs/biome": "^2.5.4",
     "@vitest/coverage-v8": "^4.1.10",
     "lefthook": "^2.1.9",
     "starlight-links-validator": "^0.25.2",
     "vitest": "^4.1.10"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "fsevents@2.3.3": true,
+    "lefthook@2.1.10": true,
+    "sharp@0.34.5": true
   }
 }

@@ -1,0 +1,82 @@
+---
+title: Demos
+description: Interactive demos of AI methods relevant to IE, in-browser and embedded, and how to add your own.
+---
+
+import Cite from '../../components/Cite.astro';
+import ZeroShotDemo from '../../components/ZeroShotDemo.tsx';
+
+Seeing a method run on *your own* photo beats reading about it. There are three
+demos so far: one built into this page, two embedded from Hugging Face Spaces.
+Each is tied to a cell of the [applications map](/applications-map/) and notes what
+it does and doesn't show.
+
+## In this browser: zero-shot identification (CLIP)
+
+Pick a photo (a product, a part, a pile of scrap) and a set of candidate labels;
+<Cite id="radfordLearningTransferableVisual2021">CLIP</Cite> scores the labels against the image. It runs
+**entirely in this browser tab** via
+[transformers.js](https://huggingface.co/docs/transformers.js); the photo is never
+uploaded. That is why local models matter for sensitive data (see
+[Local AI & hardware](/tools/local-ai/)).
+
+<ZeroShotDemo client:visible />
+
+**What it shows:** open-vocabulary recognition with labels you choose at run time;
+the *identity* column of the [CV taxonomy](/applications-map/cv-taxonomy/).
+**What it doesn't:** reliability. Scores are relative to *your* candidate list, and a
+confident-looking score proves nothing about labels you didn't offer.
+
+## Embedded: segmentation and depth
+
+### Segment Anything (in-browser, WebGPU)
+
+SAM segments whatever you click: the *detection & segmentation* step behind
+component-counting at end-of-life. This Space also runs fully client-side.
+
+<iframe src="https://webml-community-segment-anything-webgpu.static.hf.space/index.html"
+        width="100%"
+        style="height:700px;border:1px solid var(--sl-color-hairline-shade);border-radius:6px"
+        loading="lazy" title="Demo: Segment Anything WebGPU"></iframe>
+
+[Open directly](https://huggingface.co/spaces/webml-community/segment-anything-webgpu)
+if the embed fails to load. **What it doesn't show:** class assignment. SAM finds
+regions, not component types; you still need a classification step on top before
+you get a usable bill of components.
+
+### Depth Anything V2 (hosted)
+
+Monocular depth estimation, the *quantity/geometry* column: error-bounded geometry
+from a single photo. This one calls a hosted GPU, so **your image leaves the
+browser**; use test images, not confidential ones.
+
+<iframe src="https://depth-anything-depth-anything-v2.hf.space"
+        width="100%"
+        style="height:700px;border:1px solid var(--sl-color-hairline-shade);border-radius:6px"
+        loading="lazy" title="Demo: Depth Anything V2"></iframe>
+
+[Open directly](https://huggingface.co/spaces/depth-anything/Depth-Anything-V2)
+if the embed fails to load. **What it doesn't show:** metric accuracy on the
+reflective, transparent, and thin parts that dominate real products.
+
+## Two ways to add a demo
+
+- **External app (most common):** anything that *calls a hosted model* needs a
+  backend, so host it separately (Hugging Face Space, an institute server, a small
+  FastAPI app) and embed it with an `<iframe>`. Keep a text link too, for when the
+  embed can't load.
+
+  ```html
+  <iframe src="https://example.org/your-demo/" width="100%"
+          style="height:480px;border:1px solid #ccc;border-radius:6px"
+          loading="lazy" title="Demo: category name"></iframe>
+  ```
+
+- **In-page island:** a client-side widget ships as an Astro island, no backend
+  needed, including real in-browser inference via transformers.js. Copy
+  [`src/components/ZeroShotDemo.tsx`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/components/ZeroShotDemo.tsx),
+  then drop `<YourDemo client:visible />` into an `.mdx` page.
+
+When adding a demo, link it from the matching entry in
+[`src/data/applications.yaml`](https://github.com/simonvanlierde/ai4ie-demo/blob/main/src/data/applications.yaml)
+(`demo:` field) so the [map](/applications-map/) points to it.

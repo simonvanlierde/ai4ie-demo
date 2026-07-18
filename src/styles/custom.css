@@ -19,6 +19,12 @@
   --patina: #2a7d74; /* verdigris: what the copper becomes */
   --patina-bright: #5bb3a8; /* AA-safe patina for dark surfaces */
 
+  /* Theme-aware text inks: bright variants on dark surfaces, base variants on
+     light (reassigned in the light-theme block). Use these for colored text so
+     each new element doesn't need its own light-theme override. */
+  --copper-ink: var(--copper-bright);
+  --patina-ink: var(--patina-bright);
+
   /* Type roles */
   --sl-font: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
   --font-prose: "Literata Variable", Georgia, "Times New Roman", serif;
@@ -45,6 +51,8 @@
   --sl-color-text-accent: var(--copper); /* 4.95:1 on white: AA */
   --sl-color-bg: #fbfaf7; /* warm white */
   --sl-color-hairline-shade: #ece5dc;
+  --copper-ink: var(--copper);
+  --patina-ink: var(--patina);
 }
 
 /* ── Typography ──────────────────────────────────────────────────────────── */
@@ -104,33 +112,510 @@
   font-family: var(--font-prose);
 }
 
+/* ── Asides: note wears the patina instead of Starlight's default blue ───── */
+.starlight-aside--note {
+  --sl-color-asides-text-accent: var(--patina-ink);
+  --sl-color-asides-border: var(--patina);
+  background-color: color-mix(in srgb, var(--patina) 12%, transparent);
+}
+
+/* ── Collapsible skill files ─────────────────────────────────────────────── */
+.sl-markdown-content details {
+  border: 1px solid var(--sl-color-hairline-shade);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem;
+}
+.sl-markdown-content details summary {
+  font-family: var(--sl-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--sl-color-text-accent);
+  cursor: pointer;
+}
+.sl-markdown-content details[open] summary {
+  margin-bottom: 0.6rem;
+}
+
 /* ── Accessibility floor ─────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--copper);
   outline-offset: 2px;
 }
 
-/* ── Example demo island: retheme to the material tokens ─────────────────── */
-.demo-island {
+/* ── Literature browser ──────────────────────────────────────────────────────
+   Tag chips carry the two-dimensional story: IE-field chips wear the patina,
+   AI-technique chips wear the copper, entry-type chips stay neutral mono. */
+.lit-browser {
+  margin-top: 1.5rem;
+}
+/* Filter bar: one quiet line by default. Each dimension is a native <details>
+   disclosure (name= makes them mutually exclusive), so the 18 tag chips stay
+   out of the way until asked for, with keyboard support and no JS. */
+.lit-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+.lit-bar-label {
+  font-family: var(--sl-font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3);
+  margin-right: 0.35rem;
+}
+.lit-facet {
+  position: relative;
+}
+.lit-facet-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--sl-font-mono);
+  font-size: 0.68rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 999px;
+  color: var(--sl-color-gray-2);
+  cursor: pointer;
+  list-style: none;
+}
+.lit-facet-trigger::-webkit-details-marker {
+  display: none;
+}
+/* Caret, drawn in CSS so it needs no icon font and rotates on open. */
+.lit-facet-trigger::after {
+  content: "";
+  width: 0.32rem;
+  height: 0.32rem;
+  border: solid currentColor;
+  border-width: 0 1.5px 1.5px 0;
+  transform: translateY(-1px) rotate(45deg);
+  transition: transform 0.15s ease-out;
+}
+.lit-facet[open] > .lit-facet-trigger {
+  border-color: var(--sl-color-gray-3);
+  color: var(--sl-color-white);
+}
+.lit-facet[open] > .lit-facet-trigger::after {
+  transform: translateY(1px) rotate(-135deg);
+}
+.lit-facet-count {
+  min-width: 1.05rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  text-align: center;
+  color: #fff;
+}
+.lit-count-ie {
+  background: var(--patina);
+}
+.lit-count-ml {
+  background: var(--copper);
+}
+.lit-count-type {
+  background: var(--sl-color-gray-4);
+}
+.lit-facet-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  margin-top: 0.35rem;
+  padding: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  min-width: 15rem;
+  max-width: 24rem;
+  background: var(--sl-color-black);
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.4rem;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.25);
+}
+/* Active filters, in the same colours the entries use for those tags. */
+.lit-active {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.6rem;
+}
+.lit-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--sl-font-mono);
+  font-size: 0.68rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.lit-pill-ie {
+  background: var(--patina);
+}
+.lit-pill-ml {
+  background: var(--copper);
+}
+.lit-pill-type,
+.lit-pill-papers {
+  background: var(--sl-color-gray-4);
+  color: var(--sl-color-white);
+}
+@media (prefers-reduced-motion: reduce) {
+  .lit-facet-trigger::after {
+    transition: none;
+  }
+}
+.lit-chip {
+  font-family: var(--sl-font-mono);
+  font-size: 0.68rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--sl-color-gray-5);
+  background: transparent;
+  color: var(--sl-color-gray-2);
+  cursor: pointer;
+}
+/* Keep each option on one line; the panel wraps whole chips instead.
+   Declared after .lit-chip so specificity stays ascending. */
+.lit-facet-panel .lit-chip {
+  white-space: nowrap;
+}
+.lit-chip[aria-pressed="true"].lit-chip-ie {
+  background: var(--patina);
+  border-color: var(--patina);
+  color: #fff;
+}
+.lit-chip[aria-pressed="true"].lit-chip-ml {
+  background: var(--copper);
+  border-color: var(--copper);
+  color: #fff;
+}
+.lit-chip[aria-pressed="true"].lit-chip-type {
+  background: var(--sl-color-gray-4);
+  border-color: var(--sl-color-gray-4);
+  color: var(--sl-color-white);
+}
+/* Touch devices need a 44px target; keep the dense mono look on pointer devices. */
+@media (pointer: coarse) {
+  .lit-facet-trigger,
+  .lit-facet-panel .lit-chip,
+  .lit-pill {
+    min-height: 44px;
+  }
+}
+.lit-count {
+  margin: 1rem 0 0.5rem;
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--sl-color-gray-3);
+}
+.lit-clear {
+  border: none;
+  background: none;
+  font: inherit;
+  color: var(--sl-color-text-accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.lit-sort {
+  float: right;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.lit-sort select {
+  font: inherit;
+  color: var(--sl-color-white);
+  background: var(--sl-color-gray-6);
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.3rem;
+}
+/* Inline citation link (the <Cite> component). Only the "(Author, Year)" form
+   is kept on one line; a labelled cite carries prose that must be free to wrap. */
+.cite-ref {
+  white-space: nowrap;
+}
+.lit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.lit-entry {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--sl-color-hairline-shade);
+}
+.lit-meta {
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--sl-color-gray-3);
+}
+.lit-title {
+  display: block;
+  font-family: var(--sl-font);
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.3;
+  margin: 0.15rem 0;
+  text-decoration: none;
+  color: var(--sl-color-white);
+}
+.lit-title:hover {
+  color: var(--sl-color-text-accent);
+  text-decoration: underline;
+}
+.lit-blurb {
+  font-family: var(--font-prose);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0.15rem 0 0.4rem;
+  color: var(--sl-color-gray-2);
+}
+.lit-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.lit-tag {
+  font-family: var(--sl-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  padding: 0.08rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--sl-color-gray-5);
+  color: var(--sl-color-gray-3);
+}
+.lit-tag-ie {
+  border-color: color-mix(in srgb, var(--patina) 55%, transparent);
+  color: var(--patina-ink);
+}
+.lit-tag-ml {
+  border-color: color-mix(in srgb, var(--copper) 55%, transparent);
+  color: var(--copper-ink);
+}
+.lit-empty {
+  font-family: var(--font-prose);
+  color: var(--sl-color-gray-3);
+}
+@media (max-width: 640px) {
+  .lit-chip-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+/* ── Applications explorer ──────────────────────────────────────────────────
+   Same dimension colors as the literature browser: IE = patina, ML = copper. */
+.apx {
+  margin: 1.5rem 0;
+}
+.apx-switch {
+  display: inline-flex;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.apx-switch button {
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.8rem;
+  border: none;
+  background: transparent;
+  color: var(--sl-color-gray-2);
+  cursor: pointer;
+}
+.apx-switch button + button {
+  border-left: 1px solid var(--sl-color-gray-5);
+}
+.apx-switch button[aria-selected="true"] {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-white);
+}
+.apx-group {
+  margin-top: 1.4rem;
+}
+.apx-group-label {
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 0.4rem;
+}
+.apx-group-label.apx-ie {
+  color: var(--patina-ink);
+}
+.apx-group-label.apx-ml {
+  color: var(--copper-ink);
+}
+.apx-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.apx-entry {
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--sl-color-hairline-shade);
+}
+.apx-name {
+  font-family: var(--sl-font);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.apx-summary {
+  font-family: var(--font-prose);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0.2rem 0 0.4rem;
+  color: var(--sl-color-gray-2);
+}
+.apx-maturity {
+  color: var(--sl-color-gray-3);
+}
+.apx-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.6rem;
+  align-items: center;
+}
+.apx-links a {
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+  color: var(--sl-color-text-accent);
+  text-decoration: none;
+}
+.apx-links a:hover {
+  text-decoration: underline;
+}
+.apx-grid-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+.apx-grid {
+  border-collapse: collapse;
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+}
+.apx-grid th,
+.apx-grid td {
+  border: 1px solid var(--sl-color-hairline-shade);
+  padding: 0.4rem 0.55rem;
+  text-align: center;
+}
+.apx-grid thead th a {
+  color: var(--copper-ink);
+  text-decoration: none;
+}
+.apx-grid tbody th {
+  text-align: left;
+}
+.apx-grid tbody th a {
+  color: var(--patina-ink);
+  text-decoration: none;
+}
+.apx-grid td a {
+  display: inline-block;
+  min-width: 1.6rem;
+  border-radius: 999px;
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-white);
+  text-decoration: none;
+}
+
+/* ── Zero-shot demo island ──────────────────────────────────────────────── */
+.zsd {
   border: 1px solid var(--sl-color-gray-5);
   border-left: 3px solid var(--patina);
   border-radius: 0.5rem;
   padding: 1rem;
   background: var(--sl-color-gray-6);
 }
-.demo-island textarea {
+.zsd-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.zsd-labels {
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--sl-color-gray-3);
+}
+.zsd-labels input {
+  display: block;
   width: 100%;
-  min-height: 5rem;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
+  margin-top: 0.3rem;
+  padding: 0.45rem 0.6rem;
   border-radius: 0.35rem;
   border: 1px solid var(--sl-color-gray-5);
   background: var(--sl-color-black);
   color: var(--sl-color-white);
   font: inherit;
+  font-size: 0.85rem;
 }
-.demo-island output {
-  display: block;
-  margin-top: 0.5rem;
+.zsd-controls button {
+  align-self: flex-start;
+  font-family: var(--sl-font);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.35rem;
+  border: none;
+  background: var(--copper);
+  color: #fff;
+  cursor: pointer;
+}
+.zsd-controls button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.zsd-img {
+  max-width: min(100%, 360px);
+  border-radius: 0.35rem;
+  margin-top: 0.8rem;
+}
+.zsd-status {
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  color: var(--sl-color-gray-3);
+  margin: 0.6rem 0 0;
+}
+.zsd-results {
+  list-style: none;
+  padding: 0;
+  margin: 0.8rem 0 0;
+}
+.zsd-results li {
+  display: grid;
+  grid-template-columns: minmax(8rem, 14rem) 1fr 3.5rem;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.25rem 0;
+}
+.zsd-result-label {
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
+}
+.zsd-bar {
+  height: 0.6rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--patina), var(--copper));
+  min-width: 2px;
+}
+.zsd-score {
+  font-family: var(--sl-font-mono);
+  font-size: 0.72rem;
+  text-align: right;
   color: var(--sl-color-gray-2);
 }

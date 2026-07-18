@@ -1,0 +1,10 @@
+---
+import { getCollection } from "astro:content";
+import ApplicationsExplorer from "./ApplicationsExplorer";
+
+const entries = (await getCollection("applications"))
+  .map((e) => ({ id: e.id, ...e.data }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<ApplicationsExplorer client:load entries={entries} />

@@ -1,10 +1,10 @@
 # Awesome AI for Industrial Ecology
 
-**A community-curated resource for using AI in industrial ecology research,
-maintained by the [AI4IE working group](CONTRIBUTING.md).**
+A community-curated resource for using AI in industrial ecology research. Started in the AI4IE working group; [contributions welcome from anyone](CONTRIBUTING.md).
 
 [![Live site](https://img.shields.io/badge/live_site-ai4ie-c2410c)](https://simonvanlierde.github.io/ai4ie-demo/)
 [![Contributing](https://img.shields.io/badge/contributing-guide-0f766e)](CONTRIBUTING.md)
+[![Discord](https://img.shields.io/badge/chat-Discord-5865F2?logo=discord&logoColor=white)](https://discord.gg/zhHAZakXHX)
 [![CI](https://img.shields.io/github/actions/workflow/status/simonvanlierde/ai4ie-demo/ci.yml?label=CI)](https://github.com/simonvanlierde/ai4ie-demo/actions)
 [![Coverage](https://img.shields.io/codecov/c/github/simonvanlierde/ai4ie-demo)](https://codecov.io/gh/simonvanlierde/ai4ie-demo)
 [![Built with Astro](https://img.shields.io/badge/built%20with-Astro-BC52EE?logo=astro&logoColor=white)](https://astro.build)
@@ -18,33 +18,31 @@ maintained by the [AI4IE working group](CONTRIBUTING.md).**
 
 ## What this is
 
-A **scaffold**, not finished work. Placeholder content and `TODO(wg)` markers throughout,
-waiting for working-group members to fill in. Contributions are the whole point.
+This repo is a proposal to the AI4IE working group and to anyone else working at this
+intersection, not a finished resource. Each section already has real content to react to: an applications map, a literature list, tool and hardware guidance, working Claude skills, and in-browser demos. Feel free to propose changes or additions via pull request, or open an issue if you want to discuss something first.
 
 | Page | Contents |
-|---|---|
-| [Hardware](src/content/docs/hardware.md) | Local, federated, and self-hosted setups for running AI. |
-| [Best practices & guides](src/content/docs/best-practices.md) | Get-started guides, verification checklists, reusable prompts, Claude skill files. |
-| [Tools](src/content/docs/tools.md) | Recommended software, services, and libraries. |
-| [Map of AI in IE](src/content/docs/applications-map.mdx) | A draft taxonomy of AI applications, with slots for live demos. |
+| --- | --- |
+| [Best practices & guides](src/content/docs/best-practices/) | Getting started and pitfalls, verification checklists, prompts and Claude skills. |
+| [Tools & hardware](src/content/docs/tools/) | Software tools, local AI and hardware, datasets and models. |
+| [Map of AI in IE](src/content/docs/applications-map/index.mdx) | A two-dimensional map of AI applications by IE field and AI technique. |
+| [Literature & resources](src/content/docs/literature.mdx) | Tag-filterable reading list backed by `src/data/literature.yaml`. |
+| [Demos](src/content/docs/demos.mdx) | In-browser (transformers.js) and embedded demos, tied to map cells. |
 
 ## Contributing
 
-Edit a Markdown file under `src/content/docs/`, replace a `TODO(wg)`, open a pull request.
-No local setup needed to edit prose — see [CONTRIBUTING.md](CONTRIBUTING.md).
+Add a paper or application to a YAML file under `src/data/`, or edit a Markdown page under `src/content/docs/`, and open a pull request. No local setup needed to edit text; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## How it's built
 
-[Astro](https://astro.build) + the [Starlight](https://starlight.astro.build) docs theme.
-Content is plain Markdown/MDX; interactive demos are **Astro islands**, so pages that don't
-use one ship zero JavaScript. Pushing to `main` builds and deploys to GitHub Pages.
+[Astro](https://astro.build) + the [Starlight](https://starlight.astro.build) docs theme. Content is plain Markdown/MDX; interactive demos are **Astro islands**, so pages that don't use one ship zero JavaScript. Pushing to `main` builds and deploys to GitHub Pages.
 
 | Where | What |
-|---|---|
+| --- | --- |
 | `src/content/docs/*.md` | Page content (`.mdx` when a page embeds a component). |
 | [`astro.config.mjs`](astro.config.mjs) | Sidebar, theme, site config. |
 | [`src/styles/custom.css`](src/styles/custom.css) | Brand colors. |
-| [`src/components/DemoIsland.tsx`](src/components/DemoIsland.tsx) | Example interactive island. |
+| [`src/components/ZeroShotDemo.tsx`](src/components/ZeroShotDemo.tsx) | In-browser CLIP demo island (transformers.js). |
 | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | Lint, test, build, deploy. |
 
 Preview locally (needs Node 26+):
