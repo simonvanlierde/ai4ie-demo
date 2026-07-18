@@ -66,10 +66,64 @@ Robotic disassembly works for narrow product families <Cite id="ameurFutureRobot
 
 ### Not mapped yet
 
-`TODO`: Input–output analysis, forecasting, and scenario modeling have no vetted entries yet.
-Our research sweep found no claims in these areas that survived verification, which
-is itself a data point. If you work there and know better, this is the easiest place
-to contribute.
+The blank space in this map is worth as much as the filled cells, so here it is named
+rather than left implicit. Two kinds of gap: **IE fields** with no vetted entries, and
+**AI techniques** with no tag in the vocabulary yet.
+
+One caveat on how to read this. None of it claims the work doesn't exist. It claims we
+have not vetted any of it — our sweep either found nothing that survived verification,
+or never looked. Each line is the easiest possible contribution: one paper, one entry.
+
+#### IE fields with no entries
+
+- `TODO` **Chemicals, toxicity & QSAR.** Predicting properties and toxicity for substances
+  nobody has tested, where LCA needs characterisation factors for tens of thousands of them.
+  Plausibly the largest single hole in this map.
+- `TODO` **Energy systems & industrial decarbonisation.** Marginal versus average grid
+  factors, temporal accounting, process and heat-integration optimisation.
+- `TODO` **Industrial symbiosis.** Matching one plant's waste to another's input is a
+  recommender problem wearing an IE name.
+- `TODO` **Supply chains, criticality & resource security.** Supply risk, critical raw
+  materials, trade-network disruption.
+- `TODO` **Agriculture, food & land use.** The field our remote-sensing tag most obviously
+  serves, with nothing behind it.
+- `TODO` **Product lifetime, reuse & repair.** Survival analysis and failure prediction;
+  feeds both MFA stock models and the EoL corner.
+- `TODO` **Water.** Footprint, scarcity, and hydrological modelling.
+- `TODO` **Input–output analysis, forecasting & scenario modelling.** The original three
+  gaps, still open.
+
+#### AI techniques with no tag
+
+Tags are added together with their first entry, so these stay out of the vocabulary until
+someone brings a paper that earns one.
+
+- `TODO` **Uncertainty quantification & Bayesian methods.** Uncertainty is this discipline's
+  central methodological concern and the map has no column for it. Conformal prediction included.
+- `TODO` **Graph neural networks & network analysis.** Supply chains, IO tables, material-flow
+  networks, molecular graphs: most IE data is a network, and nothing here treats it as one.
+- `TODO` **Surrogate models & emulators.** Including physics-informed. This is how scenario
+  work actually gets done with ML, rather than in principle.
+- `TODO` **Causal inference.** Rebound effects and policy attribution are causal claims,
+  usually made with correlational tools.
+- `TODO` **Reinforcement learning.** Disassembly sequence planning and process control. The
+  EoL paragraph above already discusses robotic disassembly with no technique tag behind it.
+- `TODO` **Knowledge graphs & ontologies.** LCI interoperability and semantic flow matching,
+  distinct from NLP extraction.
+- `TODO` **Recommender & matching systems.** The method behind industrial symbiosis, and
+  behind matching products to emission factors.
+- `TODO` **Time-series & forecasting.** Distinct from tabular ML.
+- `TODO` **Federated & privacy-preserving learning.** [Local AI & hardware](/tools/local-ai/)
+  argues for keeping sensitive data in-house; this is how institutions learn from data they
+  are never going to pool.
+- `TODO` **Explainability.** Whether a model-based assessment claim can be interrogated.
+
+#### Where the gaps meet
+
+Several of these are not separate holes but one cell each: **chemicals × graph neural
+networks**, **scenarios × surrogates**, **symbiosis × matching**, **EoL × reinforcement
+learning**. Those four are the most concrete places to start, because each names both a
+field and a method rather than a vague area.
 
 ## Deeper dives
 

@@ -640,7 +640,7 @@
   year: 2023
   link: "https://doi.org/10.48550/ARXIV.2303.14814"
   blurb: "Zero-shot anomaly detection built on CLIP: flags that something is wrong without defect training data, but not how bad it is."
-  ml: [cv, foundation]
+  ml: [cv, foundation, anomaly-detection]
   type: [method]
   added: 2026-07
 - id: zhouAnomalyCLIPObjectAgnostic2023
@@ -649,7 +649,7 @@
   year: 2023
   link: "https://doi.org/10.48550/ARXIV.2310.18961"
   blurb: "Prompts learned to be object-agnostic, so zero-shot anomaly detection travels across product types instead of being tuned per object."
-  ml: [cv, foundation]
+  ml: [cv, foundation, anomaly-detection]
   type: [method]
   added: 2026-07
 - id: raviSAM2Segment2024

@@ -1,8 +1,9 @@
 // Shared tag vocabulary: used by the literature list, the applications map,
 // and the schema validation in content.config.ts. Add new tags here first;
 // the collections test enforces that data files only use tags defined here.
-// Areas with no vetted entries yet (e.g. input–output analysis, forecasting &
-// scenarios) are deliberately absent: add the tag together with its first entry.
+// Areas with no vetted entries yet are deliberately absent: add the tag together
+// with its first entry. The known gaps are named under "Not mapped yet" on the
+// applications map, so the absences stay visible instead of implicit.
 export const IE_TAGS = {
   lca: "LCA & footprinting",
   mfa: "MFA & stocks and flows",
@@ -20,6 +21,7 @@ export const ML_TAGS = {
   "tabular-ml": "Tabular ML & regression",
   generative: "Generative models",
   foundation: "Foundation models & transformers",
+  "anomaly-detection": "Anomaly & condition detection",
 } as const;
 
 export const TYPE_TAGS = {
