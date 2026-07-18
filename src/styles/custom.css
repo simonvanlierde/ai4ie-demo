@@ -148,25 +148,129 @@
 .lit-browser {
   margin-top: 1.5rem;
 }
-.lit-chip-row {
+/* Filter bar: one quiet line by default. Each dimension is a native <details>
+   disclosure (name= makes them mutually exclusive), so the 18 tag chips stay
+   out of the way until asked for, with keyboard support and no JS. */
+.lit-bar {
   display: flex;
-  gap: 0.75rem;
-  align-items: baseline;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
   margin-bottom: 0.6rem;
 }
-.lit-dim-label {
-  flex: 0 0 6.5rem;
+.lit-bar-label {
   font-family: var(--sl-font-mono);
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--sl-color-gray-3);
+  margin-right: 0.35rem;
 }
-.lit-chips {
+.lit-facet {
+  position: relative;
+}
+.lit-facet-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--sl-font-mono);
+  font-size: 0.68rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 999px;
+  color: var(--sl-color-gray-2);
+  cursor: pointer;
+  list-style: none;
+}
+.lit-facet-trigger::-webkit-details-marker {
+  display: none;
+}
+/* Caret, drawn in CSS so it needs no icon font and rotates on open. */
+.lit-facet-trigger::after {
+  content: "";
+  width: 0.32rem;
+  height: 0.32rem;
+  border: solid currentColor;
+  border-width: 0 1.5px 1.5px 0;
+  transform: translateY(-1px) rotate(45deg);
+  transition: transform 0.15s ease-out;
+}
+.lit-facet[open] > .lit-facet-trigger {
+  border-color: var(--sl-color-gray-3);
+  color: var(--sl-color-white);
+}
+.lit-facet[open] > .lit-facet-trigger::after {
+  transform: translateY(1px) rotate(-135deg);
+}
+.lit-facet-count {
+  min-width: 1.05rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  text-align: center;
+  color: #fff;
+}
+.lit-count-ie {
+  background: var(--patina);
+}
+.lit-count-ml {
+  background: var(--copper);
+}
+.lit-count-type {
+  background: var(--sl-color-gray-4);
+}
+.lit-facet-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  margin-top: 0.35rem;
+  padding: 0.55rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+  min-width: 15rem;
+  max-width: 24rem;
+  background: var(--sl-color-black);
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.4rem;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.25);
+}
+/* Active filters, in the same colours the entries use for those tags. */
+.lit-active {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.6rem;
+}
+.lit-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--sl-font-mono);
+  font-size: 0.68rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.lit-pill-ie {
+  background: var(--patina);
+}
+.lit-pill-ml {
+  background: var(--copper);
+}
+.lit-pill-type,
+.lit-pill-papers {
+  background: var(--sl-color-gray-4);
+  color: var(--sl-color-white);
+}
+@media (prefers-reduced-motion: reduce) {
+  .lit-facet-trigger::after {
+    transition: none;
+  }
 }
 .lit-chip {
   font-family: var(--sl-font-mono);
@@ -177,6 +281,11 @@
   background: transparent;
   color: var(--sl-color-gray-2);
   cursor: pointer;
+}
+/* Keep each option on one line; the panel wraps whole chips instead.
+   Declared after .lit-chip so specificity stays ascending. */
+.lit-facet-panel .lit-chip {
+  white-space: nowrap;
 }
 .lit-chip[aria-pressed="true"].lit-chip-ie {
   background: var(--patina);
@@ -193,6 +302,14 @@
   border-color: var(--sl-color-gray-4);
   color: var(--sl-color-white);
 }
+/* Touch devices need a 44px target; keep the dense mono look on pointer devices. */
+@media (pointer: coarse) {
+  .lit-facet-trigger,
+  .lit-facet-panel .lit-chip,
+  .lit-pill {
+    min-height: 44px;
+  }
+}
 .lit-count {
   margin: 1rem 0 0.5rem;
   font-family: var(--sl-font-mono);
@@ -201,7 +318,6 @@
   color: var(--sl-color-gray-3);
 }
 .lit-clear {
-  margin-left: 0.75rem;
   border: none;
   background: none;
   font: inherit;

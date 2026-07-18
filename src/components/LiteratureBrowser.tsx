@@ -19,11 +19,19 @@ const DIMENSIONS = [
   { key: "type", label: "Type", tags: TYPE_TAGS },
 ] as const;
 
+type DimKey = (typeof DIMENSIONS)[number]["key"];
+
 /**
  * Tag-filterable reading list. SSRs the full list (filters need JS); the
  * active filter round-trips through URL params so filtered views are
  * shareable and the applications map can deep-link here (by tag or, via
  * `?papers=`, by cited entry ids).
+ *
+ * Each dimension collapses into a native <details> disclosure rather than a
+ * wall of chips: `name` makes them mutually exclusive and gives keyboard
+ * support for free, so no popover/focus-trap code is needed. Whatever is
+ * actually filtering shows up as removable pills, in the same colours the
+ * entries below use for the same tags.
  */
 export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) {
   const [filter, setFilter] = useState<Filter>(EMPTY);
@@ -34,14 +42,17 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
     setFilter(parseFilterParams(window.location.search));
   }, []);
 
-  function toggle(dim: (typeof DIMENSIONS)[number]["key"], tag: string) {
-    const active = filter[dim].includes(tag);
-    const next = {
-      ...filter,
-      [dim]: active ? filter[dim].filter((t) => t !== tag) : [...filter[dim], tag],
-    };
+  function apply(next: Filter) {
     setFilter(next);
     history.replaceState(null, "", window.location.pathname + toFilterParams(next));
+  }
+
+  function toggle(dim: DimKey, tag: string) {
+    const active = filter[dim].includes(tag);
+    apply({
+      ...filter,
+      [dim]: active ? filter[dim].filter((t) => t !== tag) : [...filter[dim], tag],
+    });
   }
 
   function clear() {
@@ -55,33 +66,82 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
   );
   const anyActive = DIMENSIONS.some((d) => filter[d.key].length > 0) || filter.papers.length > 0;
 
+  // One pill per active tag, plus one for a `?papers=` deep-link, which would
+  // otherwise narrow the list with nothing on screen to explain why.
+  const pills = DIMENSIONS.flatMap((dim) =>
+    filter[dim.key].map((tag) => ({
+      id: `${dim.key}:${tag}`,
+      dim: dim.key,
+      tag,
+      label: (dim.tags as Record<string, string>)[tag] ?? tag,
+    })),
+  );
+
   return (
     <div className="lit-browser not-content">
-      {DIMENSIONS.map((dim) => (
-        <div className="lit-chip-row" key={dim.key}>
-          <span className="lit-dim-label">{dim.label}</span>
-          <div className="lit-chips">
-            {Object.entries(dim.tags).map(([tag, label]) => (
-              <button
-                type="button"
-                key={tag}
-                className={`lit-chip lit-chip-${dim.key}`}
-                aria-pressed={filter[dim.key].includes(tag)}
-                onClick={() => toggle(dim.key, tag)}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+      <div className="lit-bar">
+        <span className="lit-bar-label">Filter</span>
+        {DIMENSIONS.map((dim) => {
+          const count = filter[dim.key].length;
+          return (
+            <details className="lit-facet" name="lit-facet" key={dim.key}>
+              <summary className="lit-facet-trigger">
+                {dim.label}
+                {count > 0 && (
+                  <span className={`lit-facet-count lit-count-${dim.key}`}>{count}</span>
+                )}
+              </summary>
+              <div className="lit-facet-panel">
+                {Object.entries(dim.tags).map(([tag, label]) => (
+                  <button
+                    type="button"
+                    key={tag}
+                    className={`lit-chip lit-chip-${dim.key}`}
+                    aria-pressed={filter[dim.key].includes(tag)}
+                    onClick={() => toggle(dim.key, tag)}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </details>
+          );
+        })}
+      </div>
+
+      {anyActive && (
+        <div className="lit-active">
+          {pills.map((p) => (
+            <button
+              type="button"
+              key={p.id}
+              className={`lit-pill lit-pill-${p.dim}`}
+              aria-label={`Remove filter: ${p.label}`}
+              onClick={() => toggle(p.dim, p.tag)}
+            >
+              {p.label}
+              <span aria-hidden="true">×</span>
+            </button>
+          ))}
+          {filter.papers.length > 0 && (
+            <button
+              type="button"
+              className="lit-pill lit-pill-papers"
+              aria-label="Remove filter: linked papers"
+              onClick={() => apply({ ...filter, papers: [] })}
+            >
+              {filter.papers.length} linked {filter.papers.length === 1 ? "paper" : "papers"}
+              <span aria-hidden="true">×</span>
+            </button>
+          )}
+          <button type="button" className="lit-clear" onClick={clear}>
+            Clear all
+          </button>
         </div>
-      ))}
+      )}
+
       <p className="lit-count" role="status">
         {shown.length} of {entries.length} entries
-        {anyActive && (
-          <button type="button" className="lit-clear" onClick={clear}>
-            clear filters
-          </button>
-        )}
         <label className="lit-sort">
           Sort
           <select value={sort} onChange={(e) => setSort(e.target.value as SortKey)}>
