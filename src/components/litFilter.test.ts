@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { matchesFilter, parseFilterParams, toFilterParams } from "./litFilter";
+import { matchesFilter, parseFilterParams, sortEntries, toFilterParams } from "./litFilter";
 
 const entry = { ie: ["eol"], ml: ["cv", "segmentation"], type: ["method"] };
 
@@ -44,5 +44,27 @@ describe("parseFilterParams", () => {
       papers: ["kirillovSegmentAnything2023"],
     };
     expect(parseFilterParams(toFilterParams(f))).toEqual(f);
+  });
+});
+
+describe("sortEntries", () => {
+  const es = [
+    { year: 2020, authors: "Zhao", title: "Bravo" },
+    { year: 2024, authors: "Adams", title: "Alpha" },
+    { year: 2020, authors: "Adams", title: "Charlie" },
+  ];
+  it("year sorts newest first, then by author", () => {
+    expect(sortEntries(es, "year").map((e) => e.title)).toEqual(["Alpha", "Charlie", "Bravo"]);
+  });
+  it("authors sorts A–Z, newest first within an author", () => {
+    expect(sortEntries(es, "authors").map((e) => e.title)).toEqual(["Alpha", "Charlie", "Bravo"]);
+  });
+  it("title sorts A–Z", () => {
+    expect(sortEntries(es, "title").map((e) => e.title)).toEqual(["Alpha", "Bravo", "Charlie"]);
+  });
+  it("does not mutate the input", () => {
+    const copy = [...es];
+    sortEntries(es, "title");
+    expect(es).toEqual(copy);
   });
 });

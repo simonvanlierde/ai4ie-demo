@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import type { LitEntry } from "../data/schemas";
 import { IE_TAGS, ML_TAGS, TYPE_TAGS } from "../data/tags";
-import { type Filter, matchesFilter, parseFilterParams, toFilterParams } from "./litFilter";
+import {
+  type Filter,
+  matchesFilter,
+  parseFilterParams,
+  SORTS,
+  type SortKey,
+  sortEntries,
+  toFilterParams,
+} from "./litFilter";
 
 const EMPTY: Filter = { ie: [], ml: [], type: [], papers: [] };
 
@@ -19,6 +27,7 @@ const DIMENSIONS = [
  */
 export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) {
   const [filter, setFilter] = useState<Filter>(EMPTY);
+  const [sort, setSort] = useState<SortKey>("year");
 
   // Read the initial filter from the URL after hydration (SSR shows everything).
   useEffect(() => {
@@ -40,7 +49,10 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
     history.replaceState(null, "", window.location.pathname);
   }
 
-  const shown = entries.filter((e) => matchesFilter(e, filter));
+  const shown = sortEntries(
+    entries.filter((e) => matchesFilter(e, filter)),
+    sort,
+  );
   const anyActive = DIMENSIONS.some((d) => filter[d.key].length > 0) || filter.papers.length > 0;
 
   return (
@@ -70,6 +82,16 @@ export default function LiteratureBrowser({ entries }: { entries: LitEntry[] }) 
             clear filters
           </button>
         )}
+        <label className="lit-sort">
+          Sort
+          <select value={sort} onChange={(e) => setSort(e.target.value as SortKey)}>
+            {SORTS.map((s) => (
+              <option key={s.key} value={s.key}>
+                {s.label}
+              </option>
+            ))}
+          </select>
+        </label>
       </p>
       <ol className="lit-list">
         {shown.map((e) => (

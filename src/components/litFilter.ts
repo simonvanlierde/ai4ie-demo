@@ -24,3 +24,24 @@ export function toFilterParams(f: Filter): string {
   const parts = KEYS.filter((k) => f[k].length > 0).map((k) => `${k}=${f[k].join(",")}`);
   return parts.length > 0 ? `?${parts.join("&")}` : "";
 }
+
+export type SortKey = "year" | "authors" | "title";
+
+export const SORTS: { key: SortKey; label: string }[] = [
+  { key: "year", label: "Newest first" },
+  { key: "authors", label: "Author A–Z" },
+  { key: "title", label: "Title A–Z" },
+];
+
+type Sortable = { year: number; authors: string; title: string };
+
+/** Return a sorted copy: year descending, author/title ascending, each with a
+ * secondary key so ties order deterministically. */
+export function sortEntries<T extends Sortable>(entries: T[], key: SortKey): T[] {
+  const cmp: Record<SortKey, (a: Sortable, b: Sortable) => number> = {
+    year: (a, b) => b.year - a.year || a.authors.localeCompare(b.authors),
+    authors: (a, b) => a.authors.localeCompare(b.authors) || b.year - a.year,
+    title: (a, b) => a.title.localeCompare(b.title),
+  };
+  return [...entries].sort(cmp[key]);
+}
