@@ -1,6 +1,6 @@
 name: CI & Deploy
 
-# PRs run lint + build only. Pushes to main run lint + build, then deploy;
+# PRs run lint, type check, test and build. Pushes to main run the same, then deploy;
 # deploy is gated on both passing via `needs:`, so a red build never ships.
 on:
   pull_request:
@@ -28,6 +28,8 @@ jobs:
       - run: npm ci
       - name: Lint & format check
         run: npm run lint
+      - name: Type check
+        run: npm run check
       - name: Test (with coverage)
         run: npm run test:coverage
       - name: Upload coverage to Codecov
