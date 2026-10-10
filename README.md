@@ -8,7 +8,8 @@ A community-curated resource for using AI in industrial ecology research. Starte
 [![CI](https://img.shields.io/github/actions/workflow/status/simonvanlierde/ai4ie-demo/ci.yml?label=CI)](https://github.com/simonvanlierde/ai4ie-demo/actions)
 [![Coverage](https://img.shields.io/codecov/c/github/simonvanlierde/ai4ie-demo)](https://codecov.io/gh/simonvanlierde/ai4ie-demo)
 [![Built with Astro](https://img.shields.io/badge/built%20with-Astro-BC52EE?logo=astro&logoColor=white)](https://astro.build)
-[![License: CC BY 4.0](https://img.shields.io/badge/license-CC--BY--4.0-lightgrey)](LICENSE)
+[![Code: MIT](https://img.shields.io/badge/code-MIT-green)](LICENSE)
+[![Content: CC BY 4.0](https://img.shields.io/badge/content-CC--BY--4.0-lightgrey)](LICENSE-CONTENT)
 
 **See it live: [simonvanlierde.github.io/ai4ie-demo](https://simonvanlierde.github.io/ai4ie-demo/)**
 
@@ -54,4 +55,6 @@ npm run dev        # → http://localhost:4321/ai4ie-demo/
 
 ## License
 
-[CC-BY-4.0](LICENSE)
+The code is under the [MIT License](LICENSE). The content is under
+[CC BY 4.0](LICENSE-CONTENT): the pages in `src/content/`, the YAML data in `src/data/`,
+the skills in `skills/`, and the images in `src/assets/` and `public/`.
