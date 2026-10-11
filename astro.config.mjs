@@ -8,7 +8,7 @@ import { remarkBaseLinks } from "./src/plugins/remark-base-links.mjs";
 
 // Repo coordinates: the one place to change when forking or renaming.
 const owner = "simonvanlierde";
-const repo = "ai4ie-demo";
+const repo = "awesome-ai4ie";
 const repoUrl = `https://github.com/${owner}/${repo}`;
 const base = `/${repo}`;
 

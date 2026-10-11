@@ -2,18 +2,18 @@
 
 A community-curated resource for using AI in industrial ecology research. Started in the AI4IE working group; [contributions welcome from anyone](CONTRIBUTING.md).
 
-[![Live site](https://img.shields.io/badge/live_site-ai4ie-c2410c)](https://simonvanlierde.github.io/ai4ie-demo/)
+[![Live site](https://img.shields.io/badge/live_site-ai4ie-c2410c)](https://simonvanlierde.github.io/awesome-ai4ie/)
 [![Contributing](https://img.shields.io/badge/contributing-guide-0f766e)](CONTRIBUTING.md)
 [![Discord](https://img.shields.io/badge/chat-Discord-5865F2?logo=discord&logoColor=white)](https://discord.gg/zhHAZakXHX)
-[![CI](https://img.shields.io/github/actions/workflow/status/simonvanlierde/ai4ie-demo/ci.yml?label=CI)](https://github.com/simonvanlierde/ai4ie-demo/actions)
-[![Coverage](https://img.shields.io/codecov/c/github/simonvanlierde/ai4ie-demo)](https://codecov.io/gh/simonvanlierde/ai4ie-demo)
+[![CI](https://img.shields.io/github/actions/workflow/status/simonvanlierde/awesome-ai4ie/ci.yml?label=CI)](https://github.com/simonvanlierde/awesome-ai4ie/actions)
+[![Coverage](https://img.shields.io/codecov/c/github/simonvanlierde/awesome-ai4ie)](https://codecov.io/gh/simonvanlierde/awesome-ai4ie)
 [![Built with Astro](https://img.shields.io/badge/built%20with-Astro-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-green)](LICENSE)
 [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC--BY--4.0-lightgrey)](LICENSE-CONTENT)
 
-**See it live: [simonvanlierde.github.io/ai4ie-demo](https://simonvanlierde.github.io/ai4ie-demo/)**
+**See it live: [simonvanlierde.github.io/awesome-ai4ie](https://simonvanlierde.github.io/awesome-ai4ie/)**
 
-<a href="https://simonvanlierde.github.io/ai4ie-demo/">
+<a href="https://simonvanlierde.github.io/awesome-ai4ie/">
   <img src=".github/screenshot.png" alt="The AI4IE site homepage" width="800">
 </a>
 
@@ -50,7 +50,7 @@ Preview locally (needs Node 26+):
 
 ```bash
 npm install
-npm run dev        # → http://localhost:4321/ai4ie-demo/
+npm run dev        # → http://localhost:4321/awesome-ai4ie/
 ```
 
 ## License

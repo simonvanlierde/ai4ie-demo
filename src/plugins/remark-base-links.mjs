@@ -4,7 +4,7 @@
  * Astro applies `base` to its own routing but not to hrefs written by hand in
  * Markdown, so content can't portably say `/tools/`. Relative links (`../tools/`)
  * do resolve, but only while the containing page is served with a trailing
- * slash — one `/ai4ie-demo` without it and every link on the page breaks.
+ * slash — one `/awesome-ai4ie` without it and every link on the page breaks.
  * Writing links root-absolute and rewriting them here is depth- and
  * trailing-slash-independent.
  */
